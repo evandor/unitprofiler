@@ -6,20 +6,22 @@ import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.twenty11.unitprofile.Profiler;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
+import javassist.CtField;
 import javassist.CtMethod;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 
-public class SleepingClassFileTransformer implements ClassFileTransformer {
+public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
     private final long offset = System.currentTimeMillis();
 
-    private List<Invocation> invocations = new ArrayList<Invocation>();
-
     private List<CtMethod> profiledMethods = new ArrayList<CtMethod>();
+
+    private CtClass profilerClass;
 
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
             ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
@@ -30,11 +32,17 @@ public class SleepingClassFileTransformer implements ClassFileTransformer {
 
         byte[] byteCode = classfileBuffer;
         ClassPool cp = ClassPool.getDefault();
-
+        cp.importPackage("de.twenty11.unitprofile");
+        cp.importPackage("de.twenty11.unitprofile.callback");
+        
         try {
 
             CtClass cc = cp.get(className.replace("/", "."));
 
+            if (profilerClass == null) {
+                profilerClass = cp.get(Profiler.class.getName());
+            }
+            
             List<CtMethod> annotatedMethodsToProfile = findMethodsToProfile(cc);
 
             if (annotatedMethodsToProfile.size() > 0) {
@@ -42,7 +50,7 @@ public class SleepingClassFileTransformer implements ClassFileTransformer {
                 System.out.println("");
             }
             for (CtMethod m : annotatedMethodsToProfile) {
-                profile(m, 0);
+                startProfiling(cc, profilerClass, m);
             }
             byteCode = cc.toBytecode();
             cc.detach();
@@ -54,65 +62,33 @@ public class SleepingClassFileTransformer implements ClassFileTransformer {
         return byteCode;
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        System.out.println("FINALLY" + invocations.size());
-    }
-
-    private void profile(final CtMethod m, final int depth) throws CannotCompileException {
-
-        Invocation invocation = new Invocation();
-        invocations.add(invocation);
+    private final void startProfiling(CtClass cc, CtClass profilerClass, final CtMethod m) throws CannotCompileException {
         
         if (profiledMethods.contains(m)) {
-            System.out.println("blocked");
             return;
         }
         profiledMethods.add(m);
 
-        m.addLocalVariable("elapsedTime", CtClass.longType);
-        //System.out.println(getBeforeStatements(m, depth));
-        m.insertBefore(getBeforeStatements(m, depth));
-        m.insertAfter(getAfterStatements(m, depth));
-
-        m.instrument(new ExprEditor() {
-            public void edit(MethodCall mc) throws CannotCompileException {
-                if (mc.getClassName().startsWith("java.")) {
-                    return;
-                }
-                if (mc.getClassName().startsWith("de.twenty11.unitprofile.callback.")) {
-                    return;
-                }
-               // System.out.println(m.getName() + " -> " + mc.getClassName() + "." + mc.getMethodName() + " " + mc.getSignature());
-                try {
-                    int newDepth = depth + 1;
-                    profile(mc.getMethod(), newDepth);
-                } catch (Exception e) {
-                    // e.printStackTrace();
-                }
-            }
-        });
+        CtField f = new CtField(profilerClass, "profiler", cc);
+        cc.addField(f);
+        
+        m.insertBefore("{profiler = ProfilerCallback.start(this.getClass().getName(), \""+m.getName()+"\");}");
+        m.insertAfter("{ProfilerCallback.stop(this.getClass().getName(), \""+m.getName()+"\");}");
+        m.instrument(new ProfilingExprEditor(this, 0));
     }
 
-    private String getBeforeStatements(CtMethod m, int depth) {
-        StringBuilder sb = new StringBuilder("{");
-        sb.append("elapsedTime = System.currentTimeMillis(); ");
-        sb.append("de.twenty11.unitprofile.callback.ProfilerCallback.before(this.getClass().getName(), \""+m.getName()+"\", "+depth+", elapsedTime);");
-//        sb.append("System.out.println(\"Before " + m.getName() + "[" + m.hashCode() + "] (" + depth
-//                + ")(\" + (elapsedTime - " + offset + "L) +\")\");");
-        sb.append("}");
-        return sb.toString();
-    }
 
-    private String getAfterStatements(CtMethod m, int depth) {
-        StringBuilder sb = new StringBuilder("{");
-        sb.append("elapsedTime = System.currentTimeMillis();");
-        sb.append("de.twenty11.unitprofile.callback.ProfilerCallback.after(this.getClass().getName(), \""+m.getName()+"\", "+depth+", elapsedTime);");
-//        sb.append("System.out.println(\"After  " + m.getName() + "[" + m.hashCode() + "] (" + depth
-//                + ")(\" + (elapsedTime - " + offset + "L) +\")\");");
-        sb.append("}");
-        return sb.toString();
+    protected final void profile(final CtMethod m, final int depth) throws CannotCompileException {
+         
+        if (profiledMethods.contains(m)) {
+            return;
+        }
+        profiledMethods.add(m);
+
+        //m.addLocalVariable("elapsedTime", CtClass.longType);
+        m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \""+m.getName()+"\", "+depth+");}");
+        m.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \""+m.getName()+"\", "+depth+");}");
+        m.instrument(new ProfilingExprEditor(this, depth));
     }
 
     private List<CtMethod> findMethodsToProfile(CtClass cc) {
