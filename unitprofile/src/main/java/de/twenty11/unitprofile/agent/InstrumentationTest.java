@@ -14,22 +14,23 @@ public class InstrumentationTest {
         test.randomSleep1();
         test.randomSleep2();
         test.randomSleep3();
+        test.randomSleep1();
     }
     
     public void randomSleep1() throws InterruptedException {
-        long randomSleepDuration = (long) (500 + Math.random() * 700);
+        long randomSleepDuration = (long) (200 + Math.random() * 300);
         //System.out.printf("Sleeping1 for %d ms ..\n", randomSleepDuration);
         Thread.sleep(randomSleepDuration);
     }
     
     public void randomSleep2() throws InterruptedException {
-        long randomSleepDuration = (long) (500 + Math.random() * 700);
+        long randomSleepDuration = (long) (200 + Math.random() * 300);
         //System.out.printf("Sleeping2 for %d ms ..\n", randomSleepDuration);
         Thread.sleep(randomSleepDuration);
     }
 
     public void randomSleep3() throws InterruptedException {
-        long randomSleepDuration = (long) (500 + Math.random() * 700);
+        long randomSleepDuration = (long) (200 + Math.random() * 300);
         //System.out.printf("Sleeping3 for %d ms ..\n", randomSleepDuration);
         Thread.sleep(randomSleepDuration);
         randomSleep2();
