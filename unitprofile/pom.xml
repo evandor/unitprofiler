@@ -5,6 +5,16 @@
 	<artifactId>unitprofile</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<scm>
+		<!-- read access -->
+		<connection>scm:git:git@github.com:evandor/unitprofile.git</connection>
+		<!-- write access -->
+		<url>scm:git:git@github.com:evandor/unitprofile.git</url>
+		<!-- A publicly browsable repository. For example, via ViewCVS. -->
+		<developerConnection>scm:git:git@github.com:evandor/unitprofile.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+	
 	<properties>
 		<hamcrest.version>1.3</hamcrest.version>
 	</properties>
