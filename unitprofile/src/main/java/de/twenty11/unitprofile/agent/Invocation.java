@@ -107,4 +107,29 @@ public class Invocation {
         this.timeShare = d;
     }
 
+    public String treetable() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<table id=\"treetable\">");
+        sb.append("<tr data-tt-id=\"0\">");
+        sb.append("  <td>app</td>");
+        sb.append("  </tr>");
+        sb.append("   <tr data-tt-id=\"1\" data-tt-parent-id=\"0\">");
+        sb.append("      <td>controllers</td>");
+        sb.append("    </tr>");
+        sb.append("    <tr data-tt-id=\"5\" data-tt-parent-id=\"1\">");
+        sb.append("  <td>application_controller.rb</td>");
+        sb.append("</tr>");
+        sb.append("<tr data-tt-id=\"2\" data-tt-parent-id=\"0\">");
+        sb.append("  <td>helpers</td>");
+        sb.append("</tr>");
+        sb.append("<tr data-tt-id=\"3\" data-tt-parent-id=\"0\">");
+        sb.append("  <td>models</td>");
+        sb.append("</tr>");
+        sb.append("<tr data-tt-id=\"4\" data-tt-parent-id=\"0\">");
+        sb.append("  <td>views</td>");
+        sb.append("</tr>");
+        sb.append("</table>");
+        return sb.toString();
+    }
+
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import de.twenty11.unitprofile.Profiler;
 import de.twenty11.unitprofile.agent.Invocation;
+import de.twenty11.unitprofile.output.OutputGenerator;
 
 public class ProfilerCallback {
 
@@ -43,6 +44,8 @@ public class ProfilerCallback {
         
         System.out.println("\n=====================\n");
         System.out.println(last.dump());
+        
+        new OutputGenerator().renderFromBootstrapTemplate(last);
     }
 
     public static void before(String objectName, String methodName) { //, int depth) {
