@@ -14,7 +14,7 @@ public class OutputGenerator {
 
     public void renderFromBootstrapTemplate(Invocation rootInvocation) {
         try {
-            ST indexFile = new ST(FileUtils.readFileToString(new File("src/main/resources/templates/index.stg")), '$','$');
+            ST indexFile = new ST(FileUtils.readFileToString(new File("src/main/resources/templates/treetable.stg")), '$','$');
             indexFile.add("dump", rootInvocation.dump());
             indexFile.add("treetable", rootInvocation.treetable());
             FileUtils.writeStringToFile(new File(OUTPUT_PATH + "/index.html"), indexFile.render());

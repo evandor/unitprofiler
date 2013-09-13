@@ -11,7 +11,6 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtField;
 import javassist.CtMethod;
-import de.twenty11.unitprofile.Profiler;
 import de.twenty11.unitprofile.callback.ProfilerCallback;
 
 public class ProfilingClassFileTransformer implements ClassFileTransformer {
@@ -66,8 +65,10 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         }
         profiledMethods.add(m);
 
-        CtField f = new CtField(profilerClass, "profiler", cc);
-        cc.addField(f);
+        //CtField f = new CtField(profilerClass, "profiler", cc);
+        //cc.addField(f);
+        
+        cc.instrument(new ProfilingExprEditor(this, cc, 0));
         
         m.insertBefore("{ProfilerCallback.start(this.getClass().getName(), \""+m.getName()+"\");}");
         m.insertAfter("{ProfilerCallback.stop(this.getClass().getName(), \""+m.getName()+"\");}");

@@ -2,8 +2,13 @@ package de.twenty11.unitprofile.agent;
 
 import javassist.CannotCompileException;
 import javassist.CtClass;
+import javassist.expr.ConstructorCall;
 import javassist.expr.ExprEditor;
+import javassist.expr.FieldAccess;
+import javassist.expr.Handler;
 import javassist.expr.MethodCall;
+import javassist.expr.NewArray;
+import javassist.expr.NewExpr;
 
 public class ProfilingExprEditor extends ExprEditor {
     
@@ -29,5 +34,30 @@ public class ProfilingExprEditor extends ExprEditor {
         } catch (Exception e) {
             // e.printStackTrace();
         }
+    }
+    
+    @Override
+    public void edit(ConstructorCall c) throws CannotCompileException {
+        System.out.println("Constructor call " + c);
+    }
+    
+    @Override
+    public void edit(FieldAccess f) throws CannotCompileException {
+        System.out.println("FieldAccess  " + f);
+    }
+    
+    @Override
+    public void edit(Handler h) throws CannotCompileException {
+        System.out.println("Handler " + h);
+    }
+    
+    @Override
+    public void edit(NewArray a) throws CannotCompileException {
+        System.out.println("NewArray " + a);
+    }
+    
+    @Override
+    public void edit(NewExpr e) throws CannotCompileException {
+        System.out.println("NewExpr " + e);
     }
 }

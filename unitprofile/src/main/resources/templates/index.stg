@@ -91,7 +91,7 @@
     <link href="css/jquery.treetable.css" rel="stylesheet" type="text/css" />
 	<script src="js/jquery.treetable.js"></script>
 	<script>
-		\$('#treetable1').treetable();
+		\$('#treetable1').treetable({ expandable: true });
 	</script>
     
   </body>

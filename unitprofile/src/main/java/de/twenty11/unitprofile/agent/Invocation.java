@@ -1,5 +1,6 @@
 package de.twenty11.unitprofile.agent;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Invocation {
     private List<Invocation> children = new ArrayList<Invocation>();
     private int depth;
     private double timeShare;
+    DecimalFormat df = new DecimalFormat("#.00"); 
 
     public Invocation(String objectName, String methodName) {
         this(null, objectName, methodName, 0);
@@ -80,8 +82,6 @@ public class Invocation {
             for (Invocation invocation : children) {
                 sb.append(invocation.dump(++indentation));
             }
-        } else {
-            // sb.append("\n");
         }
         return sb.toString();
     }
@@ -95,9 +95,9 @@ public class Invocation {
         if (parentTime == null) {
             setTimeShare(100.0);
         } else {
-            setTimeShare(100.0 * myTime  / parentTime);
+            setTimeShare(100.0 * myTime / parentTime);
         }
-        
+
         for (Invocation invocation : children) {
             invocation.calc(myTime);
         }
@@ -109,26 +109,49 @@ public class Invocation {
 
     public String treetable() {
         StringBuilder sb = new StringBuilder();
-        sb.append("<table id=\"treetable\">");
-        sb.append("<tr data-tt-id=\"0\">");
-        sb.append("  <td>app</td>");
-        sb.append("  </tr>");
-        sb.append("   <tr data-tt-id=\"1\" data-tt-parent-id=\"0\">");
-        sb.append("      <td>controllers</td>");
-        sb.append("    </tr>");
-        sb.append("    <tr data-tt-id=\"5\" data-tt-parent-id=\"1\">");
-        sb.append("  <td>application_controller.rb</td>");
-        sb.append("</tr>");
-        sb.append("<tr data-tt-id=\"2\" data-tt-parent-id=\"0\">");
-        sb.append("  <td>helpers</td>");
-        sb.append("</tr>");
-        sb.append("<tr data-tt-id=\"3\" data-tt-parent-id=\"0\">");
-        sb.append("  <td>models</td>");
-        sb.append("</tr>");
-        sb.append("<tr data-tt-id=\"4\" data-tt-parent-id=\"0\">");
-        sb.append("  <td>views</td>");
-        sb.append("</tr>");
+        sb.append("<table id=\"treetable1\">");
+        
+        sb.append("<caption>\n");
+        sb.append("<a href='#' onclick=\"jQuery('#treetable1').treetable('expandAll'); return false;\">Expand all</a>\n");
+        sb.append("<a href='#' onclick=\"jQuery('#treetable1').treetable('collapseAll'); return false;\">Collapse all</a>\n");
+        sb.append("</caption>\n");
+        sb.append("<thead>\n");
+        sb.append(" <tr>\n");
+        sb.append("   <th>Method</th>\n");
+        sb.append("   <th>Time (ms)</th>\n");
+        sb.append("   <th>Time (%)</th>\n");
+        sb.append("   <th>Self Time (ms)</th>\n");
+        sb.append("   <th>Self Time (%)</th>\n");
+        sb.append("   <th>Count</th>\n");
+        sb.append(" </tr>\n");
+        sb.append("</thead>\n");
+        sb.append("<tbody>\n");
+        
+        sb.append(rowInTreeTable(this, 0, null));
+
+        sb.append("</tbody>\n");
         sb.append("</table>");
+        return sb.toString();
+    }
+
+    public String rowInTreeTable(Invocation inv, int indentation, Integer parentId) {
+        StringBuilder sb = new StringBuilder();
+        Integer id = indentation;
+
+        sb.append("\n<tr data-tt-id='").append(id).append("'");
+        if (parentId != null) {
+            sb.append(" data-tt-parent-id='").append(parentId).append("'");
+        }
+        sb.append(">");
+        sb.append("  <td>").append(inv.cls).append("#").append(inv.method).append("</td>");
+        sb.append("<td>").append((inv.end - inv.start)).append("</td><td>").append(df.format(inv.timeShare)).append("%").append("</td>");
+        sb.append("</tr>");
+        if (inv.children.size() != 0) {
+            for (Invocation child : inv.children) {
+                sb.append(rowInTreeTable(child, ++indentation, id));
+                sb.append("\n");
+            }
+        }
         return sb.toString();
     }
 

@@ -4,7 +4,6 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.twenty11.unitprofile.Profiler;
 import de.twenty11.unitprofile.agent.Invocation;
 import de.twenty11.unitprofile.output.OutputGenerator;
 
