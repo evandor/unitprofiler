@@ -1,4 +1,4 @@
-package de.twenty11.unitprofile.agent;
+package de.twenty11.unitprofile.domain;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -154,5 +154,6 @@ public class Invocation {
         }
         return sb.toString();
     }
+
 
 }

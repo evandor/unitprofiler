@@ -9,6 +9,14 @@ import de.twenty11.unitprofile.callback.ProfilerCallback;
  */
 public class InstrumentationTest {
     
+    public InstrumentationTest() {
+        try {
+            sleep100();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
     @Profile
     public void somethingElse () throws InterruptedException {
         InstrumentationTest test = new InstrumentationTest();

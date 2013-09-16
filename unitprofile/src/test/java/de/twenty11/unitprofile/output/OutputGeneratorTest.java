@@ -3,7 +3,7 @@ package de.twenty11.unitprofile.output;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import de.twenty11.unitprofile.agent.Invocation;
+import de.twenty11.unitprofile.domain.Invocation;
 
 
 public class OutputGeneratorTest {

@@ -1,9 +1,11 @@
-package de.twenty11.unitprofile.agent;
+package de.twenty11.unitprofile.domain;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
+
+import de.twenty11.unitprofile.domain.Invocation;
 
 
 public class InvocationTest {

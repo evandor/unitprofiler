@@ -2,11 +2,17 @@ package de.twenty11.unitprofile.output;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.stringtemplate.v4.ST;
 
-import de.twenty11.unitprofile.agent.Invocation;
+import de.twenty11.unitprofile.agent.Agent;
+import de.twenty11.unitprofile.domain.Instrumentation;
+import de.twenty11.unitprofile.domain.Invocation;
 
 public class OutputGenerator {
 
@@ -14,16 +20,38 @@ public class OutputGenerator {
 
     public void renderFromBootstrapTemplate(Invocation rootInvocation) {
         try {
-            ST indexFile = new ST(FileUtils.readFileToString(new File("src/main/resources/templates/treetable.stg")), '$','$');
+            InputStream resourceAsStream = this.getClass().getResourceAsStream("/templates/treetable.stg");
+            StringWriter writer = new StringWriter();
+            IOUtils.copy(resourceAsStream, writer);
+            ST indexFile = new ST(writer.toString(), '$', '$');
+
+            // ST indexFile = new ST(FileUtils.readFileToString(treetableFile), '$', '$');
             indexFile.add("dump", rootInvocation.dump());
             indexFile.add("treetable", rootInvocation.treetable());
             FileUtils.writeStringToFile(new File(OUTPUT_PATH + "/index.html"), indexFile.render());
-            FileUtils.copyDirectory(new File("src/main/resources/bootstrap"), new File(OUTPUT_PATH));
-            FileUtils.copyDirectory(new File("src/main/resources/ludo-jquery-treetable"), new File(OUTPUT_PATH));
+        
+            MyFileUtils.copyResourcesRecursively(this.getClass().getResource("/bootstrap"), new File(OUTPUT_PATH));
+            MyFileUtils.copyResourcesRecursively(this.getClass().getResource("/ludo-jquery-treetable"), new File(OUTPUT_PATH));
+        
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void renderDebugInfo() {
+        List<Instrumentation> instrumentations = Agent.getInstrumentations();
+        StringBuilder sb = new StringBuilder();
+        for (Instrumentation instrumentation : instrumentations) {
+            sb.append(instrumentation.toString()).append("\n");
+        }
+        try {
+            FileUtils.writeStringToFile(new File(OUTPUT_PATH + "/instrumentations.html"), sb.toString());
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
+   
 }

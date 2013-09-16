@@ -2,6 +2,8 @@ package de.twenty11.unitprofile.agent;
 
 import javassist.CannotCompileException;
 import javassist.CtClass;
+import javassist.CtConstructor;
+import javassist.NotFoundException;
 import javassist.expr.ConstructorCall;
 import javassist.expr.ExprEditor;
 import javassist.expr.FieldAccess;
@@ -9,6 +11,7 @@ import javassist.expr.Handler;
 import javassist.expr.MethodCall;
 import javassist.expr.NewArray;
 import javassist.expr.NewExpr;
+import de.twenty11.unitprofile.domain.Instrumentation;
 
 public class ProfilingExprEditor extends ExprEditor {
     
@@ -23,6 +26,7 @@ public class ProfilingExprEditor extends ExprEditor {
     }
     
     public void edit(MethodCall mc) throws CannotCompileException {
+        //System.out.println(mc.getClassName() + "#" + mc.getMethodName());
         if (mc.getClassName().startsWith("java.")) {
             return;
         }
@@ -38,17 +42,36 @@ public class ProfilingExprEditor extends ExprEditor {
     
     @Override
     public void edit(ConstructorCall c) throws CannotCompileException {
-        System.out.println("Constructor call " + c);
+        
     }
     
     @Override
     public void edit(FieldAccess f) throws CannotCompileException {
-        System.out.println("FieldAccess  " + f);
+//        System.out.println("FieldAccess  " + f.getClassName());
+//        System.out.println("FieldAccess  " + f.getFieldName());
+//        System.out.println("FieldAccess  " + f.getEnclosingClass().getName());
+//        System.out.println("FieldAccess  " + f.getLineNumber());
+//        System.out.println("FieldAccess  " + f.where());
+//        System.out.println("FieldAccess  " + f.getSignature());
+//        System.out.println("FieldAccess  " + f.toString());
+//        
+//        
+//        CtField field;
+//        try {
+//            field = f.getField();
+//            System.out.println("FieldAccess  " + field.getName());
+//            
+//        } catch (NotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("");
     }
     
     @Override
     public void edit(Handler h) throws CannotCompileException {
-        System.out.println("Handler " + h);
+        System.out.println("Handler  " + h.getFileName());
+        System.out.println("Handler  " + h.getLineNumber());
+        System.out.println("");
     }
     
     @Override
@@ -58,6 +81,26 @@ public class ProfilingExprEditor extends ExprEditor {
     
     @Override
     public void edit(NewExpr e) throws CannotCompileException {
-        System.out.println("NewExpr " + e);
+        try {
+            CtConstructor constructor = e.getConstructor();
+            Instrumentation instrumentation = new Instrumentation(e.getClassName(), e.getConstructor().getName());
+            
+            if (fileTransformer.alreadyInstrumented(instrumentation)) {
+                return;
+            }
+            fileTransformer.addInstrumentation(instrumentation);
+            
+            //System.out.println("New Constructor: " + constructor.getLongName() +":"+ constructor.toString());
+            
+            constructor.insertBeforeBody("{ProfilerCallback.before(this.getClass().getName(), \""+constructor.getName()+"\");}");
+            constructor.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \""+constructor.getName()+"\");}");
+            //constructor.instrument(new ProfilingExprEditor(fileTransformer, cc, depth));
+        
+        } catch (NotFoundException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        
+        
     }
 }

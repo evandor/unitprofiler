@@ -9,13 +9,13 @@ import java.util.List;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
-import javassist.CtField;
 import javassist.CtMethod;
 import de.twenty11.unitprofile.callback.ProfilerCallback;
+import de.twenty11.unitprofile.domain.Instrumentation;
 
 public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
-    private List<CtMethod> profiledMethods = new ArrayList<CtMethod>();
+    private List<Instrumentation> instrumentations = new ArrayList<Instrumentation>();
 
     private CtClass profilerCallbackCtClass;
 
@@ -28,9 +28,8 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
         byte[] byteCode = classfileBuffer;
         ClassPool cp = ClassPool.getDefault();
-        //cp.importPackage("de.twenty11.unitprofile");
         cp.importPackage("de.twenty11.unitprofile.callback");
-        
+
         try {
 
             CtClass cc = cp.get(className.replace("/", "."));
@@ -38,11 +37,12 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             if (profilerCallbackCtClass == null) {
                 profilerCallbackCtClass = cp.get(ProfilerCallback.class.getName());
             }
-            
+
             List<CtMethod> annotatedMethodsToProfile = findMethodsToProfile(cc);
 
             if (annotatedMethodsToProfile.size() > 0) {
-                System.out.println("found " + annotatedMethodsToProfile.size() + " method(s) annotated for profiling.");
+                System.out.print("found " + annotatedMethodsToProfile.size() + " method(s) annotated for profiling: ");
+                System.out.println(annotatedMethodsToProfile.toString());
                 System.out.println("");
             }
             for (CtMethod m : annotatedMethodsToProfile) {
@@ -52,39 +52,35 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             cc.detach();
         } catch (Exception ex) {
             // TODO
-            //ex.printStackTrace();
+            // ex.printStackTrace();
         }
 
         return byteCode;
     }
 
-    private final void startProfiling(CtClass cc, CtClass profilerClass, final CtMethod m) throws CannotCompileException {
-        
-        if (profiledMethods.contains(m)) {
+    private final void startProfiling(CtClass classWithProfilingAnnotatedMethod, CtClass profilerClass, final CtMethod m)
+            throws CannotCompileException {
+
+        if (!instrument(m)) {
             return;
         }
-        profiledMethods.add(m);
 
-        //CtField f = new CtField(profilerClass, "profiler", cc);
-        //cc.addField(f);
-        
-        cc.instrument(new ProfilingExprEditor(this, cc, 0));
-        
-        m.insertBefore("{ProfilerCallback.start(this.getClass().getName(), \""+m.getName()+"\");}");
-        m.insertAfter("{ProfilerCallback.stop(this.getClass().getName(), \""+m.getName()+"\");}");
-        m.instrument(new ProfilingExprEditor(this, cc, 0));
+        classWithProfilingAnnotatedMethod
+                .instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod, 0));
+
+        m.insertBefore("{ProfilerCallback.start(this.getClass().getName(), \"" + m.getName() + "\");}");
+        m.insertAfter("{ProfilerCallback.stop(this.getClass().getName(), \"" + m.getName() + "\");}");
+        m.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod, 0));
     }
 
-
     protected final void profile(final CtMethod m, CtClass cc, final int depth) throws CannotCompileException {
-         
-        if (profiledMethods.contains(m)) {
+
+        if (!instrument(m)) {
             return;
         }
-        profiledMethods.add(m);
 
-        m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \""+m.getName()+"\");}");
-        m.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \""+m.getName()+"\");}");
+        m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \"" + m.getName() + "\");}");
+        m.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \"" + m.getName() + "\");}");
         m.instrument(new ProfilingExprEditor(this, cc, depth));
     }
 
@@ -102,17 +98,36 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
                     continue;
                 }
                 for (int j = 0; j < annotations.length; j++) {
-                    // System.out.println(" >" + annotations[j].toString());
                     if (annotations[j].toString().equals("@de.twenty11.unitprofile.annotations.Profile")) {
                         methodsToProfile.add(declaredMethods[i]);
                     }
                 }
             } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
         }
         return methodsToProfile;
+    }
+
+    public boolean alreadyInstrumented(Instrumentation instrumentation) {
+        return instrumentations.contains(instrumentation);
+    }
+
+    public void addInstrumentation(Instrumentation instrumentation) {
+        instrumentations.add(instrumentation);
+    }
+    
+    public List<Instrumentation> getInstrumentations() {
+        return instrumentations;
+    }
+    
+    private boolean instrument(CtMethod method) {
+        Instrumentation instrumentation = new Instrumentation(method.getDeclaringClass().getName(), method.getName());
+        if (instrumentations.contains(instrumentation)) {
+            return false;
+        }
+        instrumentations.add(instrumentation);
+        return true;
     }
 }

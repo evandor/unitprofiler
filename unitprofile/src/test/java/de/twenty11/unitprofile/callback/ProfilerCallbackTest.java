@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import de.twenty11.unitprofile.agent.Invocation;
+import de.twenty11.unitprofile.domain.Invocation;
 
 
 public class ProfilerCallbackTest {
