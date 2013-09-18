@@ -10,13 +10,20 @@ public class ProfiledClassWithMethodTest {
     @Test
     public void testProfiler () {
         sleep100();
+        sleep100();
+        sleep200();
     }
     
     private void sleep100() {
         try {
             Thread.sleep(100);
-        } catch (InterruptedException e) {
-        }
+        } catch (InterruptedException e) {}
+    }
+
+    private void sleep200() {
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {}
     }
 
 }

@@ -1,0 +1,13 @@
+.graph {
+	width: 100px;
+	height: 16px;
+	border: 0px solid #aeaeae;
+	background-color: #eaeaea;
+}
+.bar {
+	height: 6px;
+	margin: 0px;
+	display: inline-block;
+	position: relative;
+	background-color: #aeaeae;
+}

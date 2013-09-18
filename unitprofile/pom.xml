@@ -37,7 +37,7 @@
 	
     <developers>
         <developer>
-            <name>Carsten Gräf</name>
+            <name>Carsten Grï¿½f</name>
             <roles>
                 <role>project initiator</role>
             </roles>
@@ -196,6 +196,12 @@
 			<version>1.3.2</version>
 		</dependency>
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-core</artifactId>
 			<version>${hamcrest.version}</version>
@@ -221,6 +227,20 @@
 			<artifactId>org.antlr.stringtemplate-osgi</artifactId>
 			<version>4.0.2</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>0.9.29</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>0.9.29</version>
+			<scope>test</scope>
+		</dependency>
+		
 
 		<dependency>
 			<groupId>org.mockito</groupId>

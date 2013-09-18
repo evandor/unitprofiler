@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
+import de.twenty11.unitprofile.annotations.Profile;
 import de.twenty11.unitprofile.domain.Invocation;
 
 

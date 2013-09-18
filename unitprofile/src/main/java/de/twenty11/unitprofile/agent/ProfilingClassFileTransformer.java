@@ -6,19 +6,33 @@ import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
 import de.twenty11.unitprofile.callback.ProfilerCallback;
 import de.twenty11.unitprofile.domain.Instrumentation;
+import de.twenty11.unitprofile.domain.Invocation;
 
+/**
+ * finds (for profiling) annotated methods and uses them as root for instrumentation.
+ * 
+ */
 public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
+    private static final Logger logger = LoggerFactory.getLogger(ProfilingClassFileTransformer.class);
+
+    /**
+     * list of all methods (identified by treadName/objectName/methodName) which have been instrumented.
+     */
     private List<Instrumentation> instrumentations = new ArrayList<Instrumentation>();
 
     private CtClass profilerCallbackCtClass;
 
+    @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
             ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
@@ -41,9 +55,9 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             List<CtMethod> annotatedMethodsToProfile = findMethodsToProfile(cc);
 
             if (annotatedMethodsToProfile.size() > 0) {
-                System.out.print("found " + annotatedMethodsToProfile.size() + " method(s) annotated for profiling: ");
-                System.out.println(annotatedMethodsToProfile.toString());
-                System.out.println("");
+                logger.info("found " + annotatedMethodsToProfile.size() + " method(s) annotated for profiling: ");
+                logger.info(annotatedMethodsToProfile.toString());
+                logger.info("");
             }
             for (CtMethod m : annotatedMethodsToProfile) {
                 startProfiling(cc, profilerCallbackCtClass, m);
@@ -65,15 +79,14 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             return;
         }
 
-        classWithProfilingAnnotatedMethod
-                .instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod, 0));
+        classWithProfilingAnnotatedMethod.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
 
         m.insertBefore("{ProfilerCallback.start(this.getClass().getName(), \"" + m.getName() + "\");}");
         m.insertAfter("{ProfilerCallback.stop(this.getClass().getName(), \"" + m.getName() + "\");}");
-        m.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod, 0));
+        m.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
     }
 
-    protected final void profile(final CtMethod m, CtClass cc, final int depth) throws CannotCompileException {
+    protected final void profile(final CtMethod m, CtClass cc) throws CannotCompileException {
 
         if (!instrument(m)) {
             return;
@@ -81,7 +94,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
         m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \"" + m.getName() + "\");}");
         m.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \"" + m.getName() + "\");}");
-        m.instrument(new ProfilingExprEditor(this, cc, depth));
+        m.instrument(new ProfilingExprEditor(this, cc));
     }
 
     private List<CtMethod> findMethodsToProfile(CtClass cc) {
@@ -117,11 +130,11 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
     public void addInstrumentation(Instrumentation instrumentation) {
         instrumentations.add(instrumentation);
     }
-    
+
     public List<Instrumentation> getInstrumentations() {
         return instrumentations;
     }
-    
+
     private boolean instrument(CtMethod method) {
         Instrumentation instrumentation = new Instrumentation(method.getDeclaringClass().getName(), method.getName());
         if (instrumentations.contains(instrumentation)) {
@@ -130,4 +143,5 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         instrumentations.add(instrumentation);
         return true;
     }
+    
 }

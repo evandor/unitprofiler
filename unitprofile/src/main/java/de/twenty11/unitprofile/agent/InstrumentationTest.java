@@ -1,7 +1,6 @@
 package de.twenty11.unitprofile.agent;
 
 import de.twenty11.unitprofile.annotations.Profile;
-import de.twenty11.unitprofile.callback.ProfilerCallback;
 
 /**
  * http://blog.javabenchmark.org/2013/05/java-instrumentation-tutorial.html

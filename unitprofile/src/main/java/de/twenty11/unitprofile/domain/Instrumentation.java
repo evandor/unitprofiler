@@ -1,17 +1,37 @@
 package de.twenty11.unitprofile.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class Instrumentation {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+
+/**
+ * Describing object of an instrumented method.
+ *
+ */
+public class Instrumentation implements Comparable<Instrumentation>{
+
+    private static final Logger logger = LoggerFactory.getLogger(Instrumentation.class);
+    
     private String thread;
     private String object;
     private String method;
+
+    private List<Invocation> invocations = new ArrayList<Invocation>();
 
     public Instrumentation(String object, String method) {
         this.thread = Thread.currentThread().getName();
         this.object = object;
         this.method = method;
-        //System.out.println("added " + thread + ", " + object + ", " + method);
+        //this.instrumented = 1;
+        logger.debug("added " + thread + ", " + object + ", " + method);
+    }
+    
+    public void addInvocation(Invocation invocation) {
+        this.invocations.add(invocation);
+        
     }
 
     @Override
@@ -19,6 +39,11 @@ public class Instrumentation {
         StringBuilder sb = new StringBuilder();
         sb.append(thread).append(", ").append(object).append(", ").append(method);
         return sb.toString();
+    }
+    
+    @Override
+    public int compareTo(Instrumentation o) {
+        return this.toString().compareTo(o.toString());
     }
     
     @Override
@@ -57,6 +82,5 @@ public class Instrumentation {
             return false;
         return true;
     }
-    
-    
+
 }

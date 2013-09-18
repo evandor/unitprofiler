@@ -1,5 +1,8 @@
 package de.twenty11.unitprofile.agent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javassist.CannotCompileException;
 import javassist.CtClass;
 import javassist.CtConstructor;
@@ -15,18 +18,18 @@ import de.twenty11.unitprofile.domain.Instrumentation;
 
 public class ProfilingExprEditor extends ExprEditor {
     
-    private int depth;
+    private static final Logger logger = LoggerFactory.getLogger(ProfilingExprEditor.class);
+    
     private ProfilingClassFileTransformer fileTransformer;
     private CtClass cc;
 
-    public ProfilingExprEditor(ProfilingClassFileTransformer fileTransformer, CtClass cc, int depth) {
+    public ProfilingExprEditor(ProfilingClassFileTransformer fileTransformer, CtClass cc) {
         this.fileTransformer = fileTransformer;
         this.cc = cc;
-        this.depth = depth;
     }
     
     public void edit(MethodCall mc) throws CannotCompileException {
-        //System.out.println(mc.getClassName() + "#" + mc.getMethodName());
+        logger.debug(mc.getClassName() + "#" + mc.getMethodName());
         if (mc.getClassName().startsWith("java.")) {
             return;
         }
@@ -34,7 +37,7 @@ public class ProfilingExprEditor extends ExprEditor {
             return;
         }
         try {
-            fileTransformer.profile(mc.getMethod(), cc, depth + 1);
+            fileTransformer.profile(mc.getMethod(), cc);
         } catch (Exception e) {
             // e.printStackTrace();
         }

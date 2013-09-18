@@ -28,6 +28,7 @@
     <!-- ludo jquery treetable JavaScript
     ================================================== -->
     <link href="css/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
+    <link href="css/bars.css" rel="stylesheet" type="text/css" />
 	<script src="js/jquery.treetable.js"></script>
 	<script>
 		\$('#treetable1').treetable({ expandable: true });
