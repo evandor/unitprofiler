@@ -3,13 +3,13 @@ package de.twenty11.unitprofile;
 import org.junit.Test;
 
 import de.twenty11.unitprofile.annotations.Profile;
-import de.twenty11.unitprofile.helper.TestClass;
+import de.twenty11.unitprofile.helper.Ackermann;
 
-public class ProfiledClassWithNewTest {
+public class ProfiledClassWithRecursionTest {
 
     @Profile
     @Test
     public void testProfiler () {
-        new TestClass(1000);
+        Ackermann.calc(1, 1);
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.twenty11.unitprofile.agent.Agent;
 import de.twenty11.unitprofile.domain.Invocation;
 import de.twenty11.unitprofile.output.OutputGenerator;
 
@@ -36,7 +37,10 @@ public class ProfilerCallback {
      * @return
      */
     public static Invocation start(String objectName, String methodName) {
+        logger.info("");
+        logger.info("=====================");
         logger.info("Starting profiling...");
+        logger.info("=====================");
         if (profiling()) {
            logger.error("Profiling was already started for '{}'", callstack.getFirst().getCls() + "#" + callstack.getFirst().getMethod());
            throw new IllegalStateException();
@@ -45,6 +49,7 @@ public class ProfilerCallback {
         Invocation rootInvocation = new Invocation(objectName, methodName);
         invocations.add(rootInvocation);
         callstack.add(rootInvocation);
+        Agent.setRootInvocation(rootInvocation);
         return rootInvocation;
     }
 
@@ -77,18 +82,6 @@ public class ProfilerCallback {
         handleInvocation(objectName, methodName);
     }
 
-    private static void handleInvocation(String objectName, String methodName) {
-        Invocation existingInvocation = getInvocation(callstack.peekLast(), objectName, methodName);
-        if (existingInvocation != null) {
-            existingInvocation.increment();
-            callstack.add(existingInvocation);
-            return;
-        }
-        Invocation invocation = new Invocation(callstack.peekLast(), objectName, methodName, callstack.size());
-        invocations.add(invocation);
-        callstack.add(invocation);
-    }
-
     public static void after(String objectName, String methodName) {
         if (!profiling()) {
             return;
@@ -104,6 +97,21 @@ public class ProfilerCallback {
 
     public static List<Invocation> getInvocations() {
         return invocations;
+    }
+    
+    private static void handleInvocation(String objectName, String methodName) {
+        Invocation existingInvocation = getInvocation(callstack.peekLast(), objectName, methodName);
+        if (existingInvocation != null) {
+            logger.debug("invocation '{}' exists, incrementing count", existingInvocation);
+            existingInvocation.increment();
+            callstack.add(existingInvocation);
+            return;
+        }
+        
+        Invocation invocation = new Invocation(callstack.peekLast(), objectName, methodName, callstack.size());
+        logger.debug("creating new invocation '{}'", invocation);
+        invocations.add(invocation);
+        callstack.add(invocation);
     }
     
     private static Invocation getInvocation(Invocation peekLast, String objectName, String methodName) {

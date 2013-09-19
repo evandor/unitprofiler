@@ -18,7 +18,6 @@ public class Invocation {
     private double timeShare;
     DecimalFormat df = new DecimalFormat("#.00");
     private Invocation parent;
-
     private double selfTimeShare;
 
     public Invocation(String objectName, String methodName) {
@@ -75,7 +74,7 @@ public class Invocation {
         return sb.toString();
     }
 
-    private long getTime() {
+    public long getTime() {
         long time = 0;
         for(Clock timer : durations) {
             time += timer.getElapsed();
@@ -83,7 +82,7 @@ public class Invocation {
         return time;
     }
     
-    private long getSelfTime() {
+    public long getSelfTime() {
         long childrenTime = 0;
         for(Invocation child : children) {
             childrenTime += child.getTime();
@@ -182,7 +181,7 @@ public class Invocation {
         sb.append("<td>").append((inv.getTime())).append("</td>");
         sb.append("<td>").append(df.format(inv.timeShare)).append("% ");
         
-        sb.append("<div class='graph'><div style='width: ").append(Math.round(inv.timeShare)).append("px;' class='bar'></div></div>");
+        sb.append("<span class='graph'><span style='width: ").append(Math.round(inv.timeShare)).append("px;' class='bar'></span></span>");
         
         sb.append("</td>");
         sb.append("<td>").append(inv.getSelfTime()).append("</td>");

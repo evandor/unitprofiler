@@ -1,4 +1,4 @@
-package de.twenty11.unitprofile;
+package de.twenty11.unitprofile.helper;
 
 public class TestClass {
 

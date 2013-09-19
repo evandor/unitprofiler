@@ -36,16 +36,13 @@ public class OutputGenerator {
             FileUtils.writeStringToFile(new File(OUTPUT_PATH + "/" + getOutputFileName(rootInvocation)), indexFile.render());
         
             MyFileUtils.copyResourcesRecursively(this.getClass().getResource("/bootstrap"), new File(OUTPUT_PATH));
+            MyFileUtils.copyResourcesRecursively(this.getClass().getResource("/css"), new File(OUTPUT_PATH));
             MyFileUtils.copyResourcesRecursively(this.getClass().getResource("/ludo-jquery-treetable"), new File(OUTPUT_PATH));
         
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
-
-    private String getOutputFileName(Invocation rootInvocation) {
-        return rootInvocation.getCls() + "." + rootInvocation.getMethod() + ".html";
     }
 
     public void renderDebugInfo() {
@@ -56,12 +53,14 @@ public class OutputGenerator {
             sb.append(instrumentation.toString()).append("\n");
         }
         try {
-            FileUtils.writeStringToFile(new File(OUTPUT_PATH + "/instrumentations.html"), sb.toString());
+            FileUtils.writeStringToFile(new File(OUTPUT_PATH + "/inst." + getOutputFileName(Agent.getRootInvocation())), sb.toString());
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-   
+    private String getOutputFileName(Invocation rootInvocation) {
+        return rootInvocation.getCls() + "." + rootInvocation.getMethod() + ".html";
+    }
 }

@@ -29,11 +29,8 @@ public class ProfilingExprEditor extends ExprEditor {
     }
     
     public void edit(MethodCall mc) throws CannotCompileException {
-        logger.debug(mc.getClassName() + "#" + mc.getMethodName());
-        if (mc.getClassName().startsWith("java.")) {
-            return;
-        }
-        if (mc.getClassName().startsWith("de.twenty11.unitprofile.callback.")) {
+        //logger.debug(mc.getClassName() + "#" + mc.getMethodName());
+        if (excluded(mc)) {
             return;
         }
         try {
@@ -43,6 +40,19 @@ public class ProfilingExprEditor extends ExprEditor {
         }
     }
     
+    private boolean excluded(MethodCall mc) {
+        if (mc.getClassName().startsWith("java.")) {
+            return true;
+        }
+        if (mc.getClassName().startsWith("de.twenty11.unitprofile.callback.")) {
+            return true;
+        }
+        if (mc.getClassName().startsWith("de.twenty11.unitprofile.domain.")) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void edit(ConstructorCall c) throws CannotCompileException {
         
@@ -73,8 +83,8 @@ public class ProfilingExprEditor extends ExprEditor {
     @Override
     public void edit(Handler h) throws CannotCompileException {
         System.out.println("Handler  " + h.getFileName());
-        System.out.println("Handler  " + h.getLineNumber());
-        System.out.println("");
+//        System.out.println("Handler  " + h.getLineNumber());
+//        System.out.println("");
     }
     
     @Override
