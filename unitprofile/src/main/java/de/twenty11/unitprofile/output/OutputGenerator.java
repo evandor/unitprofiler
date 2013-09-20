@@ -25,7 +25,7 @@ public class OutputGenerator {
 
     public void renderFromBootstrapTemplate(Invocation rootInvocation) {
         try {
-            InputStream resourceAsStream = this.getClass().getResourceAsStream("/templates/treetable.stg");
+            InputStream resourceAsStream = this.getClass().getResourceAsStream("/templates/index.stg");
             StringWriter writer = new StringWriter();
             IOUtils.copy(resourceAsStream, writer);
             ST indexFile = new ST(writer.toString(), '$', '$');

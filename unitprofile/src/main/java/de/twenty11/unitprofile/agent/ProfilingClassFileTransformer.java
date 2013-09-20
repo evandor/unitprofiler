@@ -13,6 +13,9 @@ import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
+import javassist.Modifier;
+import javassist.bytecode.AccessFlag;
+import javassist.bytecode.CodeAttribute;
 import de.twenty11.unitprofile.callback.ProfilerCallback;
 import de.twenty11.unitprofile.domain.Instrumentation;
 import de.twenty11.unitprofile.domain.Invocation;
@@ -55,9 +58,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             List<CtMethod> annotatedMethodsToProfile = findMethodsToProfile(cc);
 
             if (annotatedMethodsToProfile.size() > 0) {
-                logger.info("found " + annotatedMethodsToProfile.size() + " method(s) annotated for profiling: ");
-                logger.info(annotatedMethodsToProfile.toString());
-                logger.info("");
+                logInfoAboutAnnotatedMethodsFound(annotatedMethodsToProfile);
             }
             for (CtMethod m : annotatedMethodsToProfile) {
                 startProfiling(cc, profilerCallbackCtClass, m);
@@ -72,6 +73,14 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         return byteCode;
     }
 
+    private void logInfoAboutAnnotatedMethodsFound(List<CtMethod> annotatedMethodsToProfile) {
+        logger.info("found " + annotatedMethodsToProfile.size() + " method(s) annotated for profiling: ");
+        for (CtMethod ctMethod : annotatedMethodsToProfile) {
+            logger.info(" * {}", ctMethod.getLongName());
+        }
+        logger.info("");
+    }
+
     private final void startProfiling(CtClass classWithProfilingAnnotatedMethod, CtClass profilerClass, final CtMethod m)
             throws CannotCompileException {
 
@@ -80,9 +89,16 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         }
 
         classWithProfilingAnnotatedMethod.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
-
-        m.insertBefore("{ProfilerCallback.start(this.getClass().getName(), \"" + m.getName() + "\");}");
-        m.insertAfter("{ProfilerCallback.stop(this.getClass().getName(), \"" + m.getName() + "\");}");
+        
+        if (!Modifier.isStatic(m.getModifiers())) {
+            m.insertBefore("{ProfilerCallback.start(this.getClass().getName(), \"" + m.getName() + "\");}");
+            m.insertAfter("{ProfilerCallback.stop(this.getClass().getName(), \"" + m.getName() + "\");}");
+        } else {
+            m.insertBefore("{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
+                    + "\");}");
+            m.insertAfter("{ProfilerCallback.stop(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
+                    + "\");}");
+        }
         m.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
     }
 
@@ -92,9 +108,17 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             return;
         }
 
-        m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \"" + m.getName() + "\");}");
-        m.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \"" + m.getName() + "\");}");
-        m.instrument(new ProfilingExprEditor(this, cc));
+        if (!Modifier.isStatic(m.getModifiers())) {
+            m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \"" + m.getName() + "\");}");
+            m.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \"" + m.getName() + "\");}");
+            m.instrument(new ProfilingExprEditor(this, cc));
+        } else {
+            m.insertBefore("{ProfilerCallback.before(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
+                    + "\");}");
+            m.insertAfter("{ProfilerCallback.after(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
+                    + "\");}");
+            m.instrument(new ProfilingExprEditor(this, cc));
+        }
     }
 
     private List<CtMethod> findMethodsToProfile(CtClass cc) {
@@ -141,7 +165,13 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             return false;
         }
         instrumentations.add(instrumentation);
+        
+        CodeAttribute ca = method.getMethodInfo().getCodeAttribute();
+        if (ca == null) {
+            return false;
+        }
+
         return true;
     }
-    
+
 }

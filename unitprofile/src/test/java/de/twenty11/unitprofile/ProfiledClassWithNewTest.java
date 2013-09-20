@@ -10,6 +10,6 @@ public class ProfiledClassWithNewTest {
     @Profile
     @Test
     public void testProfiler () {
-        new TestClass(1000);
+        new TestClass(60);
     }
 }

@@ -17,6 +17,7 @@ public class Invocation {
     private int depth;
     private double timeShare;
     DecimalFormat df = new DecimalFormat("#.00");
+    DecimalFormat longFormat = new DecimalFormat("###,##0"); 
     private Invocation parent;
     private double selfTimeShare;
 
@@ -122,13 +123,14 @@ public class Invocation {
     private void calc(Long parentTime) {
         if (parentTime == null) {
             setTimeShare(100.0);
+            parentTime = getTime();
         } else {
             setTimeShare(100.0 * getTime() / parentTime);
         }
         setSelfTimeShare(100.0 * getSelfTime() / getTime());
         
         for (Invocation invocation : children) {
-            invocation.calc(getTime());
+            invocation.calc(parentTime);
         }
     }
 
@@ -151,12 +153,13 @@ public class Invocation {
         sb.append("<thead>\n");
         sb.append(" <tr>\n");
         sb.append("   <th>Method</th>\n");
-        sb.append("   <th>Time (ms)</th>\n");
-        sb.append("   <th>Time (%)</th>\n");
-        sb.append("   <th>Self Time (ms)</th>\n");
-        sb.append("   <th>Self Time (%)</th>\n");
-        sb.append("   <th>Count</th>\n");
-        sb.append("   <th>Time/Invocation</th>\n");
+        sb.append("   <th align='right'>Time (ms)</th>\n");
+        sb.append("   <th align='right'>Time (%)</th>\n");
+        sb.append("   <th>&nbsp;</th>\n");
+        sb.append("   <th align='right'>Self Time (ms)</th>\n");
+        sb.append("   <th align='right'>Self Time (%)</th>\n");
+        sb.append("   <th align='right'>Count</th>\n");
+        sb.append("   <th align='right'>Time/Invocation</th>\n");
         sb.append(" </tr>\n");
         sb.append("</thead>\n");
         sb.append("<tbody>\n");
@@ -177,17 +180,24 @@ public class Invocation {
             sb.append(" data-tt-parent-id='").append(parentId).append("'");
         }
         sb.append(">");
-        sb.append("  <td>").append(inv.cls).append("#").append(inv.method).append("</td>");
-        sb.append("<td>").append((inv.getTime())).append("</td>");
-        sb.append("<td>").append(df.format(inv.timeShare)).append("% ");
+        sb.append("<td align='left'>").append(inv.cls).append("#").append(inv.method).append("</td>");
         
+        // time (ms)
+        sb.append("<td align='right'>").append((longFormat.format(inv.getTime()))).append("</td>");
+
+        // time (%)
+        sb.append("<td align='right'>").append(df.format(inv.timeShare)).append("% </td>");
+
+        // bar
+        sb.append("<td align='left'>");
         sb.append("<span class='graph'><span style='width: ").append(Math.round(inv.timeShare)).append("px;' class='bar'></span></span>");
+        sb.append("</td>");
         
         sb.append("</td>");
-        sb.append("<td>").append(inv.getSelfTime()).append("</td>");
-        sb.append("<td>").append(df.format(inv.selfTimeShare)).append("%</td>");
-        sb.append("<td>").append(inv.getCount()).append("</td>");
-        sb.append("<td>").append(inv.getTime() / inv.getCount()).append("</td>");
+        sb.append("<td align='right'>").append(inv.getSelfTime()).append("</td>");
+        sb.append("<td align='right'>").append(df.format(inv.selfTimeShare)).append("%</td>");
+        sb.append("<td align='right'>").append(inv.getCount()).append("</td>");
+        sb.append("<td align='right'>").append(inv.getTime() / inv.getCount()).append("</td>");
         sb.append("</tr>");
         if (inv.children.size() != 0) {
             for (Invocation child : inv.children) {

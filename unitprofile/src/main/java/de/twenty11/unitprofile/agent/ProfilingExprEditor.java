@@ -36,7 +36,7 @@ public class ProfilingExprEditor extends ExprEditor {
         try {
             fileTransformer.profile(mc.getMethod(), cc);
         } catch (Exception e) {
-            // e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
     
@@ -89,7 +89,7 @@ public class ProfilingExprEditor extends ExprEditor {
     
     @Override
     public void edit(NewArray a) throws CannotCompileException {
-        System.out.println("NewArray " + a);
+        logger.info("NewArray {}", a.getFileName());
     }
     
     @Override

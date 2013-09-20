@@ -10,15 +10,15 @@
     <title>Starter Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="starter-template.css" rel="stylesheet">
+    <link href="bootstrap/starter-template.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-      <script src="assets/js/respond.min.js"></script>
+      <script src="bootstrap/assets/js/html5shiv.js"></script>
+      <script src="bootstrap/assets/js/respond.min.js"></script>
     <![endif]-->
   </head>
 
@@ -49,51 +49,27 @@
       <div class="starter-template">
         <h1>UnitProfile</h1>
         <p class="lead">Test...</p>
-        <pre>
-        $dump$
-        </pre>
-        
-        
-        
+        $treetable$
       </div>
 
     </div><!-- /.container -->
-    
-	 <table id="treetable1">
-        <tr data-tt-id="0">
-          <td>app</td>
-        </tr>
-        <tr data-tt-id="1" data-tt-parent-id="0">
-          <td>controllers</td>
-        </tr>
-        <tr data-tt-id="5" data-tt-parent-id="1">
-          <td>application_controller.rb</td>
-        </tr>
-        <tr data-tt-id="2" data-tt-parent-id="0">
-          <td>helpers</td>
-        </tr>
-        <tr data-tt-id="3" data-tt-parent-id="0">
-          <td>models</td>
-        </tr>
-        <tr data-tt-id="4" data-tt-parent-id="0">
-          <td>views</td>
-        </tr>
-      </table>
 
-    <!-- Bootstrap core JavaScript
+	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="bootstrap/assets/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     
     <!-- ludo jquery treetable JavaScript
     ================================================== -->
-    <link href="css/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
+    <link href="ludo-jquery-treetable/css/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
+    <link href="ludo-jquery-treetable/css/jquery.treetable.css" rel="stylesheet" type="text/css" />
     <link href="css/bars.css" rel="stylesheet" type="text/css" />
-	<script src="js/jquery.treetable.js"></script>
+	<script src="ludo-jquery-treetable/js/jquery.treetable.js"></script>
 	<script>
 		\$('#treetable1').treetable({ expandable: true });
 	</script>
-    
+
+
   </body>
 </html>

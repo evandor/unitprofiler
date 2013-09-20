@@ -1,7 +1,6 @@
 package de.twenty11.unitprofile.callback;
 
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
@@ -45,25 +44,25 @@ public class ProfilerCallbackTest {
     public void submethod_is_child_of_parent_invocation() throws InterruptedException {
         Invocation rootInvocation = ProfilerCallback.start("object", "m1");
 
-        Thread.sleep(200);
+        Thread.sleep(20);
         ProfilerCallback.before("object", "m2");
 
-        Thread.sleep(200);
+        Thread.sleep(20);
         ProfilerCallback.before("object", "m3");
 
-        Thread.sleep(200);
+        Thread.sleep(20);
         ProfilerCallback.after("object", "m3");
 
-        Thread.sleep(200);
+        Thread.sleep(20);
         ProfilerCallback.after("object", "m2");
         
-        Thread.sleep(200);
+        Thread.sleep(20);
         ProfilerCallback.before("object", "m2");
         
-        Thread.sleep(200);
+        Thread.sleep(20);
         ProfilerCallback.after("object", "m2");
         
-        Thread.sleep(200);
+        Thread.sleep(20);
         ProfilerCallback.stop("object", "m1");
 
         //assertThat(rootInvocation.getStart(), is(lessThanOrEqualTo(rootInvocation.getEnd())));

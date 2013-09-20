@@ -37,10 +37,7 @@ public class ProfilerCallback {
      * @return
      */
     public static Invocation start(String objectName, String methodName) {
-        logger.info("");
-        logger.info("=====================");
-        logger.info("Starting profiling...");
-        logger.info("=====================");
+        bigMessage("Starting profiling...");
         if (profiling()) {
            logger.error("Profiling was already started for '{}'", callstack.getFirst().getCls() + "#" + callstack.getFirst().getMethod());
            throw new IllegalStateException();
@@ -54,7 +51,7 @@ public class ProfilerCallback {
     }
 
     public static void stop(String objectName, String methodName) {
-        logger.info("Profiling... done.");
+        bigMessage("Profiling... done.");
 
         long now = System.currentTimeMillis();
         invocations.get(invocations.size() - 1).setEnd(now);
@@ -125,4 +122,14 @@ public class ProfilerCallback {
         }
         return null;
     }
+    
+    private static void bigMessage(String msg) {
+        logger.info("");
+        logger.info("=====================");
+        logger.info(msg);
+        logger.info("=====================");
+        logger.info("");
+    }
+
+
 }

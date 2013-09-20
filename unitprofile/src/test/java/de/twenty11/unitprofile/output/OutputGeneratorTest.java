@@ -3,12 +3,14 @@ package de.twenty11.unitprofile.output;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import de.twenty11.unitprofile.annotations.Profile;
 import de.twenty11.unitprofile.domain.Invocation;
 
 
 public class OutputGeneratorTest {
 
     @Test
+    @Profile
     public void aaa() {
         OutputGenerator generator = new OutputGenerator();
         

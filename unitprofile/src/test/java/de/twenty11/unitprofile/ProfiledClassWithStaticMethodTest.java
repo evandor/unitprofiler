@@ -1,6 +1,5 @@
 package de.twenty11.unitprofile;
 
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
@@ -13,7 +12,7 @@ import de.twenty11.unitprofile.annotations.Profile;
 import de.twenty11.unitprofile.domain.Invocation;
 import de.twenty11.unitprofile.helper.TestClass;
 
-public class ProfiledClassWithFieldAccessTest {
+public class ProfiledClassWithStaticMethodTest {
 
     TestClass testClassField = new TestClass(500);
     String testStringField = "testABC";
@@ -21,13 +20,15 @@ public class ProfiledClassWithFieldAccessTest {
     @Profile
     @Test
     public void testProfiler () {
-        testClassField.sleep(50);
-        testStringField.replaceAll("A", "B");
+        invokeStaticMethod();
         
-        Invocation rootInvocation = Agent.getRootInvocation();
-        assertThat(rootInvocation, is(not(nullValue())));
-        //assertThat(rootInvocation.getChildren().size(), is(1));
-//        assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(0));
-//        assertThat(rootInvocation.getTime(),is(greaterThanOrEqualTo(rootInvocation.getChildren().get(0).getTime())));
+//        Invocation rootInvocation = Agent.getRootInvocation();
+//        assertThat(rootInvocation.getChildren().size(), is(1));
+//        
+//        assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(1));
+    }
+    
+    private static void invokeStaticMethod() {
+        new TestClass(30);
     }
 }
