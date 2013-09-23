@@ -1,5 +1,8 @@
 package de.twenty11.unitprofile.agent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.twenty11.unitprofile.annotations.Profile;
 
 /**
@@ -8,11 +11,13 @@ import de.twenty11.unitprofile.annotations.Profile;
  */
 public class InstrumentationTest {
     
+    private static final Logger logger = LoggerFactory.getLogger(InstrumentationTest.class);
+
     public InstrumentationTest() {
         try {
             sleep100();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
     

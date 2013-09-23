@@ -5,6 +5,7 @@ import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
 import javassist.Modifier;
+import javassist.NotFoundException;
 import javassist.bytecode.AccessFlag;
 import javassist.bytecode.CodeAttribute;
 import de.twenty11.unitprofile.callback.ProfilerCallback;
@@ -35,6 +37,12 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
     private CtClass profilerCallbackCtClass;
 
+    private AtomicInteger instanceCount = new AtomicInteger(0);
+    
+    public ProfilingClassFileTransformer() {
+        instanceCount.addAndGet(1);
+    }
+    
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
             ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
@@ -65,9 +73,10 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             }
             byteCode = cc.toBytecode();
             cc.detach();
+        } catch (NotFoundException nfe) {
+            logger.warn(nfe.getMessage());
         } catch (Exception ex) {
-            // TODO
-            // ex.printStackTrace();
+            logger.error(ex.getMessage(), ex);
         }
 
         return byteCode;
@@ -140,7 +149,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
                     }
                 }
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(), e);
             }
 
         }
@@ -152,6 +161,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
     }
 
     public void addInstrumentation(Instrumentation instrumentation) {
+        logger.debug("added from outside:        [" + instanceCount + "] " + instrumentation);
         instrumentations.add(instrumentation);
     }
 
@@ -164,6 +174,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         if (instrumentations.contains(instrumentation)) {
             return false;
         }
+        logger.debug("added in file transformer: [" + instanceCount + "] " + instrumentation);
         instrumentations.add(instrumentation);
         
         CodeAttribute ca = method.getMethodInfo().getCodeAttribute();

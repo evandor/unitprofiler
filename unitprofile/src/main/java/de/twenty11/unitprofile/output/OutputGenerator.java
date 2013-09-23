@@ -40,8 +40,7 @@ public class OutputGenerator {
             MyFileUtils.copyResourcesRecursively(this.getClass().getResource("/ludo-jquery-treetable"), new File(OUTPUT_PATH));
         
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 
@@ -55,8 +54,7 @@ public class OutputGenerator {
         try {
             FileUtils.writeStringToFile(new File(OUTPUT_PATH + "/inst." + getOutputFileName(Agent.getRootInvocation())), sb.toString());
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 

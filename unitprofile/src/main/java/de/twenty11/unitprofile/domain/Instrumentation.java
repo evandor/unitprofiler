@@ -25,8 +25,6 @@ public class Instrumentation implements Comparable<Instrumentation>{
         this.thread = Thread.currentThread().getName();
         this.object = object;
         this.method = method;
-        //this.instrumented = 1;
-        logger.debug("added " + thread + ", " + object + ", " + method);
     }
     
     public void addInvocation(Invocation invocation) {
@@ -37,7 +35,7 @@ public class Instrumentation implements Comparable<Instrumentation>{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(thread).append(", ").append(object).append(", ").append(method);
+        sb.append(thread).append(", ").append(object).append("#").append(method);
         return sb.toString();
     }
     

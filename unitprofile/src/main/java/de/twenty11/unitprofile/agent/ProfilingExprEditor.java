@@ -60,7 +60,7 @@ public class ProfilingExprEditor extends ExprEditor {
     
     @Override
     public void edit(FieldAccess f) throws CannotCompileException {
-//        System.out.println("FieldAccess  " + f.getClassName());
+        System.out.println("FieldAccess  " + f.getClassName());
 //        System.out.println("FieldAccess  " + f.getFieldName());
 //        System.out.println("FieldAccess  " + f.getEnclosingClass().getName());
 //        System.out.println("FieldAccess  " + f.getLineNumber());
@@ -110,8 +110,7 @@ public class ProfilingExprEditor extends ExprEditor {
             //constructor.instrument(new ProfilingExprEditor(fileTransformer, cc, depth));
         
         } catch (NotFoundException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            logger.error(e1.getMessage(), e1);
         }
         
         

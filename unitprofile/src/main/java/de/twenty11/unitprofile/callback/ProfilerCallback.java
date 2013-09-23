@@ -37,7 +37,7 @@ public class ProfilerCallback {
      * @return
      */
     public static Invocation start(String objectName, String methodName) {
-        bigMessage("Starting profiling...");
+        bigMessage("Starting profiling " + objectName + "#" + methodName);
         if (profiling()) {
            logger.error("Profiling was already started for '{}'", callstack.getFirst().getCls() + "#" + callstack.getFirst().getMethod());
            throw new IllegalStateException();
@@ -55,8 +55,20 @@ public class ProfilerCallback {
 
         long now = System.currentTimeMillis();
         invocations.get(invocations.size() - 1).setEnd(now);
-        Invocation last = callstack.pollLast();
-
+        
+        Invocation last;
+        if (callstack.size() > 1) {
+            logger.error("Callstack not clean after profiling - has {} entries instead of 1", callstack.size());
+            last = callstack.pollLast();
+        } else if (callstack.size() == 1) {
+            last = callstack.pollLast();
+        } else {
+            throw new IllegalStateException("Callstack empty after profiling - this should not happen!");
+        }
+         
+        // resetting callstack
+        callstack = new ArrayDeque<Invocation>();
+        
         logger.info("Calculating data...");
 
         last.calc();
@@ -73,6 +85,7 @@ public class ProfilerCallback {
     }
 
     public static void before(String objectName, String methodName) { //, int depth) {
+        logger.debug("????: " + callstack.size() + " " + objectName + "#" + methodName);
         if (!profiling()) {
             return;
         }
@@ -125,9 +138,9 @@ public class ProfilerCallback {
     
     private static void bigMessage(String msg) {
         logger.info("");
-        logger.info("=====================");
+        logger.info("============================================================");
         logger.info(msg);
-        logger.info("=====================");
+        logger.info("============================================================");
         logger.info("");
     }
 

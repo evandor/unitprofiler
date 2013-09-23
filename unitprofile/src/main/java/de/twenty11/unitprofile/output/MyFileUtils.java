@@ -14,17 +14,24 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.twenty11.unitprofile.agent.ProfilingClassFileTransformer;
+
 /**
  * http://stackoverflow.com/questions/1386809/copy-directory-from-a-jar-file
  *
  */
 public class MyFileUtils {
     
+    private static final Logger logger = LoggerFactory.getLogger(MyFileUtils.class);
+    
     public static boolean copyFile(final File toCopy, final File destFile) {
         try {
             return MyFileUtils.copyStream(new FileInputStream(toCopy), new FileOutputStream(destFile));
         } catch (final FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         return false;
     }
@@ -100,7 +107,7 @@ public class MyFileUtils {
                 return MyFileUtils.copyFilesRecusively(new File(originUrl.getPath()), destination);
             }
         } catch (final IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         return false;
     }
@@ -109,7 +116,7 @@ public class MyFileUtils {
         try {
             return MyFileUtils.copyStream(is, new FileOutputStream(f));
         } catch (final FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         return false;
     }
@@ -126,7 +133,7 @@ public class MyFileUtils {
             os.close();
             return true;
         } catch (final IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
         return false;
     }
