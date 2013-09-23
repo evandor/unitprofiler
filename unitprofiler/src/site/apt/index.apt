@@ -1,0 +1,27 @@
+ -----
+ skysail Server
+ -----
+ evandor
+ -----
+ January 2011
+ 
+Introduction
+
+
+ This project (skysail.server.common) provides the classes meant to be used by 
+ the skysail server(s).
+
+
+* Building and deployment
+
+ mvn clean install creates the project in the .m2 repository and 
+ copies it to ../skysail.server.restlet/src/main/webapp/WEB-INF/eclipse/plugins
+ 
+ this bundle is also build when running mvn install on skysail.bootstrap
+ 
+* Dependencies
+
+ mainly restlet and server-api 
+ 
+
+

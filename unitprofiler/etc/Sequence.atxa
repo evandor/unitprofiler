@@ -1,0 +1,277 @@
+@prefix atxa-rse-eclipse: <http://www.architexa.com/rdf/rse-eclipse#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix atxa-jdt-wkspc: <http://www.architexa.com/rdf/jdt-wkspc#> .
+@prefix atxa-core: <http://www.architexa.com/rdf/core#> .
+@prefix atxa: <http://www.architexa.com/rdf/> .
+@prefix atxa-jdt: <http://www.architexa.com/rdf/jdt#> .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_slSequence.atxa> a atxa-core:chronoFile .
+
+atxa:DetailNode atxa-core:detailLevel "0" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_slSequence.atxa> atxa-core:contains _:node184lq2pjux15 .
+
+_:node184lq2pjux15 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$Agent> ;
+	atxa-jdt:index "0" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node184lq2pjux16 .
+
+_:node184lq2pjux16 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$Agent.premain(String,Instrumentation,)> ;
+	atxa-jdt:index "0" ;
+	atxa-core:contains _:node184lq2pjux17 .
+
+_:node184lq2pjux17 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer.ProfilingClassFileTransformer()> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer.ProfilingClassFileTransformer()> atxa-core:link _:node184lq2pjux18 .
+
+_:node184lq2pjux19 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node184lq2pjux17 ;
+	rdf:object _:node184lq2pjux18 ;
+	atxa-core:name "ProfilingClassFileTransformer()" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_slSequence.atxa> atxa-core:contains _:node184lq2pjux11 .
+
+_:node184lq2pjux11 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer> ;
+	atxa-jdt:index "1" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node184lq2pjux18 .
+
+_:node184lq2pjux18 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer.ProfilingClassFileTransformer()> ;
+	atxa-jdt:index "0" .
+
+_:node184lq2pjux20 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node184lq2pjux18 ;
+	rdf:object _:node184lq2pjux17 ;
+	atxa-core:name "ProfilingClassFileTransformer" .
+
+_:node184lq2pjux11 atxa-core:contains _:node184lq2pjux21 .
+
+_:node184lq2pjux21 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer.transform(ClassLoader,String,Class,ProtectionDomain,byte[],)> ;
+	atxa-jdt:index "1" .
+
+_:node184lq2pjux11 atxa-core:contains _:node184lq2pjux22 .
+
+_:node184lq2pjux22 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer.startProfiling(CtClass,CtClass,CtMethod,)> ;
+	atxa-jdt:index "2" ;
+	atxa-core:contains _:node184lq2pjux23 .
+
+_:node184lq2pjux23 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javassist$CtClass.instrument(ExprEditor,)> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#javassist$CtClass.instrument(ExprEditor,)> atxa-core:link _:node184lq2pjux24 .
+
+_:node184lq2pjux25 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node184lq2pjux23 ;
+	rdf:object _:node184lq2pjux24 ;
+	atxa-core:name "instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod))" .
+
+_:node184lq2pjux22 atxa-core:contains _:node184lq2pjux26 .
+
+_:node184lq2pjux26 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javassist$CtBehavior.insertBefore(String,)> ;
+	atxa-jdt:index "1" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#javassist$CtBehavior.insertBefore(String,)> atxa-core:link _:node184lq2pjux27 .
+
+_:node184lq2pjux28 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node184lq2pjux26 ;
+	rdf:object _:node184lq2pjux27 ;
+	atxa-core:name "insertBefore(\"{ProfilerCallback.start(this.getClass().getName(), \\\"\" + m.getName() + \"\\\");}\")" .
+
+_:node184lq2pjux22 atxa-core:contains _:node184lq2pjux29 .
+
+_:node184lq2pjux29 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javassist$CtBehavior.insertAfter(String,)> ;
+	atxa-jdt:index "2" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#javassist$CtBehavior.insertAfter(String,)> atxa-core:link _:node184lq2pjux30 .
+
+_:node184lq2pjux31 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node184lq2pjux29 ;
+	rdf:object _:node184lq2pjux30 ;
+	atxa-core:name "insertAfter(\"{ProfilerCallback.stop(this.getClass().getName(), \\\"\" + m.getName() + \"\\\");}\")" .
+
+_:node184lq2pjux22 atxa-core:contains _:node184lq2pjux43 .
+
+_:node184lq2pjux43 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingExprEditor.ProfilingExprEditor(ProfilingClassFileTransformer,CtClass,)> ;
+	atxa-jdt:index "3" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingExprEditor.ProfilingExprEditor(ProfilingClassFileTransformer,CtClass,)> atxa-core:link _:node184lq2pjux44 .
+
+_:node184lq2pjux45 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node184lq2pjux43 ;
+	rdf:object _:node184lq2pjux44 ;
+	atxa-core:name "ProfilingExprEditor(this, classWithProfilingAnnotatedMethod)" .
+
+_:node184lq2pjux22 atxa-core:contains _:node184lq2pjux32 .
+
+_:node184lq2pjux32 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javassist$CtBehavior.instrument(ExprEditor,)> ;
+	atxa-jdt:index "4" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#javassist$CtBehavior.instrument(ExprEditor,)> atxa-core:link _:node184lq2pjux33 .
+
+_:node184lq2pjux34 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node184lq2pjux32 ;
+	rdf:object _:node184lq2pjux33 ;
+	atxa-core:name "instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod))" .
+
+_:node184lq2pjux11 atxa-core:contains _:node184lq2pjux46 .
+
+_:node184lq2pjux46 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer.profile(CtMethod,CtClass,)> ;
+	atxa-jdt:index "3" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_slSequence.atxa> atxa-core:contains _:node184lq2pjux12 .
+
+_:node184lq2pjux12 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javassist$CtClass> ;
+	atxa-jdt:index "2" ;
+	atxa-core:instanceName "classWithProfilingAnnotatedMethod" ;
+	atxa-core:contains _:node184lq2pjux24 .
+
+_:node184lq2pjux24 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javassist$CtClass.instrument(ExprEditor,)> ;
+	atxa-jdt:index "0" .
+
+_:node184lq2pjux35 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node184lq2pjux24 ;
+	rdf:object _:node184lq2pjux23 ;
+	atxa-core:name "void" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_slSequence.atxa> atxa-core:contains _:node184lq2pjux13 .
+
+_:node184lq2pjux13 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javassist$CtMethod> ;
+	atxa-jdt:index "3" ;
+	atxa-core:instanceName "m" ;
+	atxa-core:contains _:node184lq2pjux27 .
+
+_:node184lq2pjux27 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javassist$CtBehavior.insertBefore(String,)> ;
+	atxa-jdt:index "0" .
+
+_:node184lq2pjux36 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node184lq2pjux27 ;
+	rdf:object _:node184lq2pjux26 ;
+	atxa-core:name "void" .
+
+_:node184lq2pjux13 atxa-core:contains _:node184lq2pjux30 .
+
+_:node184lq2pjux30 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javassist$CtBehavior.insertAfter(String,)> ;
+	atxa-jdt:index "1" .
+
+_:node184lq2pjux37 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node184lq2pjux30 ;
+	rdf:object _:node184lq2pjux29 ;
+	atxa-core:name "void" .
+
+_:node184lq2pjux13 atxa-core:contains _:node184lq2pjux33 .
+
+_:node184lq2pjux33 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#javassist$CtBehavior.instrument(ExprEditor,)> ;
+	atxa-jdt:index "2" .
+
+_:node184lq2pjux38 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node184lq2pjux33 ;
+	rdf:object _:node184lq2pjux32 ;
+	atxa-core:name "void" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_slSequence.atxa> atxa-core:contains _:node184lq2pjux47 .
+
+_:node184lq2pjux47 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingExprEditor> ;
+	atxa-jdt:index "4" ;
+	atxa-core:instanceName "" ;
+	atxa-core:contains _:node184lq2pjux44 .
+
+_:node184lq2pjux44 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingExprEditor.ProfilingExprEditor(ProfilingClassFileTransformer,CtClass,)> ;
+	atxa-jdt:index "0" .
+
+_:node184lq2pjux48 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node184lq2pjux44 ;
+	rdf:object _:node184lq2pjux43 ;
+	atxa-core:name "ProfilingExprEditor" .
+
+_:node184lq2pjux47 atxa-core:contains _:node184lq2pjux49 .
+
+_:node184lq2pjux49 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingExprEditor.edit(MethodCall,)> ;
+	atxa-jdt:index "1" ;
+	atxa-core:contains _:node184lq2pjux50 .
+
+_:node184lq2pjux50 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer.profile(CtMethod,CtClass,)> ;
+	atxa-jdt:index "0" .
+
+<http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer.profile(CtMethod,CtClass,)> atxa-core:link _:node184lq2pjux51 .
+
+_:node184lq2pjux52 a atxa-core:link ;
+	atxa-core:model atxa-jdt:calls ;
+	rdf:subject _:node184lq2pjux50 ;
+	rdf:object _:node184lq2pjux51 ;
+	atxa-core:name "profile(getMethod(), cc)" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_slSequence.atxa> atxa-core:contains _:node184lq2pjux42 .
+
+_:node184lq2pjux42 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer> ;
+	atxa-jdt:index "5" ;
+	atxa-core:instanceName "fileTransformer" ;
+	atxa-core:contains _:node184lq2pjux51 .
+
+_:node184lq2pjux51 a atxa-core:node ;
+	atxa-core:model <http://www.architexa.com/rdf/jdt-wkspc#de.twenty11.unitprofile.agent$ProfilingClassFileTransformer.profile(CtMethod,CtClass,)> ;
+	atxa-jdt:index "0" .
+
+_:node184lq2pjux53 a atxa-core:link ;
+	atxa-core:model atxa-jdt:returns ;
+	rdf:subject _:node184lq2pjux51 ;
+	rdf:object _:node184lq2pjux50 ;
+	atxa-core:name "void" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_slSequence.atxa> atxa-core:contains _:node184lq2pjux8 .
+
+_:node184lq2pjux8 a atxa-core:controlflow ;
+	atxa-core:model _:node184lq2pjux8 ;
+	atxa-core:controlflowname atxa-core:ifBlock ;
+	atxa-core:name "profilerCallbackCtClass == null" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_slSequence.atxa> atxa-core:contains _:node184lq2pjux9 .
+
+_:node184lq2pjux9 a atxa-core:controlflow ;
+	atxa-core:model _:node184lq2pjux9 ;
+	atxa-core:controlflowname atxa-core:ifBlock ;
+	atxa-core:name "annotatedMethodsToProfile.size() > 0" .
+
+<http://www.architexa.com/rdf/rse-eclipse#etc_slSequence.atxa> atxa-core:contains _:node184lq2pjux10 .
+
+_:node184lq2pjux10 a atxa-core:controlflow ;
+	atxa-core:model _:node184lq2pjux10 ;
+	atxa-core:controlflowname atxa-core:loopBlock ;
+	atxa-core:name "annotatedMethodsToProfile" .
+
