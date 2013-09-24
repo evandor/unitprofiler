@@ -37,7 +37,7 @@ public class ProfilerCallback {
      * @return
      */
     public static Invocation start(String objectName, String methodName) {
-        bigMessage("Starting profiling...");
+        bigMessage("Starting profiling... " + objectName + "#" + methodName);
         if (profiling()) {
            logger.error("Profiling was already started for '{}'", callstack.getFirst().getCls() + "#" + callstack.getFirst().getMethod());
            throw new IllegalStateException();

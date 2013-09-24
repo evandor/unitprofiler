@@ -26,7 +26,7 @@ public class ProfiledClassWithFieldAccessTest {
         
         Invocation rootInvocation = Agent.getRootInvocation();
         assertThat(rootInvocation, is(not(nullValue())));
-        //assertThat(rootInvocation.getChildren().size(), is(1));
+ //       assertThat(rootInvocation.getChildren().size(), is(1));
 //        assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(0));
 //        assertThat(rootInvocation.getTime(),is(greaterThanOrEqualTo(rootInvocation.getChildren().get(0).getTime())));
     }

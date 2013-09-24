@@ -160,10 +160,12 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
     }
 
     private boolean instrument(CtMethod method) {
-        Instrumentation instrumentation = new Instrumentation(method.getDeclaringClass().getName(), method.getName());
+        String objectName = method.getDeclaringClass().getName();
+        Instrumentation instrumentation = new Instrumentation(objectName, method.getName());
         if (instrumentations.contains(instrumentation)) {
             return false;
         }
+        logger.debug("added " + objectName + "#" + method);
         instrumentations.add(instrumentation);
         
         CodeAttribute ca = method.getMethodInfo().getCodeAttribute();

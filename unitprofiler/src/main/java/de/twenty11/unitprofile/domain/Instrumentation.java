@@ -15,18 +15,16 @@ public class Instrumentation implements Comparable<Instrumentation>{
 
     private static final Logger logger = LoggerFactory.getLogger(Instrumentation.class);
     
-    private String thread;
+   // private String thread;
     private String object;
     private String method;
 
     private List<Invocation> invocations = new ArrayList<Invocation>();
 
     public Instrumentation(String object, String method) {
-        this.thread = Thread.currentThread().getName();
+        //this.thread = Thread.currentThread().getName();
         this.object = object;
         this.method = method;
-        //this.instrumented = 1;
-        logger.debug("added " + thread + ", " + object + ", " + method);
     }
     
     public void addInvocation(Invocation invocation) {
@@ -37,7 +35,8 @@ public class Instrumentation implements Comparable<Instrumentation>{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(thread).append(", ").append(object).append(", ").append(method);
+        //sb.append(thread).append(", ").append(object).append("#").append(method);
+        sb.append(object).append("#").append(method);
         return sb.toString();
     }
     
@@ -52,7 +51,7 @@ public class Instrumentation implements Comparable<Instrumentation>{
         int result = 1;
         result = prime * result + ((method == null) ? 0 : method.hashCode());
         result = prime * result + ((object == null) ? 0 : object.hashCode());
-        result = prime * result + ((thread == null) ? 0 : thread.hashCode());
+        //result = prime * result + ((thread == null) ? 0 : thread.hashCode());
         return result;
     }
 
@@ -75,11 +74,11 @@ public class Instrumentation implements Comparable<Instrumentation>{
                 return false;
         } else if (!object.equals(other.object))
             return false;
-        if (thread == null) {
+       /* if (thread == null) {
             if (other.thread != null)
                 return false;
         } else if (!thread.equals(other.thread))
-            return false;
+            return false;    */
         return true;
     }
 
