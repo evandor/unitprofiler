@@ -29,7 +29,6 @@ public class ProfilingExprEditor extends ExprEditor {
     }
     
     public void edit(MethodCall mc) throws CannotCompileException {
-        //logger.debug(mc.getClassName() + "#" + mc.getMethodName());
         if (excluded(mc)) {
             return;
         }
@@ -55,41 +54,30 @@ public class ProfilingExprEditor extends ExprEditor {
 
     @Override
     public void edit(ConstructorCall c) throws CannotCompileException {
-        
+        logger.warn("ConstructorCall {}", c.getClassName() + "#" + c.getMethodName() + "(line "+c.getLineNumber()+")");
     }
     
     @Override
     public void edit(FieldAccess f) throws CannotCompileException {
-//        System.out.println("FieldAccess  " + f.getClassName());
-//        System.out.println("FieldAccess  " + f.getFieldName());
-//        System.out.println("FieldAccess  " + f.getEnclosingClass().getName());
-//        System.out.println("FieldAccess  " + f.getLineNumber());
-//        System.out.println("FieldAccess  " + f.where());
-//        System.out.println("FieldAccess  " + f.getSignature());
-//        System.out.println("FieldAccess  " + f.toString());
-//        
-//        
-//        CtField field;
-//        try {
-//            field = f.getField();
-//            System.out.println("FieldAccess  " + field.getName());
-//            
-//        } catch (NotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("");
+        logger.warn("fieldAccess {}", f);
     }
     
     @Override
     public void edit(Handler h) throws CannotCompileException {
-        System.out.println("Handler  " + h.getFileName());
-//        System.out.println("Handler  " + h.getLineNumber());
-//        System.out.println("");
+        logger.warn("handler {}", h);
     }
     
     @Override
-    public void edit(NewArray a) throws CannotCompileException {
-        logger.info("NewArray {}", a.getFileName());
+    public void edit(NewArray newArray) throws CannotCompileException {
+        logger.warn("NewArray {} line {}", newArray.getFileName(), newArray.getLineNumber());
+        try {
+            logger.warn("NewArray componentType {}", newArray.getComponentType());
+        } catch (NotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        logger.warn("NewArray, created dim. {}, dim {}", newArray.getCreatedDimensions(), newArray.getDimension());
+        logger.warn("");
+
     }
     
     @Override
@@ -102,16 +90,17 @@ public class ProfilingExprEditor extends ExprEditor {
                 return;
             }
             fileTransformer.addInstrumentation(instrumentation);
-            
-            //System.out.println("New Constructor: " + constructor.getLongName() +":"+ constructor.toString());
-            
-            constructor.insertBeforeBody("{ProfilerCallback.before(this.getClass().getName(), \""+constructor.getName()+"\");}");
+
+            int lineNumber = e.getLineNumber();
+
+            logger.info("NewExpr {}" ,e);
+
+            constructor.insertBeforeBody("{ProfilerCallback.before(this.getClass().getName(), \""+constructor.getName()+"\", "+lineNumber+");}");
             constructor.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \""+constructor.getName()+"\");}");
             //constructor.instrument(new ProfilingExprEditor(fileTransformer, cc, depth));
         
         } catch (NotFoundException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            logger.error(e1.getMessage(), e1);
         }
         
         

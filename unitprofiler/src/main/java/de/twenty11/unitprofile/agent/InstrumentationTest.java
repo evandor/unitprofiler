@@ -16,7 +16,7 @@ public class InstrumentationTest {
         }
     }
     
-    @Profile
+    //@Profile
     public void somethingElse () throws InterruptedException {
         InstrumentationTest test = new InstrumentationTest();
         test.sleep100();

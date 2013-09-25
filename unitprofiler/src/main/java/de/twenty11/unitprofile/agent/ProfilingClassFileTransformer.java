@@ -89,15 +89,16 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         }
 
         classWithProfilingAnnotatedMethod.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
-        
+
+        int lineNumber = m.getMethodInfo().getLineNumber(0);
         if (!Modifier.isStatic(m.getModifiers())) {
-            m.insertBefore("{ProfilerCallback.start(this.getClass().getName(), \"" + m.getName() + "\");}");
+            m.insertBefore("{ProfilerCallback.start(this.getClass().getName(), \"" + m.getName() + "\", "+lineNumber+");}");
             m.insertAfter("{ProfilerCallback.stop(this.getClass().getName(), \"" + m.getName() + "\");}");
         } else {
             m.insertBefore("{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
                     + "\");}");
             m.insertAfter("{ProfilerCallback.stop(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
-                    + "\");}");
+                    + "\", \"+lineNumber+\");}");
         }
         m.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
     }
@@ -108,13 +109,17 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             return;
         }
 
+        int lineNumber = m.getMethodInfo().getLineNumber(0);
+
+        logger.debug("profiling {}#{} ({})", new Object[]{cc.getName(),m.getName(),lineNumber});
+
         if (!Modifier.isStatic(m.getModifiers())) {
-            m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \"" + m.getName() + "\");}");
+            m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \"" + m.getName() + "\", "+lineNumber+");}");
             m.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \"" + m.getName() + "\");}");
             m.instrument(new ProfilingExprEditor(this, cc));
         } else {
             m.insertBefore("{ProfilerCallback.before(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
-                    + "\");}");
+                    + "\", "+lineNumber+");}");
             m.insertAfter("{ProfilerCallback.after(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
                     + "\");}");
             m.instrument(new ProfilingExprEditor(this, cc));
@@ -165,7 +170,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         if (instrumentations.contains(instrumentation)) {
             return false;
         }
-        logger.debug("added " + objectName + "#" + method);
+        logger.debug("added to instrumentations: " + objectName + "#" + method.getName() + "(line " + method.getMethodInfo().getLineNumber(0) + ")");
         instrumentations.add(instrumentation);
         
         CodeAttribute ca = method.getMethodInfo().getCodeAttribute();

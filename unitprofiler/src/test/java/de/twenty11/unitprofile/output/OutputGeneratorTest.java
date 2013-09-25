@@ -10,7 +10,7 @@ import de.twenty11.unitprofile.domain.Invocation;
 public class OutputGeneratorTest {
 
     @Test
-    @Profile
+    //@Profile
     public void aaa() {
         OutputGenerator generator = new OutputGenerator();
         

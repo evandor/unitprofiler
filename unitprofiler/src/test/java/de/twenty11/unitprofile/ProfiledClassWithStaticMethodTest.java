@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.twenty11.unitprofile.agent.Agent;
@@ -17,8 +18,10 @@ public class ProfiledClassWithStaticMethodTest {
     TestClass testClassField = new TestClass(500);
     String testStringField = "testABC";
 
-    @Profile
+    //@Profile
     @Test
+    @Ignore
+
     public void testProfiler () {
         invokeStaticMethod();
         

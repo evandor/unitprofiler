@@ -8,6 +8,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.twenty11.unitprofile.agent.Agent;
@@ -17,8 +18,9 @@ import de.twenty11.unitprofile.domain.Invocation;
 
 public class ProfiledClassWithMethodTest {
 
-    @Profile
+    //@Profile
     @Test
+    @Ignore
     public void testProfiler () {
         sleep20();
         sleep20();

@@ -36,14 +36,14 @@ public class ProfilerCallback {
      * @param methodName
      * @return
      */
-    public static Invocation start(String objectName, String methodName) {
-        bigMessage("Starting profiling... " + objectName + "#" + methodName);
+    public static Invocation start(String objectName, String methodName, int lineNumber) {
+        bigMessage("Starting profiling... " + objectName + "#" + methodName + " ("+lineNumber+")");
         if (profiling()) {
            logger.error("Profiling was already started for '{}'", callstack.getFirst().getCls() + "#" + callstack.getFirst().getMethod());
            throw new IllegalStateException();
         }
 
-        Invocation rootInvocation = new Invocation(objectName, methodName);
+        Invocation rootInvocation = new Invocation(objectName, methodName, lineNumber);
         invocations.add(rootInvocation);
         callstack.add(rootInvocation);
         Agent.setRootInvocation(rootInvocation);
@@ -72,11 +72,11 @@ public class ProfilerCallback {
         logger.info("Instrumentation execution... done.");
     }
 
-    public static void before(String objectName, String methodName) { //, int depth) {
+    public static void before(String objectName, String methodName, int lineNumber) { //, int depth) {
         if (!profiling()) {
             return;
         }
-        handleInvocation(objectName, methodName);
+        handleInvocation(objectName, methodName, lineNumber);
     }
 
     public static void after(String objectName, String methodName) {
@@ -96,7 +96,7 @@ public class ProfilerCallback {
         return invocations;
     }
     
-    private static void handleInvocation(String objectName, String methodName) {
+    private static void handleInvocation(String objectName, String methodName, int lineNumber) {
         Invocation existingInvocation = getInvocation(callstack.peekLast(), objectName, methodName);
         if (existingInvocation != null) {
             logger.debug("invocation '{}' exists, incrementing count", existingInvocation);
@@ -105,7 +105,7 @@ public class ProfilerCallback {
             return;
         }
         
-        Invocation invocation = new Invocation(callstack.peekLast(), objectName, methodName, callstack.size());
+        Invocation invocation = new Invocation(callstack.peekLast(), objectName, methodName, lineNumber, callstack.size());
         logger.debug("creating new invocation '{}'", invocation);
         invocations.add(invocation);
         callstack.add(invocation);

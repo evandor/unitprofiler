@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Invocation {
 
+    private int lineNumber;
     private List<Clock> durations = new ArrayList<Clock>();
     
     private static ArrayDeque<Clock> clocks = new ArrayDeque<Clock>();
@@ -21,16 +22,17 @@ public class Invocation {
     private Invocation parent;
     private double selfTimeShare;
 
-    public Invocation(String objectName, String methodName) {
-        this(null, objectName, methodName, 0);
+    public Invocation(String objectName, String methodName, int lineNumber) {
+        this(null, objectName, methodName,lineNumber, 0);
     }
 
-    public Invocation(Invocation parent, String cls, String method, int depth) {
+    public Invocation(Invocation parent, String cls, String method, int lineNumber, int depth) {
         newTimer();
         this.cls = cls;
         this.method = method;
         this.depth = depth;
         this.parent = parent;
+        this.lineNumber = lineNumber;
         if (parent != null) {
             parent.addChild(this);
         }
@@ -60,6 +62,10 @@ public class Invocation {
 
     public String getMethod() {
         return method;
+    }
+
+    public int getLineNumber() {
+        return lineNumber;
     }
 
     public List<Invocation> getChildren() {
@@ -180,7 +186,7 @@ public class Invocation {
             sb.append(" data-tt-parent-id='").append(parentId).append("'");
         }
         sb.append(">");
-        sb.append("<td align='left'>").append(inv.cls).append("#").append(inv.method).append("</td>");
+        sb.append("<td align='left'>").append(inv.cls).append("#").append(inv.method).append(" (").append(inv.getLineNumber()).append(")").append("</td>");
         
         // time (ms)
         sb.append("<td align='right'>").append((longFormat.format(inv.getTime()))).append("</td>");
