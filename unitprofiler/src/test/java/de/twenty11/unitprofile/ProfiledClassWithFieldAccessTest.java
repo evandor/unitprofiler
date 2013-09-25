@@ -1,6 +1,5 @@
 package de.twenty11.unitprofile;
 
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
@@ -20,14 +19,14 @@ public class ProfiledClassWithFieldAccessTest {
 
     @Profile
     @Test
-    public void testProfiler () {
+    public void testProfiler() {
         testClassField.sleep(50);
         testStringField.replaceAll("A", "B");
-        
+
         Invocation rootInvocation = Agent.getRootInvocation();
         assertThat(rootInvocation, is(not(nullValue())));
- //       assertThat(rootInvocation.getChildren().size(), is(1));
-//        assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(0));
-//        assertThat(rootInvocation.getTime(),is(greaterThanOrEqualTo(rootInvocation.getChildren().get(0).getTime())));
+        assertThat(rootInvocation.getChildren().size(), is(1));
+        // assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(0));
+        // assertThat(rootInvocation.getTime(),is(greaterThanOrEqualTo(rootInvocation.getChildren().get(0).getTime())));
     }
 }
