@@ -65,6 +65,12 @@
     <link href="ludo-jquery-treetable/css/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
     <link href="ludo-jquery-treetable/css/jquery.treetable.css" rel="stylesheet" type="text/css" />
     <link href="css/bars.css" rel="stylesheet" type="text/css" />
+    
+    <style>
+ 	   *, *:before, *:after {
+    		-moz-box-sizing: inherit;
+	   }
+    </style>
 	<script src="ludo-jquery-treetable/js/jquery.treetable.js"></script>
 	<script>
 		\$('#treetable1').treetable({ expandable: true });
