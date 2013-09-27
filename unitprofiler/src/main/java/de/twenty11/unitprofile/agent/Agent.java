@@ -19,7 +19,7 @@ public class Agent {
     public static void premain(String agentArgs, Instrumentation inst) {
         logger.info("Starting instrumentation for profiling...");
         transformer = new ProfilingClassFileTransformer();
-        inst.addTransformer(transformer);
+        inst.addTransformer(transformer, true);
     }
 
     public static List<de.twenty11.unitprofile.domain.Instrumentation> getInstrumentations() {

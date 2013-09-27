@@ -14,22 +14,32 @@ import org.slf4j.LoggerFactory;
 public class Instrumentation implements Comparable<Instrumentation>{
 
     private static final Logger logger = LoggerFactory.getLogger(Instrumentation.class);
-    
-   // private String thread;
+    private final int lineNumber;
+
+    // private String thread;
     private String object;
     private String method;
 
     private List<Invocation> invocations = new ArrayList<Invocation>();
 
-    public Instrumentation(String object, String method) {
+    public Instrumentation(String object, String method, int lineNumber) {
         //this.thread = Thread.currentThread().getName();
         this.object = object;
         this.method = method;
+        this.lineNumber = lineNumber;
     }
     
     public void addInvocation(Invocation invocation) {
         this.invocations.add(invocation);
         
+    }
+
+    public String getBeforeBody() {
+        return "{ProfilerCallback.before(\""+object+"\", \""+method+"\", "+lineNumber+");}";
+    }
+
+    public String getAfter() {
+        return "{ProfilerCallback.after(\""+object+"\", \""+method+"\");}";
     }
 
     @Override
@@ -81,5 +91,7 @@ public class Instrumentation implements Comparable<Instrumentation>{
             return false;    */
         return true;
     }
+
+
 
 }

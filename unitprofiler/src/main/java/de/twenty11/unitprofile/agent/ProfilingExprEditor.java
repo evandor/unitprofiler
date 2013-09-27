@@ -1,9 +1,7 @@
 package de.twenty11.unitprofile.agent;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import javassist.CtClass;
 import javassist.CtConstructor;
 import javassist.NotFoundException;
@@ -14,6 +12,10 @@ import javassist.expr.Handler;
 import javassist.expr.MethodCall;
 import javassist.expr.NewArray;
 import javassist.expr.NewExpr;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.twenty11.unitprofile.domain.Instrumentation;
 
 public class ProfilingExprEditor extends ExprEditor {
@@ -29,6 +31,7 @@ public class ProfilingExprEditor extends ExprEditor {
     }
     
     public void edit(MethodCall mc) throws CannotCompileException {
+        //logger.info("MethodCall {}", mc.getClassName() + "#" + mc.getMethodName() + "(line "+mc.getLineNumber()+")");
         if (excluded(mc)) {
             return;
         }
@@ -55,16 +58,19 @@ public class ProfilingExprEditor extends ExprEditor {
     @Override
     public void edit(ConstructorCall c) throws CannotCompileException {
         logger.warn("ConstructorCall {}", c.getClassName() + "#" + c.getMethodName() + "(line "+c.getLineNumber()+")");
+        logger.warn("");
     }
     
     @Override
     public void edit(FieldAccess f) throws CannotCompileException {
         logger.warn("fieldAccess {}", f);
+        logger.warn("");
     }
     
     @Override
     public void edit(Handler h) throws CannotCompileException {
         logger.warn("handler {}", h);
+        logger.warn("");
     }
     
     @Override
@@ -84,20 +90,20 @@ public class ProfilingExprEditor extends ExprEditor {
     public void edit(NewExpr e) throws CannotCompileException {
         try {
             CtConstructor constructor = e.getConstructor();
-            Instrumentation instrumentation = new Instrumentation(e.getClassName(), e.getConstructor().getName());
+            CtBehavior where = e.where();
+            Instrumentation instrumentation = new Instrumentation(e.getClassName(), constructor.getName(), e.getLineNumber());
             
             if (fileTransformer.alreadyInstrumented(instrumentation)) {
                 return;
             }
             fileTransformer.addInstrumentation(instrumentation);
 
-            int lineNumber = e.getLineNumber();
+            logger.warn("NewExpr {}", instrumentation);
+            logger.warn("");
 
-            logger.info("NewExpr {}" ,e);
-
-            constructor.insertBeforeBody("{ProfilerCallback.before(this.getClass().getName(), \""+constructor.getName()+"\", "+lineNumber+");}");
-            constructor.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \""+constructor.getName()+"\");}");
-            //constructor.instrument(new ProfilingExprEditor(fileTransformer, cc, depth));
+            constructor.insertBeforeBody(instrumentation.getBeforeBody());
+            constructor.insertAfter(instrumentation.getAfter());
+            constructor.instrument(new ProfilingExprEditor(fileTransformer, constructor.getDeclaringClass()));
         
         } catch (NotFoundException e1) {
             logger.error(e1.getMessage(), e1);
@@ -105,4 +111,5 @@ public class ProfilingExprEditor extends ExprEditor {
         
         
     }
+
 }

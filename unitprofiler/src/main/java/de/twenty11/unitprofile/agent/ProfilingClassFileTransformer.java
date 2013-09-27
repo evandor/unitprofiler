@@ -6,19 +6,19 @@ import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
 import javassist.Modifier;
-import javassist.bytecode.AccessFlag;
 import javassist.bytecode.CodeAttribute;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.twenty11.unitprofile.callback.ProfilerCallback;
 import de.twenty11.unitprofile.domain.Instrumentation;
-import de.twenty11.unitprofile.domain.Invocation;
+import de.twenty11.unitprofile.domain.Transformation;
 
 /**
  * finds (for profiling) annotated methods and uses them as root for instrumentation.
@@ -28,6 +28,11 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
     private static final Logger logger = LoggerFactory.getLogger(ProfilingClassFileTransformer.class);
 
+    /**
+     * list of all classes which have been transformed
+     */
+    private List<Transformation> transformations = new ArrayList<Transformation>();
+    
     /**
      * list of all methods (identified by treadName/objectName/methodName) which have been instrumented.
      */
@@ -43,6 +48,8 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             return classfileBuffer;
         }
 
+        Transformation transformation = trackTransformations(className, classfileBuffer);
+        
         byte[] byteCode = classfileBuffer;
         ClassPool cp = ClassPool.getDefault();
         cp.importPackage("de.twenty11.unitprofile.callback");
@@ -64,19 +71,33 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
                 startProfiling(cc, profilerCallbackCtClass, m);
             }
             byteCode = cc.toBytecode();
+            transformation.update(byteCode.length);
+            logger.info("updated transformation '{}'", transformation);
+            logger.info("writing file " + cc.getName() + " " + byteCode.length + " bytes.");
+            cc.writeFile("etc");
             cc.detach();
         } catch (Exception ex) {
-            // TODO
-            // ex.printStackTrace();
+            logger.error(ex.getMessage(), ex);
         }
 
         return byteCode;
     }
 
+    private Transformation trackTransformations(String className, byte[] classfileBuffer) {
+        Transformation transformation = new Transformation(className, classfileBuffer.length);
+        if (transformations.contains(transformation)){
+            logger.warn("re-transforming '{}'", transformation);
+        } else {
+            transformations.add(transformation);
+            logger.info("added transformation '{}'", transformation);
+        }
+        return transformation;
+    }
+
     private void logInfoAboutAnnotatedMethodsFound(List<CtMethod> annotatedMethodsToProfile) {
         logger.info("found " + annotatedMethodsToProfile.size() + " method(s) annotated for profiling: ");
         for (CtMethod ctMethod : annotatedMethodsToProfile) {
-            logger.info(" * {}", ctMethod.getLongName());
+            logger.info(" * {}", ctMethod.getDeclaringClass().getName() + "#" + ctMethod.getName());
         }
         logger.info("");
     }
@@ -101,6 +122,8 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
                     + "\", \"+lineNumber+\");}");
         }
         m.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
+        
+        
     }
 
     protected final void profile(final CtMethod m, CtClass cc) throws CannotCompileException {
@@ -166,7 +189,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
     private boolean instrument(CtMethod method) {
         String objectName = method.getDeclaringClass().getName();
-        Instrumentation instrumentation = new Instrumentation(objectName, method.getName());
+        Instrumentation instrumentation = new Instrumentation(objectName, method.getName(), method.getMethodInfo().getLineNumber(0));
         if (instrumentations.contains(instrumentation)) {
             return false;
         }

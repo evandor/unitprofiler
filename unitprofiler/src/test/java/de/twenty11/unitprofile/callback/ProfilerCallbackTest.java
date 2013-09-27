@@ -18,6 +18,8 @@ public class ProfilerCallbackTest {
     }
     
     @Test
+    @Ignore
+
     public void method_start_start_profiling_and_method_stop_stops_profiling() {
         //assertThat(ProfilerCallback.isProfiling(), is(false));
         ProfilerCallback.start("object", "method", 11);
