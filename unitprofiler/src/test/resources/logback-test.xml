@@ -4,8 +4,7 @@
 			<level>DEBUG</level>
 		</filter>
 		<encoder>
-			<pattern>test> %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
-				%msg%n
+			<pattern>test> %d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
@@ -20,7 +19,7 @@
 		<file>etc/testrun.log</file>
 		<append>false</append>
 		<encoder>
-			<pattern>%-5level %logger{55} - %msg%n
+			<pattern>%-5level %logger{25} - %msg%n
 			</pattern>
 		</encoder>
 	</appender>

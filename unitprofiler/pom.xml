@@ -113,6 +113,8 @@
 							<archive>
 								<manifestEntries>
 									<Premain-Class>de.twenty11.unitprofile.agent.Agent</Premain-Class>
+									<Can-Redefine-Classes>true</Can-Redefine-Classes>
+									<Can-Retransform-Classes>true</Can-Retransform-Classes>
 								</manifestEntries>
 							</archive>
 						</configuration>

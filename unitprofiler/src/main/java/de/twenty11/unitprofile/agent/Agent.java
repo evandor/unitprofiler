@@ -9,17 +9,21 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.unitprofile.domain.Invocation;
 
 public class Agent {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(Agent.class);
 
     private static ProfilingClassFileTransformer transformer;
 
     private static Invocation rootInvocation;
-    
+
     public static void premain(String agentArgs, Instrumentation inst) {
         logger.info("Starting instrumentation for profiling...");
-        transformer = new ProfilingClassFileTransformer();
-        inst.addTransformer(transformer, true);
+        transformer = new ProfilingClassFileTransformer(inst);
+        if (inst.isRetransformClassesSupported()) {
+            inst.addTransformer(transformer, true);
+        } else {
+            logger.warn("Retransformation is not supported be the current JVM...");
+        }
     }
 
     public static List<de.twenty11.unitprofile.domain.Instrumentation> getInstrumentations() {
@@ -29,7 +33,7 @@ public class Agent {
     public static void setRootInvocation(Invocation rootInvocation) {
         Agent.rootInvocation = rootInvocation;
     }
-    
+
     public static Invocation getRootInvocation() {
         return rootInvocation;
     }

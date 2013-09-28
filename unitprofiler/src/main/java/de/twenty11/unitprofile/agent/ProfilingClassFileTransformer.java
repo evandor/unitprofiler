@@ -32,13 +32,19 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
      * list of all classes which have been transformed
      */
     private List<Transformation> transformations = new ArrayList<Transformation>();
-    
+
     /**
      * list of all methods (identified by treadName/objectName/methodName) which have been instrumented.
      */
     private List<Instrumentation> instrumentations = new ArrayList<Instrumentation>();
 
     private CtClass profilerCallbackCtClass;
+
+    private java.lang.instrument.Instrumentation instrumentation;
+
+    public ProfilingClassFileTransformer(java.lang.instrument.Instrumentation inst) {
+        this.instrumentation = inst;
+    }
 
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
@@ -48,8 +54,9 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             return classfileBuffer;
         }
 
-        Transformation transformation = trackTransformations(className, classfileBuffer);
-        
+        Transformation transformation = trackTransformations(className, loader, classBeingRedefined, protectionDomain,
+                classfileBuffer);
+
         byte[] byteCode = classfileBuffer;
         ClassPool cp = ClassPool.getDefault();
         cp.importPackage("de.twenty11.unitprofile.callback");
@@ -72,8 +79,8 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             }
             byteCode = cc.toBytecode();
             transformation.update(byteCode.length);
-            logger.info("updated transformation '{}'", transformation);
-            logger.info("writing file " + cc.getName() + " " + byteCode.length + " bytes.");
+            logger.info("transformation updated '{}'", transformation);
+            logger.info("          writing file '" + cc.getName() + "' " + byteCode.length + " bytes.");
             cc.writeFile("etc");
             cc.detach();
         } catch (Exception ex) {
@@ -83,13 +90,15 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         return byteCode;
     }
 
-    private Transformation trackTransformations(String className, byte[] classfileBuffer) {
-        Transformation transformation = new Transformation(className, classfileBuffer.length);
-        if (transformations.contains(transformation)){
+    private Transformation trackTransformations(String className, ClassLoader loader, Class<?> classBeingRedefined,
+            ProtectionDomain protectionDomain, byte[] classfileBuffer) {
+        Transformation transformation = new Transformation(className, loader, classBeingRedefined, protectionDomain,
+                classfileBuffer.length);
+        if (transformations.contains(transformation)) {
             logger.warn("re-transforming '{}'", transformation);
         } else {
             transformations.add(transformation);
-            logger.info("added transformation '{}'", transformation);
+            // logger.info("transformation added   '{}'", transformation);
         }
         return transformation;
     }
@@ -113,7 +122,8 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
         int lineNumber = m.getMethodInfo().getLineNumber(0);
         if (!Modifier.isStatic(m.getModifiers())) {
-            m.insertBefore("{ProfilerCallback.start(this.getClass().getName(), \"" + m.getName() + "\", "+lineNumber+");}");
+            m.insertBefore("{ProfilerCallback.start(this.getClass().getName(), \"" + m.getName() + "\", " + lineNumber
+                    + ");}");
             m.insertAfter("{ProfilerCallback.stop(this.getClass().getName(), \"" + m.getName() + "\");}");
         } else {
             m.insertBefore("{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
@@ -122,8 +132,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
                     + "\", \"+lineNumber+\");}");
         }
         m.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
-        
-        
+
     }
 
     protected final void profile(final CtMethod m, CtClass cc) throws CannotCompileException {
@@ -134,15 +143,16 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
         int lineNumber = m.getMethodInfo().getLineNumber(0);
 
-        logger.debug("profiling {}#{} ({})", new Object[]{cc.getName(),m.getName(),lineNumber});
+        logger.debug("profiling {}#{} ({})", new Object[] { cc.getName(), m.getName(), lineNumber });
 
         if (!Modifier.isStatic(m.getModifiers())) {
-            m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \"" + m.getName() + "\", "+lineNumber+");}");
+            m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \"" + m.getName() + "\", " + lineNumber
+                    + ");}");
             m.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \"" + m.getName() + "\");}");
             m.instrument(new ProfilingExprEditor(this, cc));
         } else {
             m.insertBefore("{ProfilerCallback.before(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
-                    + "\", "+lineNumber+");}");
+                    + "\", " + lineNumber + ");}");
             m.insertAfter("{ProfilerCallback.after(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
                     + "\");}");
             m.instrument(new ProfilingExprEditor(this, cc));
@@ -189,13 +199,15 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
     private boolean instrument(CtMethod method) {
         String objectName = method.getDeclaringClass().getName();
-        Instrumentation instrumentation = new Instrumentation(objectName, method.getName(), method.getMethodInfo().getLineNumber(0));
+        Instrumentation instrumentation = new Instrumentation(objectName, method.getName(), method.getMethodInfo()
+                .getLineNumber(0));
         if (instrumentations.contains(instrumentation)) {
             return false;
         }
-        logger.debug("added to instrumentations: " + objectName + "#" + method.getName() + "(line " + method.getMethodInfo().getLineNumber(0) + ")");
+        logger.debug("added to instrumentations: " + objectName + "#" + method.getName() + "(line "
+                + method.getMethodInfo().getLineNumber(0) + ")");
         instrumentations.add(instrumentation);
-        
+
         CodeAttribute ca = method.getMethodInfo().getCodeAttribute();
         if (ca == null) {
             return false;
@@ -204,4 +216,16 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         return true;
     }
 
+    public java.lang.instrument.Instrumentation getInstrumentation() {
+        return this.instrumentation;
+    }
+
+    public Transformation getTransformation(String classname) {
+        for (Transformation transformation : transformations) {
+            if (transformation.getClassName().equals(classname)) {
+                return transformation;
+            }
+        }
+        return null;
+    }
 }
