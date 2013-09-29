@@ -80,8 +80,8 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             byteCode = cc.toBytecode();
             transformation.update(byteCode.length);
             logger.info("transformation updated '{}'", transformation);
-            logger.info("          writing file '" + cc.getName() + "' " + byteCode.length + " bytes.");
-            cc.writeFile("etc");
+            // logger.info("          writing file '" + cc.getName() + "' " + byteCode.length + " bytes.");
+            // cc.writeFile("etc");
             cc.detach();
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
