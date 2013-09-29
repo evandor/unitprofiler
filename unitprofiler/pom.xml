@@ -361,7 +361,7 @@
 		</repository>
 		<site>
 			<id>maven-site-twenty11</id>
-			<url>file:///var/www/mavensites</url>
+			<url>file:///var/www/mavensites/unitprofiler</url>
 		</site>
 	</distributionManagement>
 
