@@ -14,12 +14,24 @@
     <src>http://maven.apache.org/images/maven-small.gif</src>
   </bannerRight>
   <body>
+    <head>
+      <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+    	ga('create', 'UA-44439463-1', 'unitprofiler.de');
+    	ga('send', 'pageview');
+	</script>
+    </head>
     <links>
       <item name="Skysail Home" href="http://www.twentyeleven.de/" />
     </links>
 
     <menu name="UnitProfiler">
       <item name="Introduction" href="index.html"/>
+      <item name="Blog" href=" blog.html"/>
     </menu>
 
     <menu ref="reports"/>
