@@ -3,14 +3,17 @@
  -----
  evandor
  -----
- January 2011
+ September 2013
  
 Introduction
 
+ As stated by Donald Knuth, "Premature optimization is the root of all evil".
 
- This project (skysail.server.common) provides the classes meant to be used by 
- the skysail server(s).
-
+ Nevertheless, sometimes (later) it might be necessary to optimize your code. Most probably, from my experience,
+ there is some code which is executed much more often than needed (and intended). Before starting to track down this
+ code (and optimize it) there is one thing you should definitely do: measure the performance first!
+ 
+ This is the only way to determine 
 
 * Building and deployment
 
