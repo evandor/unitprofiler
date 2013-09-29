@@ -7,24 +7,61 @@
  
 Introduction
 
- As stated by Donald Knuth, "Premature optimization is the root of all evil".
+ As stated by Donald Knuth, "premature optimization is the root of all evil".
 
- Nevertheless, sometimes (later) it might be necessary to optimize your code. Most probably, from my experience,
+ Nevertheless, sometimes - later-  it might be necessary to optimize your code. Most probably, from my experience,
  there is some code which is executed much more often than needed (and intended). Before starting to track down this
  code (and optimize it) there is one thing you should definitely do: measure the performance first!
  
- This is the only way to determine 
+ This is the only way to determine whether or not your optimization efforts are successful (provided your trusted test
+ suite still "is green").  
+ 
+ UnitProfiler aims to provide you with some repeatable, reliable and informative figures by instrumenting your code during
+ the execution of the maven test phase. 
+ 
+ This should be as simple as adding a @de.twenty11.unitprofile.annotations.Profile annotation to specific tests you want to profile:
+ 
++---
+
+    @Profile
+    @Test
+    public void should_do_something_when_something_else_happens() {
+		...
+		(testcode)
+		... 
+    }
++---
+
+ Well, to be honest, there is something more to do: you have to set up some things in your pom.xml file:
+
+ In the plugins section you need to add something like this:
+
++---
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-plugin</artifactId>
+	<version>2.12.4</version>
+	<configuration>
+		<argLine>-javaagent:path/to/unitprofiler.jar</argLine>
+	</configuration>
+</plugin>
++---
+
+ and, of course, you somehow need to add the unitProfiler dependency
+
++---
+	<dependency>
+		<groupId>de.twentyeleven.unitprofile</groupId>
+		<artifactId>unitprofiler</artifactId>
+		<version>[0.0.4-SNAPSHOT, 1.0.0)</version>
+	</dependency>
++---
+
 
 * Building and deployment
 
- mvn clean install creates the project in the .m2 repository and 
- copies it to ../skysail.server.restlet/src/main/webapp/WEB-INF/eclipse/plugins
+to be done 
  
- this bundle is also build when running mvn install on skysail.bootstrap
- 
-* Dependencies
-
- mainly restlet and server-api 
  
 
 

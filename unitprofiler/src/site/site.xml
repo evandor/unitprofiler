@@ -18,13 +18,8 @@
       <item name="Skysail Home" href="http://www.twentyeleven.de/" />
     </links>
 
-    <menu name="skysail.server">
+    <menu name="UnitProfiler">
       <item name="Introduction" href="index.html"/>
-      <item name="Links" href="links.html"/>      
-      <item name="Changelog" href="changelog.html"/>
-      <item name="Skysail Server Developer Setup" href="setup.html"/>
-      
-      
     </menu>
 
     <menu ref="reports"/>
