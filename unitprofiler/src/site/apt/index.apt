@@ -53,7 +53,7 @@ Introduction
 	<dependency>
 		<groupId>de.twentyeleven.unitprofile</groupId>
 		<artifactId>unitprofiler</artifactId>
-		<version>[0.0.4-SNAPSHOT, 1.0.0)</version>
+		<version>[0.0.5-SNAPSHOT, 1.0.0)</version>
 	</dependency>
 +---
 

@@ -18,5 +18,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="de.twenty11.unitprofile.agent.AgentTest"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="unitprofile"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-javaagent:target/unitprofile-0.0.4-SNAPSHOT.jar"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-javaagent:target/unitprofile-0.0.5-SNAPSHOT.jar"/>
 </launchConfiguration>

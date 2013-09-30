@@ -3,7 +3,6 @@ package de.twenty11.unitprofile.agent;
 import java.lang.instrument.ClassDefinition;
 
 import javassist.CannotCompileException;
-import javassist.CtBehavior;
 import javassist.CtClass;
 import javassist.CtConstructor;
 import javassist.NotFoundException;
@@ -94,11 +93,12 @@ public class ProfilingExprEditor extends ExprEditor {
     public void edit(NewExpr e) throws CannotCompileException {
         try {
             CtConstructor constructor = e.getConstructor();
-            CtBehavior where = e.where();
+            CtClass ctClass = constructor.getDeclaringClass();
+
             Instrumentation instrumentation = new Instrumentation(e.getClassName(), constructor.getName(),
                     e.getLineNumber());
 
-            if (fileTransformer.alreadyInstrumented(instrumentation)) {
+            if (fileTransformer.isAlreadyInstrumented(instrumentation)) {
                 return;
             }
             fileTransformer.addInstrumentation(instrumentation);
@@ -106,38 +106,24 @@ public class ProfilingExprEditor extends ExprEditor {
             logger.warn("NewExpr {}", instrumentation);
             logger.warn("");
 
+            if (ctClass.isFrozen()) {
+                logger.warn("'{}' is 'frozen'", ctClass.getName());
+                return;
+            }
+
             constructor.insertBeforeBody(instrumentation.getBeforeBody());
             constructor.insertAfter(instrumentation.getAfter());
-            constructor.instrument(new ProfilingExprEditor(fileTransformer, constructor.getDeclaringClass()));
+            constructor.instrument(new ProfilingExprEditor(fileTransformer, ctClass));
 
-            Transformation transformation = fileTransformer
-                    .getTransformation(constructor.getDeclaringClass().getName());
+            Transformation transformation = fileTransformer.getTransformation(ctClass.getName());
             if (transformation != null) {
                 java.lang.instrument.Instrumentation javainstrumentation = fileTransformer.getInstrumentation();
 
                 javainstrumentation.addTransformer(new ProfilingClassFileTransformer(javainstrumentation), true);
-                // javainstrumentation.addTransformer(new ProfilingClassFileTransformer(javainstrumentation));
-                // Class class1 = e.getConstructor().getDeclaringClass().toClass();
-                // Class<?> class1 = constructor.getDeclaringClass().toClass(transformation.getLoader(),
-                // transformation.getProtectionDomain());
-                // Class[] allLoadedClasses = javainstrumentation.getAllLoadedClasses();
-                // for (Class class2 : allLoadedClasses) {
-                // try {
-                // javainstrumentation.retransformClasses(class2);
-                // } catch (Exception e22) {
-                // e22.printStackTrace();
-                // }
-                // }
 
-                Class<?> cls1 = Class.forName(constructor.getDeclaringClass().getName());
-                // if (javainstrumentation.isModifiableClass(cls1)) {
-                // javainstrumentation.retransformClasses(cls1);
-                // }
+                Class<?> cls1 = Class.forName(ctClass.getName());
 
-                ClassDefinition classDefinition = new ClassDefinition(cls1, constructor.getDeclaringClass()
-                        .toBytecode());
-                // javainstrumentation.retransformClasses(cls1);
-                // javainstrumentation.redefineClasses();
+                ClassDefinition classDefinition = new ClassDefinition(cls1, ctClass.toBytecode());
                 javainstrumentation.redefineClasses(classDefinition);
 
             }

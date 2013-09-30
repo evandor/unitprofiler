@@ -1,5 +1,6 @@
 package de.twenty11.unitprofile;
 
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
@@ -12,23 +13,19 @@ import de.twenty11.unitprofile.annotations.Profile;
 import de.twenty11.unitprofile.domain.Invocation;
 import de.twenty11.unitprofile.helper.TestClass;
 
-public class ProfiledClassWithArrayTest {
+public class ProfiledClassInExtendedTestClassTest extends SomeBaseTestClass {
 
     @Profile
     @Test
-    public void testArrayProfiler() {
+    public void should_not_instrument_the_call_to_the_superclasses_constructor() {
 
-        TestClass[] testClasses = new TestClass[2];
-        testClasses[0] = new TestClass(10);
-        testClasses[1] = new TestClass(10);
-
-        testClasses[0].sleep(10);
-        testClasses[1].sleep(20);
+        new TestClass(100);
 
         Invocation rootInvocation = Agent.getRootInvocation();
         assertThat(rootInvocation, is(not(nullValue())));
-        assertThat(rootInvocation.getChildren().size(), is(2));
-        // assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(0));
-        // assertThat(rootInvocation.getTime(),is(greaterThanOrEqualTo(rootInvocation.getChildren().get(0).getTime())));
+        assertThat(rootInvocation.getChildren().size(), is(1));
+        assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(1));
+        assertThat(rootInvocation.getTime(), is(greaterThanOrEqualTo(rootInvocation.getChildren().get(0).getTime())));
     }
+
 }
