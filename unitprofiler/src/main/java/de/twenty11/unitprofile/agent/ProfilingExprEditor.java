@@ -17,18 +17,18 @@ import javassist.expr.NewExpr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.unitprofile.domain.Instrumentation;
+import de.twenty11.unitprofile.domain.MethodDescriptor;
 import de.twenty11.unitprofile.domain.Transformation;
 
 public class ProfilingExprEditor extends ExprEditor {
 
     private static final Logger logger = LoggerFactory.getLogger(ProfilingExprEditor.class);
 
-    private ProfilingClassFileTransformer fileTransformer;
+    private ProfilingClassFileTransformer classTransformer;
     private CtClass cc;
 
     public ProfilingExprEditor(ProfilingClassFileTransformer fileTransformer, CtClass cc) {
-        this.fileTransformer = fileTransformer;
+        this.classTransformer = fileTransformer;
         this.cc = cc;
     }
 
@@ -38,7 +38,7 @@ public class ProfilingExprEditor extends ExprEditor {
             return;
         }
         try {
-            fileTransformer.profile(mc.getMethod(), cc);
+            classTransformer.profile(mc.getMethod(), cc);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
@@ -90,46 +90,42 @@ public class ProfilingExprEditor extends ExprEditor {
     }
 
     @Override
-    public void edit(NewExpr e) throws CannotCompileException {
+    public void edit(NewExpr newExpression) throws CannotCompileException {
         try {
-            CtConstructor constructor = e.getConstructor();
+            CtConstructor constructor = newExpression.getConstructor();
             CtClass ctClass = constructor.getDeclaringClass();
+            MethodDescriptor methodDescriptor = new MethodDescriptor(newExpression);
 
-            Instrumentation instrumentation = new Instrumentation(e.getClassName(), constructor.getName(),
-                    e.getLineNumber());
-
-            if (fileTransformer.isAlreadyInstrumented(instrumentation)) {
+            if (classTransformer.isAlreadyInstrumented(methodDescriptor)) {
                 return;
             }
-            fileTransformer.addInstrumentation(instrumentation);
-
-            logger.warn("NewExpr {}", instrumentation);
-            logger.warn("");
+            classTransformer.addInstrumentation(methodDescriptor);
 
             if (ctClass.isFrozen()) {
                 logger.warn("'{}' is 'frozen'", ctClass.getName());
                 return;
             }
 
-            constructor.insertBeforeBody(instrumentation.getBeforeBody());
-            constructor.insertAfter(instrumentation.getAfter());
-            constructor.instrument(new ProfilingExprEditor(fileTransformer, ctClass));
+            instrument(constructor, ctClass, methodDescriptor);
 
-            Transformation transformation = fileTransformer.getTransformation(ctClass.getName());
+            Transformation transformation = classTransformer.getTransformation(ctClass.getName());
             if (transformation != null) {
-                java.lang.instrument.Instrumentation javainstrumentation = fileTransformer.getInstrumentation();
-
+                java.lang.instrument.Instrumentation javainstrumentation = classTransformer.getInstrumentation();
                 javainstrumentation.addTransformer(new ProfilingClassFileTransformer(javainstrumentation), true);
-
                 Class<?> cls1 = Class.forName(ctClass.getName());
-
                 ClassDefinition classDefinition = new ClassDefinition(cls1, ctClass.toBytecode());
                 javainstrumentation.redefineClasses(classDefinition);
-
             }
         } catch (Exception e1) {
             logger.error(e1.getMessage(), e1);
         }
 
+    }
+
+    private void instrument(CtConstructor constructor, CtClass ctClass, MethodDescriptor methodDescriptor)
+            throws CannotCompileException {
+        constructor.insertBeforeBody(methodDescriptor.getBeforeBody());
+        constructor.insertAfter(methodDescriptor.getAfter());
+        constructor.instrument(new ProfilingExprEditor(classTransformer, ctClass));
     }
 }

@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import de.twenty11.unitprofile.agent.Agent;
 import de.twenty11.unitprofile.annotations.Profile;
-import de.twenty11.unitprofile.domain.Invocation;
+import de.twenty11.unitprofile.domain.MethodInvocation;
 import de.twenty11.unitprofile.helper.TestClass;
 
 public class ProfiledClassWithStaticMethodTest {

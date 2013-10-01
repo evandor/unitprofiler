@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import de.twenty11.unitprofile.domain.Invocation;
+import de.twenty11.unitprofile.domain.MethodInvocation;
 
 
 public class ProfilerCallbackTest {
@@ -45,7 +45,7 @@ public class ProfilerCallbackTest {
     @Test
     @Ignore
     public void submethod_is_child_of_parent_invocation() throws InterruptedException {
-        Invocation rootInvocation = ProfilerCallback.start("object", "m1", 11);
+        MethodInvocation rootInvocation = ProfilerCallback.start("object", "m1", 11);
 
         Thread.sleep(20);
         ProfilerCallback.before("object", "m2", 11);

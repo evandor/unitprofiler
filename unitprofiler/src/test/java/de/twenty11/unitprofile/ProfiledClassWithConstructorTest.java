@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import de.twenty11.unitprofile.agent.Agent;
 import de.twenty11.unitprofile.annotations.Profile;
-import de.twenty11.unitprofile.domain.Invocation;
+import de.twenty11.unitprofile.domain.MethodInvocation;
 import de.twenty11.unitprofile.helper.TestClass;
 
 public class ProfiledClassWithConstructorTest {
@@ -22,7 +22,7 @@ public class ProfiledClassWithConstructorTest {
     @Profile
     @Test
     public void testConstructorProfilerLeer() {
-        Invocation rootInvocation = Agent.getRootInvocation();
+        MethodInvocation rootInvocation = Agent.getRootInvocation();
         // assertThat(rootInvocation, is(not(nullValue())));
         // assertThat(rootInvocation.getChildren().size(), is(1));
         // assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(1));
@@ -36,7 +36,7 @@ public class ProfiledClassWithConstructorTest {
 
         new TestClass(10);
 
-        Invocation rootInvocation = Agent.getRootInvocation();
+        MethodInvocation rootInvocation = Agent.getRootInvocation();
         assertThat(rootInvocation, is(not(nullValue())));
         assertThat(rootInvocation.getChildren().size(), is(1));
         assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(1));
@@ -49,7 +49,7 @@ public class ProfiledClassWithConstructorTest {
 
         new TestClass(20);
 
-        Invocation rootInvocation = Agent.getRootInvocation();
+        MethodInvocation rootInvocation = Agent.getRootInvocation();
         assertThat(rootInvocation, is(not(nullValue())));
         assertThat(rootInvocation.getChildren().size(), is(1));
         assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(1));

@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import de.twenty11.unitprofile.annotations.Profile;
-import de.twenty11.unitprofile.domain.Invocation;
+import de.twenty11.unitprofile.domain.MethodInvocation;
 
 
 public class OutputGeneratorTest {
@@ -16,7 +16,7 @@ public class OutputGeneratorTest {
     public void aaa() {
         OutputGenerator generator = new OutputGenerator();
         
-        Invocation rootInvocation = Mockito.mock(Invocation.class);
+        MethodInvocation rootInvocation = Mockito.mock(MethodInvocation.class);
         generator.renderFromBootstrapTemplate(rootInvocation);
     }
 }

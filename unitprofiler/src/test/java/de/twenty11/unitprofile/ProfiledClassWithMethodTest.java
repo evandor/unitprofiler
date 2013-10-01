@@ -13,8 +13,8 @@ import org.junit.Test;
 
 import de.twenty11.unitprofile.agent.Agent;
 import de.twenty11.unitprofile.annotations.Profile;
-import de.twenty11.unitprofile.domain.Instrumentation;
-import de.twenty11.unitprofile.domain.Invocation;
+import de.twenty11.unitprofile.domain.MethodDescriptor;
+import de.twenty11.unitprofile.domain.MethodInvocation;
 
 public class ProfiledClassWithMethodTest {
 
@@ -26,10 +26,10 @@ public class ProfiledClassWithMethodTest {
         sleep20();
         sleep40();
         
-        List<Instrumentation> instrumentations = Agent.getInstrumentations();
+        List<MethodDescriptor> instrumentations = Agent.getInstrumentations();
         assertThat(instrumentations, is(not(nullValue())));
         
-        Invocation rootInvocation = Agent.getRootInvocation();
+        MethodInvocation rootInvocation = Agent.getRootInvocation();
         assertThat(rootInvocation, is(not(nullValue())));
         assertThat(rootInvocation.getChildren().size(), is(2));
         assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(0));

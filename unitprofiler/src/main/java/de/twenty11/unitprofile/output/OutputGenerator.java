@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.stringtemplate.v4.ST;
 
 import de.twenty11.unitprofile.agent.Agent;
-import de.twenty11.unitprofile.domain.Instrumentation;
-import de.twenty11.unitprofile.domain.Invocation;
+import de.twenty11.unitprofile.domain.MethodDescriptor;
+import de.twenty11.unitprofile.domain.MethodInvocation;
 
 public class OutputGenerator {
 
@@ -23,7 +23,7 @@ public class OutputGenerator {
 
     private static final String OUTPUT_PATH = "target/site/unitprofile";
 
-    public void renderFromBootstrapTemplate(Invocation rootInvocation) {
+    public void renderFromBootstrapTemplate(MethodInvocation rootInvocation) {
         try {
             InputStream resourceAsStream = this.getClass().getResourceAsStream("/templates/index.stg");
             StringWriter writer = new StringWriter();
@@ -46,10 +46,10 @@ public class OutputGenerator {
     }
 
     public void renderDebugInfo() {
-        List<Instrumentation> instrumentations = Agent.getInstrumentations();
+        List<MethodDescriptor> instrumentations = Agent.getInstrumentations();
         Collections.sort(instrumentations);
         StringBuilder sb = new StringBuilder();
-        for (Instrumentation instrumentation : instrumentations) {
+        for (MethodDescriptor instrumentation : instrumentations) {
             sb.append(instrumentation.toString()).append("\n");
         }
         try {
@@ -60,7 +60,7 @@ public class OutputGenerator {
         }
     }
 
-    private String getOutputFileName(Invocation rootInvocation) {
+    private String getOutputFileName(MethodInvocation rootInvocation) {
         return rootInvocation.getCls() + "." + rootInvocation.getMethod() + ".html";
     }
 }

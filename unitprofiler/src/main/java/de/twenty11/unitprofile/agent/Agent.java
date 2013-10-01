@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.unitprofile.annotations.Profile;
-import de.twenty11.unitprofile.domain.Invocation;
+import de.twenty11.unitprofile.domain.MethodInvocation;
 
 /**
  * A javaagent providing a premain method which adds the {@link ProfilingClassFileTransformer} to the 
@@ -30,7 +30,7 @@ public class Agent {
 
     private static ProfilingClassFileTransformer transformer;
 
-    private static Invocation rootInvocation;
+    private static MethodInvocation rootInvocation;
 
     public static void premain(String agentArgs, Instrumentation inst) {
         logger.info("Starting instrumentation for profiling...");
@@ -39,18 +39,19 @@ public class Agent {
             inst.addTransformer(transformer, true);
         } else {
             logger.warn("Retransformation is not supported be the current JVM...");
+            logger.warn("No profiling will be performed by unitprofiler.");
         }
     }
 
-    public static List<de.twenty11.unitprofile.domain.Instrumentation> getInstrumentations() {
+    public static List<de.twenty11.unitprofile.domain.MethodDescriptor> getInstrumentations() {
         return transformer.getInstrumentations();
     }
 
-    public static void setRootInvocation(Invocation rootInvocation) {
+    public static void setRootInvocation(MethodInvocation rootInvocation) {
         Agent.rootInvocation = rootInvocation;
     }
 
-    public static Invocation getRootInvocation() {
+    public static MethodInvocation getRootInvocation() {
         return rootInvocation;
     }
 

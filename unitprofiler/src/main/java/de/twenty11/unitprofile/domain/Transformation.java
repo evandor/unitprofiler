@@ -1,6 +1,5 @@
 package de.twenty11.unitprofile.domain;
 
-import java.security.ProtectionDomain;
 
 public class Transformation {
 
@@ -8,16 +7,9 @@ public class Transformation {
     private TransformationResult transformationResult;
     private int origSize;
     private int newLength;
-    private ClassLoader loader;
-    private ProtectionDomain protectionDomain;
-    private Class<?> classBeingRedefined;
 
-    public Transformation(String className, ClassLoader loader, Class<?> classBeingRedefined,
-            ProtectionDomain protectionDomain, int origSize) {
-        this.classBeingRedefined = classBeingRedefined;
+    public Transformation(String className, int origSize) {
         this.className = className.replace("/", ".");
-        this.loader = loader;
-        this.protectionDomain = protectionDomain;
         this.origSize = origSize;
         this.transformationResult = TransformationResult.UNTOUCHED;
     }
@@ -70,15 +62,8 @@ public class Transformation {
         return className;
     }
 
-    public ClassLoader getLoader() {
-        return loader;
-    }
 
-    public ProtectionDomain getProtectionDomain() {
-        return protectionDomain;
-    }
-
-    public Class<?> getClassBeingRedefined() {
-        return classBeingRedefined;
-    }
+//    public Class<?> getClassBeingRedefined() {
+//        return classBeingRedefined;
+//    }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Invocation {
+public class MethodInvocation {
 
     private int lineNumber;
     private List<Clock> durations = new ArrayList<Clock>();
@@ -14,35 +14,33 @@ public class Invocation {
     
     private String cls;
     private String method;
-    private List<Invocation> children = new ArrayList<Invocation>();
-    private int depth;
+    private List<MethodInvocation> children = new ArrayList<MethodInvocation>();
     private double timeShare;
     DecimalFormat df = new DecimalFormat("#.00");
     DecimalFormat longFormat = new DecimalFormat("###,##0"); 
-    private Invocation parent;
+    private MethodInvocation parent;
     private double selfTimeShare;
 
-    public Invocation(String objectName, String methodName, int lineNumber) {
-        this(null, objectName, methodName,lineNumber, 0);
+    public MethodInvocation(MethodDescriptor methodDescriptor) {
+        this(null, methodDescriptor);
     }
 
-    public Invocation(Invocation parent, String cls, String method, int lineNumber, int depth) {
+    public MethodInvocation(MethodInvocation parent, MethodDescriptor methodDescriptor) {
         newTimer();
-        this.cls = cls;
-        this.method = method;
-        this.depth = depth;
+        this.cls = methodDescriptor.getClassName();
+        this.method = methodDescriptor.getMethodName();
         this.parent = parent;
-        this.lineNumber = lineNumber;
+        this.lineNumber = methodDescriptor.getLineNumber();
         if (parent != null) {
             parent.addChild(this);
         }
     }
-    
+
     public void increment() {
         newTimer();
     }
 
-    private void addChild(Invocation invocation) {
+    private void addChild(MethodInvocation invocation) {
         this.children.add(invocation);
 
     }
@@ -52,7 +50,7 @@ public class Invocation {
         newestTimer.stop();
     }
     
-    public Invocation getParent() {
+    public MethodInvocation getParent() {
         return parent;
     }
 
@@ -68,14 +66,14 @@ public class Invocation {
         return lineNumber;
     }
 
-    public List<Invocation> getChildren() {
+    public List<MethodInvocation> getChildren() {
         return children;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(cls).append("#").append(method).append(" (").append(depth).append("): ")
+        sb.append(cls).append("#").append(method).append(" ")
                 .append((getTime()));
         sb.append(", ").append(children.size()).append(" children");
         return sb.toString();
@@ -91,7 +89,7 @@ public class Invocation {
     
     public long getSelfTime() {
         long childrenTime = 0;
-        for(Invocation child : children) {
+        for(MethodInvocation child : children) {
             childrenTime += child.getTime();
         }
         return getTime() - childrenTime;
@@ -107,15 +105,15 @@ public class Invocation {
 
     private String dump(int indentation) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < depth; i++) {
-            sb.append("  ");
-        }
-        sb.append(cls).append("#").append(method).append(" (").append(depth).append("): ")
+//        for (int i = 0; i < depth; i++) {
+//            sb.append("  ");
+//        }
+        sb.append(cls).append("#").append(method).append(" (").append("").append("): ")
                 .append((getTime()));
         sb.append(" ").append(timeShare).append("%");
         sb.append("\n");
         if (children.size() != 0) {
-            for (Invocation invocation : children) {
+            for (MethodInvocation invocation : children) {
                 sb.append(invocation.dump(++indentation));
             }
         }
@@ -135,7 +133,7 @@ public class Invocation {
         }
         setSelfTimeShare(100.0 * getSelfTime() / getTime());
         
-        for (Invocation invocation : children) {
+        for (MethodInvocation invocation : children) {
             invocation.calc(parentTime);
         }
     }
@@ -177,7 +175,7 @@ public class Invocation {
         return sb.toString();
     }
 
-    public String rowInTreeTable(Invocation inv, int indentation, Integer parentId) {
+    public String rowInTreeTable(MethodInvocation inv, int indentation, Integer parentId) {
         StringBuilder sb = new StringBuilder();
         Integer id = indentation;
 
@@ -206,7 +204,7 @@ public class Invocation {
         sb.append("<td align='right'>").append(inv.getTime() / inv.getCount()).append("</td>");
         sb.append("</tr>");
         if (inv.children.size() != 0) {
-            for (Invocation child : inv.children) {
+            for (MethodInvocation child : inv.children) {
                 sb.append(rowInTreeTable(child, ++indentation, id));
                 sb.append("\n");
             }

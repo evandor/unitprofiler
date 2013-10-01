@@ -8,7 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.unitprofile.agent.Agent;
-import de.twenty11.unitprofile.domain.Invocation;
+import de.twenty11.unitprofile.domain.MethodInvocation;
+import de.twenty11.unitprofile.domain.MethodDescriptor;
 import de.twenty11.unitprofile.output.OutputGenerator;
 
 /**
@@ -22,12 +23,12 @@ public class ProfilerCallback {
     /**
      * contains all profiling information after profiling 
      */
-    private static List<Invocation> invocations = new ArrayList<Invocation>();
+    private static List<MethodInvocation> invocations = new ArrayList<MethodInvocation>();
 
     /**
      * a stack keeping track of the nested method calls. Starts empty and stops with the top-level (root) invocation.
      */
-    private static ArrayDeque<Invocation> callstack = new ArrayDeque<Invocation>();
+    private static ArrayDeque<MethodInvocation> callstack = new ArrayDeque<MethodInvocation>();
 
     /**
      * the first invocation for this profiling session.
@@ -36,14 +37,15 @@ public class ProfilerCallback {
      * @param methodName
      * @return
      */
-    public static Invocation start(String objectName, String methodName, int lineNumber) {
+    public static MethodInvocation start(String objectName, String methodName, int lineNumber) {
         bigMessage("Starting profiling... " + objectName + "#" + methodName + " ("+lineNumber+")");
         if (profiling()) {
            logger.error("Profiling was already started for '{}'", callstack.getFirst().getCls() + "#" + callstack.getFirst().getMethod());
            throw new IllegalStateException();
         }
-
-        Invocation rootInvocation = new Invocation(objectName, methodName, lineNumber);
+        
+        MethodDescriptor methodDescriptor = new MethodDescriptor(objectName,methodName, lineNumber);
+        MethodInvocation rootInvocation = new MethodInvocation(methodDescriptor);
         invocations.add(rootInvocation);
         callstack.add(rootInvocation);
         Agent.setRootInvocation(rootInvocation);
@@ -55,7 +57,7 @@ public class ProfilerCallback {
 
         long now = System.currentTimeMillis();
         invocations.get(invocations.size() - 1).setEnd(now);
-        Invocation last = callstack.pollLast();
+        MethodInvocation last = callstack.pollLast();
 
         logger.info("Calculating data...");
 
@@ -84,7 +86,7 @@ public class ProfilerCallback {
             return;
         }
         long now = System.currentTimeMillis();
-        Invocation pollLast = callstack.pollLast();
+        MethodInvocation pollLast = callstack.pollLast();
         pollLast.setEnd(now);
     }
 
@@ -92,27 +94,27 @@ public class ProfilerCallback {
         return callstack.size() > 0;
     }
 
-    public static List<Invocation> getInvocations() {
+    public static List<MethodInvocation> getInvocations() {
         return invocations;
     }
     
     private static void handleInvocation(String objectName, String methodName, int lineNumber) {
-        Invocation existingInvocation = getInvocation(callstack.peekLast(), objectName, methodName);
+        MethodInvocation existingInvocation = getInvocation(callstack.peekLast(), objectName, methodName);
         if (existingInvocation != null) {
             logger.debug("invocation '{}' exists, incrementing count", existingInvocation);
             existingInvocation.increment();
             callstack.add(existingInvocation);
             return;
         }
-        
-        Invocation invocation = new Invocation(callstack.peekLast(), objectName, methodName, lineNumber, callstack.size());
+        MethodDescriptor methodDescriptor = new MethodDescriptor(objectName,methodName, lineNumber);
+        MethodInvocation invocation = new MethodInvocation(callstack.peekLast(), methodDescriptor);
         logger.debug("creating new invocation '{}'", invocation);
         invocations.add(invocation);
         callstack.add(invocation);
     }
     
-    private static Invocation getInvocation(Invocation peekLast, String objectName, String methodName) {
-        for(Invocation invocation : invocations) {
+    private static MethodInvocation getInvocation(MethodInvocation peekLast, String objectName, String methodName) {
+        for(MethodInvocation invocation : invocations) {
             if (invocation.getParent() == null && peekLast != null) {
                 continue;
             }

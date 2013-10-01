@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.unitprofile.callback.ProfilerCallback;
-import de.twenty11.unitprofile.domain.Instrumentation;
+import de.twenty11.unitprofile.domain.MethodDescriptor;
 import de.twenty11.unitprofile.domain.Transformation;
 
 /**
@@ -35,9 +35,12 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
     private List<Transformation> transformations = new ArrayList<Transformation>();
 
     /**
-     * list of all methods (identified by treadName/objectName/methodName) which have been instrumented.
+     * list of all methods (identified by objectName/methodName) which have been instrumented.
+     * 
+     * http://docs.oracle.com/javase/6/docs/api/java/lang/instrument/Instrumentation.html:
+     *   "Instrumentation is the addition of byte-codes to methods for the purpose of gathering data to be utilized by tools"
      */
-    private List<Instrumentation> instrumentations = new ArrayList<Instrumentation>();
+    private List<MethodDescriptor> instrumentations = new ArrayList<MethodDescriptor>();
 
     private CtClass profilerCallbackCtClass;
 
@@ -45,7 +48,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
     public ProfilingClassFileTransformer(java.lang.instrument.Instrumentation inst) {
         this.instrumentation = inst;
-    }
+    } 
 
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
@@ -95,8 +98,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
     private Transformation trackTransformations(String className, ClassLoader loader, Class<?> classBeingRedefined,
             ProtectionDomain protectionDomain, byte[] classfileBuffer) {
-        Transformation transformation = new Transformation(className, loader, classBeingRedefined, protectionDomain,
-                classfileBuffer.length);
+        Transformation transformation = new Transformation(className, classfileBuffer.length);
         if (transformations.contains(transformation)) {
             logger.warn("re-transforming '{}'", transformation);
         } else {
@@ -191,15 +193,15 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         return methodsToProfile;
     }
 
-    public boolean isAlreadyInstrumented(Instrumentation instrumentation) {
+    public boolean isAlreadyInstrumented(MethodDescriptor instrumentation) {
         return instrumentations.contains(instrumentation);
     }
 
-    public void addInstrumentation(Instrumentation instrumentation) {
+    public void addInstrumentation(MethodDescriptor instrumentation) {
         instrumentations.add(instrumentation);
     }
 
-    public List<Instrumentation> getInstrumentations() {
+    public List<MethodDescriptor> getInstrumentations() {
         return instrumentations;
     }
 
@@ -211,7 +213,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         }
         
         String objectName = method.getDeclaringClass().getName();
-        Instrumentation instrumentation = new Instrumentation(objectName, method.getName(), method.getMethodInfo()
+        MethodDescriptor instrumentation = new MethodDescriptor(objectName, method.getName(), method.getMethodInfo()
                 .getLineNumber(0));
         if (instrumentations.contains(instrumentation)) {
             return false;
