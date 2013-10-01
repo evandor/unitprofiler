@@ -1,0 +1,15 @@
+de/twenty11/unitprofile/output/OutputGeneratorTest.class
+de/twenty11/unitprofile/helper/Ackermann.class
+de/twenty11/unitprofile/agent/AgentTest.class
+de/twenty11/unitprofile/SomeBaseTestClass.class
+de/twenty11/unitprofile/callback/ProfilerCallbackTest.class
+de/twenty11/unitprofile/ProfiledClassWithArrayTest.class
+de/twenty11/unitprofile/domain/test/ClockTest.class
+de/twenty11/unitprofile/ProfiledClassInExtendedTestClassTest.class
+de/twenty11/unitprofile/ProfiledClassWithMethodTest.class
+de/twenty11/unitprofile/ProfiledClassWithStaticMethodTest.class
+de/twenty11/unitprofile/helper/TestClass.class
+de/twenty11/unitprofile/ProfiledClassWithNewTest.class
+de/twenty11/unitprofile/ProfiledClassWithConstructorTest.class
+de/twenty11/unitprofile/ProfiledClassWithRecursionTest.class
+de/twenty11/unitprofile/ProfiledClassWithFieldAccessTest.class

@@ -1,0 +1,195 @@
+INFO  d.t.u.agent.Agent - Starting instrumentation for profiling...
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.ProfiledClassWithFieldAccessTest [UNTOUCHED] (1697  bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.agent.AgentTest [UNTOUCHED] (548  bytes)'
+INFO  d.t.u.a.ProfilingClassFileTransformer - found 1 method(s) annotated for profiling: 
+INFO  d.t.u.a.ProfilingClassFileTransformer -  * de.twenty11.unitprofile.ProfiledClassWithArrayTest#testArrayProfiler
+INFO  d.t.u.a.ProfilingClassFileTransformer - 
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: de.twenty11.unitprofile.ProfiledClassWithArrayTest#testArrayProfiler(line 21)
+WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall java.lang.Object#super(line 15)
+WARN  d.t.u.a.ProfilingExprEditor - 
+WARN  d.t.u.a.ProfilingExprEditor - NewArray ProfiledClassWithArrayTest.java line 21
+WARN  d.t.u.a.ProfilingExprEditor - NewArray componentType javassist.CtClassType@7f70888e[public class de.twenty11.unitprofile.helper.TestClass fields= constructors=javassist.CtConstructor@47d62270[public TestClass (I)V],  methods=javassist.CtMethod@ad646cf1[public sleep (I)V], ]
+WARN  d.t.u.a.ProfilingExprEditor - NewArray, created dim. 1, dim 1
+WARN  d.t.u.a.ProfilingExprEditor - 
+WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall java.lang.Object#super(line 5)
+WARN  d.t.u.a.ProfilingExprEditor - 
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: de.twenty11.unitprofile.helper.TestClass#sleep(line 11)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.helper.TestClass#sleep (11)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 55)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.ProfiledClassWithArrayTest#getRootInvocation (55)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: org.hamcrest.Matchers#nullValue(line 424)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.ProfiledClassWithArrayTest#nullValue (424)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: org.hamcrest.core.IsNull#nullValue(line 34)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.ProfiledClassWithArrayTest#nullValue (34)
+WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall org.hamcrest.BaseMatcher#super(line 14)
+WARN  d.t.u.a.ProfilingExprEditor - 
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: org.hamcrest.Matchers#not(line 399)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.ProfiledClassWithArrayTest#not (399)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: org.hamcrest.core.IsNot#not(line 46)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.ProfiledClassWithArrayTest#not (46)
+WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall org.hamcrest.BaseMatcher#super(line 19)
+WARN  d.t.u.a.ProfilingExprEditor - 
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: org.hamcrest.Matchers#is(line 221)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.ProfiledClassWithArrayTest#is (221)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: org.hamcrest.core.Is#is(line 52)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.ProfiledClassWithArrayTest#is (52)
+WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall org.hamcrest.BaseMatcher#super(line 21)
+WARN  d.t.u.a.ProfilingExprEditor - 
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: org.junit.Assert#assertThat(line 738)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.ProfiledClassWithArrayTest#assertThat (738)
+WARN  d.t.u.a.ProfilingClassFileTransformer - code: '{ProfilerCallback.start("de.twenty11.unitprofile.ProfiledClassWithArrayTest", "testArrayProfiler", 21);}'
+WARN  d.t.u.a.ProfilingExprEditor - NewArray ProfiledClassWithArrayTest.java line 21
+WARN  d.t.u.a.ProfilingExprEditor - NewArray componentType javassist.CtClassType@7f70888e[changed public class de.twenty11.unitprofile.helper.TestClass fields= constructors=javassist.CtConstructor@47d62270[public TestClass (I)V],  methods=javassist.CtMethod@ad646cf1[public sleep (I)V], ]
+WARN  d.t.u.a.ProfilingExprEditor - NewArray, created dim. 1, dim 1
+WARN  d.t.u.a.ProfilingExprEditor - 
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.ProfiledClassWithArrayTest [TRANSFORMED] (1521 -> 1859 bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.helper.TestClass [TRANSFORMED] (618 -> 1048 bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.ProfiledClassWithRecursionTest [UNTOUCHED] (600  bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.ProfiledClassWithStaticMethodTest [UNTOUCHED] (860  bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.callback.ProfilerCallbackTest [UNTOUCHED] (2361  bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.ProfiledClassWithNewTest [UNTOUCHED] (578  bytes)'
+INFO  d.t.u.a.ProfilingClassFileTransformer - found 1 method(s) annotated for profiling: 
+INFO  d.t.u.a.ProfilingClassFileTransformer -  * de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest#should_not_instrument_the_call_to_the_superclasses_constructor
+INFO  d.t.u.a.ProfilingClassFileTransformer - 
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest#should_not_instrument_the_call_to_the_superclasses_constructor(line 22)
+WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall de.twenty11.unitprofile.SomeBaseTestClass#super(line 16)
+WARN  d.t.u.a.ProfilingExprEditor - 
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: org.hamcrest.Matchers#greaterThanOrEqualTo(line 1169)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest#greaterThanOrEqualTo (1169)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: org.hamcrest.number.OrderingComparison#greaterThanOrEqualTo(line 107)
+DEBUG d.t.u.a.ProfilingClassFileTransformer - profiling de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest#greaterThanOrEqualTo (107)
+WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall org.hamcrest.TypeSafeMatcher#super(line 25)
+WARN  d.t.u.a.ProfilingExprEditor - 
+WARN  d.t.u.a.ProfilingClassFileTransformer - code: '{ProfilerCallback.start("de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest", "should_not_instrument_the_call_to_the_superclasses_constructor", 22);}'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest [TRANSFORMED] (1759 -> 2106 bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.SomeBaseTestClass [UNTOUCHED] (406  bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.ProfiledClassWithMethodTest [UNTOUCHED] (2206  bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.domain.test.ClockTest [UNTOUCHED] (2210  bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.output.OutputGeneratorTest [UNTOUCHED] (965  bytes)'
+INFO  d.t.u.a.ProfilingClassFileTransformer - found 3 method(s) annotated for profiling: 
+INFO  d.t.u.a.ProfilingClassFileTransformer -  * de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfilerLeer
+INFO  d.t.u.a.ProfilingClassFileTransformer -  * de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler10
+INFO  d.t.u.a.ProfilingClassFileTransformer -  * de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler20
+INFO  d.t.u.a.ProfilingClassFileTransformer - 
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfilerLeer(line 25)
+WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall java.lang.Object#super(line 16)
+WARN  d.t.u.a.ProfilingExprEditor - 
+WARN  d.t.u.a.ProfilingClassFileTransformer - code: '{ProfilerCallback.start("de.twenty11.unitprofile.ProfiledClassWithConstructorTest", "testConstructorProfilerLeer", 25);}'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler10(line 37)
+WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall java.lang.Object#super(line 16)
+WARN  d.t.u.a.ProfilingExprEditor - 
+WARN  d.t.u.a.ProfilingClassFileTransformer - code: '{ProfilerCallback.start("de.twenty11.unitprofile.ProfiledClassWithConstructorTest", "testConstructorProfiler10", 37);}'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - added to instrumentations: de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler20(line 50)
+WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall java.lang.Object#super(line 16)
+WARN  d.t.u.a.ProfilingExprEditor - 
+WARN  d.t.u.a.ProfilingClassFileTransformer - code: '{ProfilerCallback.start("de.twenty11.unitprofile.ProfiledClassWithConstructorTest", "testConstructorProfiler20", 50);}'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.ProfiledClassWithConstructorTest [TRANSFORMED] (2123 -> 2554 bytes)'
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - Starting profiling... de.twenty11.unitprofile.ProfiledClassWithArrayTest#testArrayProfiler (21)
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - 
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.domain.Clock [UNTOUCHED] (1513  bytes)'
+DEBUG d.t.u.c.ProfilerCallback - creating new invocation 'de.twenty11.unitprofile.helper.TestClass#TestClass 0, 0 children'
+DEBUG d.t.u.c.ProfilerCallback - creating new invocation 'de.twenty11.unitprofile.helper.TestClass#sleep 0, 0 children'
+DEBUG d.t.u.c.ProfilerCallback - invocation 'de.twenty11.unitprofile.helper.TestClass#TestClass 12, 1 children' exists, incrementing count
+DEBUG d.t.u.c.ProfilerCallback - invocation 'de.twenty11.unitprofile.helper.TestClass#sleep 10, 0 children' exists, incrementing count
+DEBUG d.t.u.c.ProfilerCallback - creating new invocation 'de.twenty11.unitprofile.helper.TestClass#sleep 0, 0 children'
+DEBUG d.t.u.c.ProfilerCallback - invocation 'de.twenty11.unitprofile.helper.TestClass#sleep 15, 0 children' exists, incrementing count
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - Profiling... done.
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - Calculating data...
+INFO  d.t.u.c.ProfilerCallback - Profiling output:
+
+INFO  d.t.u.c.ProfilerCallback - de.twenty11.unitprofile.ProfiledClassWithArrayTest#testArrayProfiler (): 97 100.0%
+de.twenty11.unitprofile.helper.TestClass#TestClass (): 23 23.711340206185568%
+de.twenty11.unitprofile.helper.TestClass#sleep (): 20 20.61855670103093%
+de.twenty11.unitprofile.helper.TestClass#sleep (): 39 40.20618556701031%
+
+INFO  d.t.u.c.ProfilerCallback - Creating files...
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.output.OutputGenerator [UNTOUCHED] (3900  bytes)'
+DEBUG d.t.u.a.ProfilingClassFileTransformer - transformation updated 'de.twenty11.unitprofile.output.MyFileUtils [UNTOUCHED] (4967  bytes)'
+INFO  d.t.u.c.ProfilerCallback - Instrumentation execution... done.
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - Starting profiling... de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest#should_not_instrument_the_call_to_the_superclasses_constructor (22)
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - 
+DEBUG d.t.u.c.ProfilerCallback - creating new invocation 'de.twenty11.unitprofile.helper.TestClass#TestClass 0, 0 children'
+DEBUG d.t.u.c.ProfilerCallback - creating new invocation 'de.twenty11.unitprofile.helper.TestClass#sleep 0, 0 children'
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - Profiling... done.
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - Calculating data...
+INFO  d.t.u.c.ProfilerCallback - Profiling output:
+
+INFO  d.t.u.c.ProfilerCallback - de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest#should_not_instrument_the_call_to_the_superclasses_constructor (): 114 100.0%
+de.twenty11.unitprofile.helper.TestClass#TestClass (): 100 87.71929824561404%
+de.twenty11.unitprofile.helper.TestClass#sleep (): 100 87.71929824561404%
+
+INFO  d.t.u.c.ProfilerCallback - Creating files...
+INFO  d.t.u.c.ProfilerCallback - Instrumentation execution... done.
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - Starting profiling... de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfilerLeer (25)
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - Profiling... done.
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - Calculating data...
+INFO  d.t.u.c.ProfilerCallback - Profiling output:
+
+INFO  d.t.u.c.ProfilerCallback - de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfilerLeer (): 1 100.0%
+
+INFO  d.t.u.c.ProfilerCallback - Creating files...
+INFO  d.t.u.c.ProfilerCallback - Instrumentation execution... done.
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - Starting profiling... de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler10 (37)
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - 
+DEBUG d.t.u.c.ProfilerCallback - creating new invocation 'de.twenty11.unitprofile.helper.TestClass#TestClass 0, 0 children'
+DEBUG d.t.u.c.ProfilerCallback - creating new invocation 'de.twenty11.unitprofile.helper.TestClass#sleep 0, 0 children'
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - Profiling... done.
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - Calculating data...
+INFO  d.t.u.c.ProfilerCallback - Profiling output:
+
+INFO  d.t.u.c.ProfilerCallback - de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler10 (): 16 100.0%
+de.twenty11.unitprofile.helper.TestClass#TestClass (): 11 68.75%
+de.twenty11.unitprofile.helper.TestClass#sleep (): 10 62.5%
+
+INFO  d.t.u.c.ProfilerCallback - Creating files...
+INFO  d.t.u.c.ProfilerCallback - Instrumentation execution... done.
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - Starting profiling... de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler20 (50)
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - 
+DEBUG d.t.u.c.ProfilerCallback - creating new invocation 'de.twenty11.unitprofile.helper.TestClass#TestClass 0, 0 children'
+DEBUG d.t.u.c.ProfilerCallback - creating new invocation 'de.twenty11.unitprofile.helper.TestClass#sleep 0, 0 children'
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - Profiling... done.
+INFO  d.t.u.c.ProfilerCallback - =====================
+INFO  d.t.u.c.ProfilerCallback - 
+INFO  d.t.u.c.ProfilerCallback - Calculating data...
+INFO  d.t.u.c.ProfilerCallback - Profiling output:
+
+INFO  d.t.u.c.ProfilerCallback - de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler20 (): 24 100.0%
+de.twenty11.unitprofile.helper.TestClass#TestClass (): 21 87.5%
+de.twenty11.unitprofile.helper.TestClass#sleep (): 21 87.5%
+
+INFO  d.t.u.c.ProfilerCallback - Creating files...
+INFO  d.t.u.c.ProfilerCallback - Instrumentation execution... done.
