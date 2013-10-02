@@ -111,10 +111,14 @@ public class ProfilingExprEditor extends ExprEditor {
             Transformation transformation = classTransformer.getTransformation(ctClass.getName());
             if (transformation != null) {
                 java.lang.instrument.Instrumentation javainstrumentation = classTransformer.getInstrumentation();
-                javainstrumentation.addTransformer(new ProfilingClassFileTransformer(javainstrumentation), true);
+                ProfilingClassFileTransformer localTransformer = new ProfilingClassFileTransformer(javainstrumentation);
+                javainstrumentation.addTransformer(localTransformer, true);
                 Class<?> cls1 = Class.forName(ctClass.getName());
                 ClassDefinition classDefinition = new ClassDefinition(cls1, ctClass.toBytecode());
                 javainstrumentation.redefineClasses(classDefinition);
+                
+                javainstrumentation.removeTransformer(localTransformer);
+                
             }
         } catch (Exception e1) {
             logger.error(e1.getMessage(), e1);

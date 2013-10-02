@@ -8,8 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.twenty11.unitprofile.agent.Agent;
-import de.twenty11.unitprofile.domain.MethodInvocation;
 import de.twenty11.unitprofile.domain.MethodDescriptor;
+import de.twenty11.unitprofile.domain.MethodInvocation;
 import de.twenty11.unitprofile.output.OutputGenerator;
 
 /**
@@ -75,7 +75,7 @@ public class ProfilerCallback {
     }
 
     public static void before(String objectName, String methodName, int lineNumber) { //, int depth) {
-        if (!profiling()) {
+       if (!profiling()) {
             return;
         }
         handleInvocation(objectName, methodName, lineNumber);

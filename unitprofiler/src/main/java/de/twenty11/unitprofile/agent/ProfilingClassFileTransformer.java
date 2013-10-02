@@ -63,6 +63,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
         byte[] byteCode = classfileBuffer;
         ClassPool cp = ClassPool.getDefault();
+
         cp.importPackage("de.twenty11.unitprofile.callback");
 
         try {
@@ -117,7 +118,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
     }
 
     private final void startProfiling(CtClass classWithProfilingAnnotatedMethod, CtClass profilerClass, final CtMethod m)
-            throws CannotCompileException {
+            throws Exception {
 
         if (!instrument(m)) {
             return;
@@ -126,20 +127,28 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         classWithProfilingAnnotatedMethod.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
 
         int lineNumber = m.getMethodInfo().getLineNumber(0);
-        if (!Modifier.isStatic(m.getModifiers())) {
-            String code = "{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\", " + lineNumber
-                    + ");}";
-            logger.warn("code: '{}'", code);
-                    
-            m.insertBefore(code);
-            m.insertAfter("{ProfilerCallback.stop(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\");}");
-        } else {
-            m.insertBefore("{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
-                    + "\");}");
-            m.insertAfter("{ProfilerCallback.stop(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
-                    + "\", \"+lineNumber+\");}");
-        }
+        //if (!Modifier.isStatic(m.getModifiers())) {
+        String code = "{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\", " + lineNumber + ");}";
+        logger.warn("code: '{}'", code);
+        m.insertBefore(code);
+        m.insertAfter("{ProfilerCallback.stop(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\");}");
+        // } else {
+        // m.insertBefore("{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
+        // + "\");}");
+        // m.insertAfter("{ProfilerCallback.stop(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
+        // + "\", \"+lineNumber+\");}");
+        // }
         m.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
+        
+//        Transformation transformation = getTransformation(classWithProfilingAnnotatedMethod.getName());
+//        if (transformation != null) {
+//            java.lang.instrument.Instrumentation javainstrumentation = getInstrumentation();
+//            javainstrumentation.addTransformer(new ProfilingClassFileTransformer(javainstrumentation), true);
+//            Class<?> cls1 = Class.forName(classWithProfilingAnnotatedMethod.getName());
+//            ClassDefinition classDefinition = new ClassDefinition(cls1, classWithProfilingAnnotatedMethod.toBytecode());
+//            //javainstrumentation.redefineClasses(classDefinition);
+//            javainstrumentation.retransformClasses(cls1);
+//        }
 
     }
 
