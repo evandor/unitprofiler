@@ -14,11 +14,16 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * http://stackoverflow.com/questions/1386809/copy-directory-from-a-jar-file
  *
  */
 public class MyFileUtils {
+    
+    private static final Logger logger = LoggerFactory.getLogger(MyFileUtils.class);
     
     public static boolean copyFile(final File toCopy, final File destFile) {
         try {
@@ -95,8 +100,12 @@ public class MyFileUtils {
         try {
             final URLConnection urlConnection = originUrl.openConnection();
             if (urlConnection instanceof JarURLConnection) {
-                return MyFileUtils.copyJarResourcesRecursively(destination, (JarURLConnection) urlConnection);
+                JarURLConnection jarURLConnection = (JarURLConnection) urlConnection;
+                File myFile = new File(destination.getAbsolutePath() + File.separatorChar + jarURLConnection.getEntryName());
+                logger.info("JarUrlConnection: copying {} to {}", jarURLConnection.getEntryName(), myFile.getAbsolutePath());
+                return MyFileUtils.copyJarResourcesRecursively(myFile, (JarURLConnection) urlConnection);
             } else {
+                logger.info("NOT a JarUrlConnection: copying {} to {}", originUrl.getPath(), destination.toString());
                 return MyFileUtils.copyFilesRecusively(new File(originUrl.getPath()), destination);
             }
         } catch (final IOException e) {

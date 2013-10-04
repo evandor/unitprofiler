@@ -33,7 +33,7 @@ public class ProfilingExprEditor extends ExprEditor {
     }
 
     public void edit(MethodCall mc) throws CannotCompileException {
-        // logger.info("MethodCall {}", mc.getClassName() + "#" + mc.getMethodName() + "(line "+mc.getLineNumber()+")");
+        logger.info("MethodCall {}", mc.getClassName() + "#" + mc.getMethodName() + "(line "+mc.getLineNumber()+")");
         if (excluded(mc)) {
             return;
         }
@@ -66,13 +66,13 @@ public class ProfilingExprEditor extends ExprEditor {
 
     @Override
     public void edit(FieldAccess f) throws CannotCompileException {
-        // logger.warn("fieldAccess {}", f);
+        logger.warn("fieldAccess {}", f);
         // logger.warn("");
     }
 
     @Override
     public void edit(Handler h) throws CannotCompileException {
-        // logger.warn("handler {}", h);
+        logger.warn("handler {}", h);
         // logger.warn("");
     }
 
@@ -91,6 +91,7 @@ public class ProfilingExprEditor extends ExprEditor {
 
     @Override
     public void edit(NewExpr newExpression) throws CannotCompileException {
+        logger.warn("NewExpr {} line {}", newExpression.getFileName(), newExpression.getLineNumber());
         try {
             CtConstructor constructor = newExpression.getConstructor();
             CtClass ctClass = constructor.getDeclaringClass();

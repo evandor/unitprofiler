@@ -62,32 +62,32 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
                 classfileBuffer);
 
         byte[] byteCode = classfileBuffer;
-        ClassPool cp = ClassPool.getDefault();
+        ClassPool classPool = ClassPool.getDefault();
 
-        cp.importPackage("de.twenty11.unitprofile.callback");
+        classPool.importPackage("de.twenty11.unitprofile.callback");
 
         try {
 
-            CtClass cc = cp.get(className.replace("/", "."));
+            CtClass ctClass = classPool.get(className.replace("/", "."));
 
             if (profilerCallbackCtClass == null) {
-                profilerCallbackCtClass = cp.get(ProfilerCallback.class.getName());
+                profilerCallbackCtClass = classPool.get(ProfilerCallback.class.getName());
             }
 
-            List<CtMethod> annotatedMethodsToProfile = findMethodsToProfile(cc);
+            List<CtMethod> annotatedMethodsToProfile = findMethodsToProfile(ctClass);
 
             if (annotatedMethodsToProfile.size() > 0) {
                 logInfoAboutAnnotatedMethodsFound(annotatedMethodsToProfile);
             }
             for (CtMethod m : annotatedMethodsToProfile) {
-                startProfiling(cc, profilerCallbackCtClass, m);
+                startProfiling(ctClass, profilerCallbackCtClass, m);
             }
-            byteCode = cc.toBytecode();
+            byteCode = ctClass.toBytecode();
             transformation.update(byteCode.length);
             logger.debug("transformation updated '{}'", transformation);
             // logger.info("          writing file '" + cc.getName() + "' " + byteCode.length + " bytes.");
             // cc.writeFile("etc");
-            cc.detach();
+            ctClass.detach();
         } catch (NotFoundException nfe) {
             logger.warn("{}", nfe.getMessage());
         } catch (Exception ex) {
@@ -124,8 +124,6 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             return;
         }
 
-        classWithProfilingAnnotatedMethod.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
-
         int lineNumber = m.getMethodInfo().getLineNumber(0);
         //if (!Modifier.isStatic(m.getModifiers())) {
         String code = "{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\", " + lineNumber + ");}";
@@ -139,16 +137,8 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         // + "\", \"+lineNumber+\");}");
         // }
         m.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
-        
-//        Transformation transformation = getTransformation(classWithProfilingAnnotatedMethod.getName());
-//        if (transformation != null) {
-//            java.lang.instrument.Instrumentation javainstrumentation = getInstrumentation();
-//            javainstrumentation.addTransformer(new ProfilingClassFileTransformer(javainstrumentation), true);
-//            Class<?> cls1 = Class.forName(classWithProfilingAnnotatedMethod.getName());
-//            ClassDefinition classDefinition = new ClassDefinition(cls1, classWithProfilingAnnotatedMethod.toBytecode());
-//            //javainstrumentation.redefineClasses(classDefinition);
-//            javainstrumentation.retransformClasses(cls1);
-//        }
+
+        classWithProfilingAnnotatedMethod.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
 
     }
 

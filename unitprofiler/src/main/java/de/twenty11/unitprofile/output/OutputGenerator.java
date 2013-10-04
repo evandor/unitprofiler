@@ -24,6 +24,7 @@ public class OutputGenerator {
     private static final String OUTPUT_PATH = "target/site/unitprofile";
 
     public void renderFromBootstrapTemplate(MethodInvocation rootInvocation) {
+        logger.info("Rendering from Bootstrap Template");
         try {
             InputStream resourceAsStream = this.getClass().getResourceAsStream("/templates/index.stg");
             StringWriter writer = new StringWriter();
