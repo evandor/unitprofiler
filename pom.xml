@@ -9,7 +9,7 @@
 	
 	<groupId>de.twentyeleven.unitprofile</groupId>
 	<artifactId>unitprofiler</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>0.0.5</version>
 	
 	<inceptionYear>2013</inceptionYear>
     <url>http://wiki.twentyeleven.de</url>
@@ -38,7 +38,7 @@
 		<url>scm:git:git@github.com:evandor/unitprofiler.git</url>
 		<!-- A publicly browsable repository. For example, via ViewCVS. -->
 		<developerConnection>scm:git:git@github.com:evandor/unitprofiler.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>unitprofiler-0.0.5</tag>
 	</scm>
 	
     <developers>
