@@ -1,0 +1,6 @@
+analyseLocally=false
+eclipse.preferences.version=1
+extraProperties=
+projectKey=de.twentyeleven.unitprofiler\:unitprofiler.maven.plugin
+serverUrl=http\://sonar.twentyeleven.de
+version=2
