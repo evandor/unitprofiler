@@ -10,7 +10,7 @@
     <relativePath>../unitprofiler.build</relativePath>
   </parent>
 
-  <artifactId>unitprofiler.maven.plugin</artifactId>
+  <artifactId>unitprofiler-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
 
   <name>unitProfiler :: Maven Plugin</name>
@@ -21,6 +21,12 @@
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
       <version>3.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <version>3.2</version>
+      <scope>provided</scope>
     </dependency>
     <!--  <dependency>
       <groupId>org.apache.maven</groupId>
@@ -65,8 +71,6 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>src</sourceDirectory>
-
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
