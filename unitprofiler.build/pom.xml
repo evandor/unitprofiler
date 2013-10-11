@@ -62,6 +62,7 @@
 
 	<modules>
 		<module>../unitprofiler.core</module>
+		<module>../unitprofiler.agent</module>
 		<module>../unitprofiler.maven.plugin</module>
 	</modules>
 

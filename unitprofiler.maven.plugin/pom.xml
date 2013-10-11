@@ -55,20 +55,22 @@
       <version>2.1</version>
     </dependency>
 
-<!--    <dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>org.jacoco.agent</artifactId>
-      <classifier>runtime</classifier>
+      <artifactId>unitprofiler.agent</artifactId>
+      <!-- <classifier>runtime</classifier> -->
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>org.jacoco.core</artifactId>
+      <artifactId>unitprofiler.core</artifactId>
+      <version>${project.version}</version>
     </dependency>
-    <dependency>
+<!--     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>org.jacoco.report</artifactId>
-    </dependency>-->
-  </dependencies>
+    </dependency>
+ -->  </dependencies>
 
   <build>
     <plugins>
