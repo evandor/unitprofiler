@@ -27,7 +27,7 @@
             <plugin>
                 <groupId>de.twentyeleven.unitprofiler</groupId>
                 <artifactId>unitprofiler-maven-plugin</artifactId>
-                <version>${unitprofiler.version}</version>
+                <version>0.0.7-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <id>pre-unit-test</id>
