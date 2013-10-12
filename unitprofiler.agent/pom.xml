@@ -5,7 +5,7 @@
   <parent>
     <groupId>de.twentyeleven.unitprofiler</groupId>
     <artifactId>unitprofiler.build</artifactId>
-    <version>0.0.7-SNAPSHOT</version>
+    <version>0.0.8-SNAPSHOT</version>
     <relativePath>../unitprofiler.build</relativePath>
   </parent>
 
