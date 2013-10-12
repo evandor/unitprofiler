@@ -159,28 +159,6 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
-				<executions>
-					<execution>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-						<configuration>
-							<archive>
-								<manifestEntries>
-									<Premain-Class>de.twenty11.unitprofile.agent.Agent</Premain-Class>
-									<Can-Redefine-Classes>true</Can-Redefine-Classes>
-									<Can-Retransform-Classes>true</Can-Retransform-Classes>
-								</manifestEntries>
-							</archive>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.12.4</version>
 				<configuration>
