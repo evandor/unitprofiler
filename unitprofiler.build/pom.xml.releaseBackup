@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.twentyeleven.unitprofiler</groupId>
     <artifactId>unitprofiler.build</artifactId>
-    <version>0.0.7-SNAPSHOT</version>
+    <version>0.0.7</version>
     <packaging>pom</packaging>
 
     <name>unitProfiler :: Build</name>
@@ -19,7 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyyMMddhhmm</maven.build.timestamp.format>
         <copyright.years>${project.inceptionYear}, 2013</copyright.years>
-        <jvm.args></jvm.args>
+        <jvm.args />
         <argLine>${jvm.args}</argLine>
     </properties>
 
@@ -40,7 +39,7 @@
         <url>scm:git:git@github.com:evandor/unitprofiler.git</url>
         <!-- A publicly browsable repository. For example, via ViewCVS. -->
         <developerConnection>scm:git:git@github.com:evandor/unitprofiler.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>unitprofiler.build-0.0.7</tag>
     </scm>
 
     <developers>
