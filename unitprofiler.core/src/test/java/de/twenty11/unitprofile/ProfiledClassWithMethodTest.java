@@ -12,9 +12,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import de.twenty11.unitprofile.agent.Agent;
-import de.twenty11.unitprofile.annotations.Profile;
 import de.twenty11.unitprofile.domain.MethodDescriptor;
 import de.twenty11.unitprofile.domain.MethodInvocation;
+import de.twenty11.unitprofiler.annotations.Profile;
 
 public class ProfiledClassWithMethodTest {
 

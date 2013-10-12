@@ -4,8 +4,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import de.twenty11.unitprofile.annotations.Profile;
 import de.twenty11.unitprofile.domain.MethodInvocation;
+import de.twenty11.unitprofiler.annotations.Profile;
 
 
 public class OutputGeneratorTest {

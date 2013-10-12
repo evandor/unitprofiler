@@ -39,8 +39,6 @@ public class AgentMojo extends AbstractUnitProfilerMojo {
 
     @Override
     public void executeMojo() {
-        // <argLine>-javaagent:/home/carsten/.m2/repository/de/twentyeleven/unitprofile/unitprofiler/0.0.4-SNAPSHOT/unitprofiler-0.0.4-SNAPSHOT.jar</argLine>
-        getLog().info("prepareAgentNow");
         String formattedString = "-javaagent:" + getAgentJarFile().getAbsolutePath();
         getLog().info(formattedString);
         final String vmArgument = StringUtils.quoteAndEscape(formattedString, '"');
@@ -59,7 +57,6 @@ public class AgentMojo extends AbstractUnitProfilerMojo {
     }
 
     private File getAgentJarFile() {
-        getLog().info("pluginArtifactMap: " + pluginArtifactMap);
         final Artifact unitProfilerAgentJar = pluginArtifactMap.get(AGENT_ARTIFACT_NAME);
         return unitProfilerAgentJar.getFile();
     }

@@ -19,7 +19,7 @@ Introduction
  UnitProfiler aims to provide you with some repeatable, reliable and informative figures by instrumenting your code during
  the execution of the maven test phase. 
  
- This should be as simple as adding a @de.twenty11.unitprofile.annotations.Profile annotation to specific tests you want to profile:
+ This should be as simple as adding a @de.twenty11.unitprofiler.annotations.Profile annotation to specific tests you want to profile:
  
 +---
 

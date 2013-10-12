@@ -1,4 +1,4 @@
-package de.twenty11.unitprofile.annotations;
+package de.twenty11.unitprofiler.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

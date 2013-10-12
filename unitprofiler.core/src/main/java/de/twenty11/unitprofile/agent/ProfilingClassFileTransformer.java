@@ -20,12 +20,15 @@ import org.slf4j.LoggerFactory;
 import de.twenty11.unitprofile.callback.ProfilerCallback;
 import de.twenty11.unitprofile.domain.MethodDescriptor;
 import de.twenty11.unitprofile.domain.Transformation;
+import de.twenty11.unitprofiler.annotations.Profile;
 
 /**
  * finds (for profiling) annotated methods and uses them as root for instrumentation.
  * 
  */
 public class ProfilingClassFileTransformer implements ClassFileTransformer {
+
+    private static final String PROFILE_ANNOTATION = "@" + Profile.class.getName();
 
     private static final Logger logger = LoggerFactory.getLogger(ProfilingClassFileTransformer.class);
 
@@ -38,7 +41,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
      * list of all methods (identified by objectName/methodName) which have been instrumented.
      * 
      * http://docs.oracle.com/javase/6/docs/api/java/lang/instrument/Instrumentation.html:
-     *   "Instrumentation is the addition of byte-codes to methods for the purpose of gathering data to be utilized by tools"
+     * "Instrumentation is the addition of byte-codes to methods for the purpose of gathering data to be utilized by tools"
      */
     private List<MethodDescriptor> instrumentations = new ArrayList<MethodDescriptor>();
 
@@ -48,7 +51,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
     public ProfilingClassFileTransformer(java.lang.instrument.Instrumentation inst) {
         this.instrumentation = inst;
-    } 
+    }
 
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
@@ -125,8 +128,9 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         }
 
         int lineNumber = m.getMethodInfo().getLineNumber(0);
-        //if (!Modifier.isStatic(m.getModifiers())) {
-        String code = "{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\", " + lineNumber + ");}";
+        // if (!Modifier.isStatic(m.getModifiers())) {
+        String code = "{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\", "
+                + lineNumber + ");}";
         logger.warn("code: '{}'", code);
         m.insertBefore(code);
         m.insertAfter("{ProfilerCallback.stop(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\");}");
@@ -180,7 +184,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
                     continue;
                 }
                 for (int j = 0; j < annotations.length; j++) {
-                    if (annotations[j].toString().equals("@de.twenty11.unitprofile.annotations.Profile")) {
+                    if (annotations[j].toString().equals(PROFILE_ANNOTATION)) {
                         methodsToProfile.add(declaredMethods[i]);
                     }
                 }
@@ -205,12 +209,12 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
     }
 
     private boolean instrument(CtMethod method) {
-        
+
         if (method.getDeclaringClass().isFrozen()) {
             logger.warn("'{}' is 'frozen'", method.getDeclaringClass().getName());
             return false;
         }
-        
+
         String objectName = method.getDeclaringClass().getName();
         MethodDescriptor instrumentation = new MethodDescriptor(objectName, method.getName(), method.getMethodInfo()
                 .getLineNumber(0));

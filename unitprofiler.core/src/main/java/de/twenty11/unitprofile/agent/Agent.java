@@ -6,23 +6,19 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.twenty11.unitprofile.annotations.Profile;
 import de.twenty11.unitprofile.domain.MethodInvocation;
 
 /**
- * A javaagent providing a premain method which adds the {@link ProfilingClassFileTransformer} to the 
- * provided {@link Instrumentation} class.
+ * A javaagent providing a premain method which adds the {@link ProfilingClassFileTransformer} to the provided
+ * {@link Instrumentation} class.
  * 
- * The {@link ProfilingClassFileTransformer} will search for {@link Profile}-annotated test methods and
- * will add profiling instrumentation to all the code "below" that methods.
+ * The {@link ProfilingClassFileTransformer} will search for {@link Profile}-annotated test methods and will add
+ * profiling instrumentation to all the code "below" that methods.
  * 
  * The whole process is done in a couple of steps:
  * 
- * 1) Instrumentation: see {@link ProfilingClassFileTransformer}
- * 2) Profiling: see {@link ProfilingCallback)
- * 3) Calculation 
- * 4) Output Rendering
- *
+ * 1) Instrumentation: see {@link ProfilingClassFileTransformer} 2) Profiling: see {@link ProfilingCallback) 3)
+ * Calculation 4) Output Rendering *
  */
 public class Agent {
 
