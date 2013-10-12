@@ -10,7 +10,7 @@
     <description>example project for profiling unit tests</description>
 
     <properties>
-        <unitprofiler.version>0.0.7-SNAPSHOT</unitprofiler.version>
+        <unitprofiler.version>${project.version}</unitprofiler.version>
     </properties>
 
     <build>

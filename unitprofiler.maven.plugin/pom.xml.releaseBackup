@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>de.twentyeleven.unitprofiler</groupId>
     <artifactId>unitprofiler.build</artifactId>
-    <version>0.0.7</version>
+    <version>0.0.7-SNAPSHOT</version>
     <relativePath>../unitprofiler.build</relativePath>
   </parent>
 
@@ -58,12 +59,12 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>unitprofiler.agent</artifactId>
       <!-- <classifier>runtime</classifier> -->
-      <version>0.0.7-SNAPSHOT</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>unitprofiler.core</artifactId>
-      <version>0.0.7-SNAPSHOT</version>
+      <version>${project.version}</version>
     </dependency>
 <!--     <dependency>
       <groupId>${project.groupId}</groupId>

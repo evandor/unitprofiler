@@ -5,7 +5,7 @@
   <parent>
     <groupId>de.twentyeleven.unitprofiler</groupId>
     <artifactId>unitprofiler.build</artifactId>
-    <version>0.0.7</version>
+    <version>0.0.7-SNAPSHOT</version>
     <relativePath>../unitprofiler.build</relativePath>
   </parent>
 
@@ -32,7 +32,7 @@
                   <groupId>${project.groupId}</groupId>
                   <artifactId>unitprofiler.core</artifactId>
                   <!--<classifier>all</classifier>-->
-                  <version>0.0.7-SNAPSHOT</version>
+                  <version>${project.version}</version>
                   <destFileName>unitprofiler.jar</destFileName>
                 </artifactItem>
               </artifactItems>
