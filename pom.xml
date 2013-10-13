@@ -9,7 +9,7 @@
 
     <groupId>de.twentyeleven.unitprofiler</groupId>
     <artifactId>root</artifactId>
-    <version>0.0.16-SNAPSHOT</version>
+    <version>0.0.21-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -17,11 +17,8 @@
     </modules>
 
     <scm>
-	<!-- read access -->
 	<connection>scm:git:git@github.com:evandor/unitprofiler.git</connection>
-	<!-- write access -->
 	<url>scm:git:git@github.com:evandor/unitprofiler.git</url>
-	<!-- A publicly browsable repository. For example, via ViewCVS. -->
 	<developerConnection>scm:git:git@github.com:evandor/unitprofiler.git</developerConnection>
 	<tag>HEAD</tag>
     </scm>
