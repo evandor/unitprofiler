@@ -9,13 +9,7 @@ import org.codehaus.plexus.util.StringUtils;
 
 /**
  * Prepares a property pointing to the unitProfiler runtime agent that can be passed as a VM argument to the application
- * under test. Depending on the project packaging type by default a property with the following name is set:
- * <ul>
- * <li>tycho.testArgLine for packaging type eclipse-test-plugin and</li>
- * <li>argLine otherwise.</li>
- * </ul>
- * Resulting coverage information is collected during execution and by default written to a file when the process
- * terminates.
+ * under test.
  * 
  * @phase initialize
  * @goal prepare-agent
@@ -35,6 +29,12 @@ public class AgentMojo extends AbstractUnitProfilerMojo {
      */
     private Map<String, Artifact> pluginArtifactMap;
 
+    /**
+     * Allows to specify property which will contains settings for JaCoCo Agent. If not specified, then "argLine" would
+     * be used for "jar" packaging
+     * 
+     * @parameter expression="${jacoco.propertyName}"
+     */
     private String propertyName;
 
     @Override
