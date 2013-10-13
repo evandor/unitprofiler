@@ -9,7 +9,7 @@
 
     <groupId>de.twentyeleven.unitprofiler</groupId>
     <artifactId>root</artifactId>
-    <version>0.0.13-SNAPSHOT</version>
+    <version>0.0.13</version>
     <packaging>pom</packaging>
 
     <modules>
