@@ -8,6 +8,12 @@
     <name>unitProfiler :: Example</name>
     <description>example project for profiling unit tests</description>
 
+    <scm>
+        <connection>scm:git:git@github.com:evandor/unitprofiler.git</connection>
+        <url>scm:git:git@github.com:evandor/unitprofiler.git</url>
+        <developerConnection>scm:git:git@github.com:evandor/unitprofiler.git</developerConnection>
+    </scm>
+
     <build>
 
         <plugins>

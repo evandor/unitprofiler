@@ -33,13 +33,9 @@
     </ciManagement>
 
     <scm>
-        <!-- read access -->
         <connection>scm:git:git@github.com:evandor/unitprofiler.git</connection>
-        <!-- write access -->
         <url>scm:git:git@github.com:evandor/unitprofiler.git</url>
-        <!-- A publicly browsable repository. For example, via ViewCVS. -->
         <developerConnection>scm:git:git@github.com:evandor/unitprofiler.git</developerConnection>
-        <tag>unitprofiler.build-0.0.7</tag>
     </scm>
 
     <developers>
