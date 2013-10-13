@@ -3,7 +3,7 @@
 
     <groupId>de.twentyeleven.unitprofiler</groupId>
     <artifactId>unitprofiler.example</artifactId>
-    <version>0.0.11</version>
+    <version>0.0.12-SNAPSHOT</version>
 
     <name>unitProfiler :: Example</name>
     <description>example project for profiling unit tests</description>
@@ -29,7 +29,7 @@
             <plugin>
                 <groupId>de.twentyeleven.unitprofiler</groupId>
                 <artifactId>unitprofiler-maven-plugin</artifactId>
-                <version>0.0.11</version>
+                <version>0.0.12-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <id>pre-unit-test</id>
