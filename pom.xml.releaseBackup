@@ -8,9 +8,9 @@
   </parent>
 
 
-  <groupId>de.twentyeleven.unitprofile</groupId>
+  <groupId>de.twentyeleven.unitprofiler</groupId>
   <artifactId>root</artifactId>
-  <version>0.0.7-SNAPSHOT</version>
+  <version>0.0.9</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -27,34 +27,5 @@
 	<tag>HEAD</tag>
   </scm>
 
-  <profiles>
-    <profile>
-	<id>release-sign-artifacts</id>
-	<activation>
-		<property>
-			<name>performRelease</name>
-			<value>true</value>
-		</property>
-	</activation>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-    </profile>
-  </profiles>
 
 </project>
