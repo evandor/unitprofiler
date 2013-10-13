@@ -3,7 +3,7 @@
 
     <groupId>de.twentyeleven.unitprofiler</groupId>
     <artifactId>unitprofiler.example</artifactId>
-    <version>0.0.21-SNAPSHOT</version>
+    <version>0.0.21</version>
 
     <name>unitProfiler :: Example</name>
     <description>example project for profiling unit tests</description>
@@ -13,7 +13,7 @@
         <connection>scm:git:git@github.com:evandor/unitprofiler.git</connection>
         <url>scm:git:git@github.com:evandor/unitprofiler.git</url>
         <developerConnection>scm:git:git@github.com:evandor/unitprofiler.git</developerConnection>
-      <tag>unitprofiler.build-0.0.21-SNAPSHOT</tag>
+      <tag>unitprofiler.build-0.0.21</tag>
   </scm>
 
     <developers>
@@ -42,7 +42,7 @@
             <plugin>
                 <groupId>de.twentyeleven.unitprofiler</groupId>
                 <artifactId>unitprofiler-maven-plugin</artifactId>
-                <version>0.0.21-SNAPSHOT</version>
+                <version>0.0.21</version>
                 <executions>
                     <execution>
                         <id>pre-unit-test</id>
