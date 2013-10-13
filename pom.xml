@@ -8,16 +8,16 @@
   </parent>
 
 
-  <groupId>de.twentyeleven.unitprofiler</groupId>
-  <artifactId>root</artifactId>
-  <version>0.0.12-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <groupId>de.twentyeleven.unitprofiler</groupId>
+    <artifactId>root</artifactId>
+    <version>0.0.12-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <modules>
-    <module>unitprofiler.build</module>
-  </modules>
+    <modules>
+        <module>unitprofiler.build</module>
+    </modules>
 
-  <scm>
+    <scm>
 	<!-- read access -->
 	<connection>scm:git:git@github.com:evandor/unitprofiler.git</connection>
 	<!-- write access -->
@@ -25,7 +25,37 @@
 	<!-- A publicly browsable repository. For example, via ViewCVS. -->
 	<developerConnection>scm:git:git@github.com:evandor/unitprofiler.git</developerConnection>
 	<tag>HEAD</tag>
-  </scm>
+    </scm>
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 
 </project>
