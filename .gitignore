@@ -1,5 +1,8 @@
 /.settings
 /.classpath
 /.project
+/pom.xml.releaseBackup
+/pom.xml.tag
+/pom.xml.next
 /target
 /bin
