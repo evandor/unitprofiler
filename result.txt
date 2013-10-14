@@ -1,0 +1,993 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] unitProfiler :: Build
+[INFO] unitProfiler :: Annotations
+[INFO] unitProfiler :: Core
+[INFO] unitProfiler :: Agent
+[INFO] unitProfiler :: Maven Plugin
+[INFO] unitProfiler :: Example
+[INFO] root
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building unitProfiler :: Build 0.0.7-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ unitprofiler.build ---
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar-no-fork (attach-sources) @ unitprofiler.build ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ unitprofiler.build ---
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.build/pom.xml to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.build/0.0.7-SNAPSHOT/unitprofiler.build-0.0.7-SNAPSHOT.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building unitProfiler :: Annotations 0.0.7-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ unitprofiler.annotations ---
+[INFO] Deleting file set: /home/carsten/git/unitprofiler/unitprofiler.annotations/target (included: [**], excluded: [])
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:resources (default-resources) @ unitprofiler.annotations ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ unitprofiler.annotations ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 2 source files to /home/carsten/git/unitprofiler/unitprofiler.annotations/target/classes
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default) @ unitprofiler.annotations ---
+[INFO] Building jar: /home/carsten/git/unitprofiler/unitprofiler.annotations/target/unitprofiler.annotations-0.0.7-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:testResources (default-testResources) @ unitprofiler.annotations ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.annotations/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ unitprofiler.annotations ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ unitprofiler.annotations ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ unitprofiler.annotations ---
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar-no-fork (attach-sources) @ unitprofiler.annotations ---
+[INFO] Building jar: /home/carsten/git/unitprofiler/unitprofiler.annotations/target/unitprofiler.annotations-0.0.7-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ unitprofiler.annotations ---
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.annotations/target/unitprofiler.annotations-0.0.7-SNAPSHOT.jar to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.annotations/0.0.7-SNAPSHOT/unitprofiler.annotations-0.0.7-SNAPSHOT.jar
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.annotations/pom.xml to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.annotations/0.0.7-SNAPSHOT/unitprofiler.annotations-0.0.7-SNAPSHOT.pom
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.annotations/target/unitprofiler.annotations-0.0.7-SNAPSHOT-sources.jar to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.annotations/0.0.7-SNAPSHOT/unitprofiler.annotations-0.0.7-SNAPSHOT-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building unitProfiler :: Core 0.0.7-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ unitprofiler.core ---
+[INFO] Deleting file set: /home/carsten/git/unitprofiler/unitprofiler.core/target (included: [**], excluded: [])
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:resources (default-resources) @ unitprofiler.core ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Copying 46 resources
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ unitprofiler.core ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 11 source files to /home/carsten/git/unitprofiler/unitprofiler.core/target/classes
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default) @ unitprofiler.core ---
+[INFO] Building jar: /home/carsten/git/unitprofiler/unitprofiler.core/target/unitprofiler.core-0.0.7-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:testResources (default-testResources) @ unitprofiler.core ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ unitprofiler.core ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 15 source files to /home/carsten/git/unitprofiler/unitprofiler.core/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ unitprofiler.core ---
+[INFO] Surefire report directory: /home/carsten/git/unitprofiler/unitprofiler.core/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+test> 10:00:53.682 [main] INFO  d.t.u.agent.Agent - Starting instrumentation for profiling...
+test> 10:00:53.909 [main] INFO  d.t.u.a.ProfilingClassFileTransformer - found 1 method(s) annotated for profiling: 
+test> 10:00:53.910 [main] INFO  d.t.u.a.ProfilingClassFileTransformer -  * de.twenty11.unitprofile.ProfiledClassWithArrayTest#testArrayProfiler
+test> 10:00:53.910 [main] INFO  d.t.u.a.ProfilingClassFileTransformer - 
+test> 10:00:53.913 [main] WARN  d.t.u.a.ProfilingClassFileTransformer - code: '{ProfilerCallback.start("de.twenty11.unitprofile.ProfiledClassWithArrayTest", "testArrayProfiler", 21);}'
+test> 10:00:54.010 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 21)
+test> 10:00:54.011 [main] WARN  d.t.u.a.ProfilingExprEditor - NewArray ProfiledClassWithArrayTest.java line 21
+test> 10:00:54.017 [main] WARN  d.t.u.a.ProfilingExprEditor - NewArray componentType javassist.CtClassType@546c585a[public class de.twenty11.unitprofile.helper.TestClass fields= constructors=javassist.CtConstructor@c5a67c9[public TestClass (I)V],  methods=javassist.CtMethod@ad646cf1[public sleep (I)V], ]
+test> 10:00:54.020 [main] WARN  d.t.u.a.ProfilingExprEditor - NewArray, created dim. 1, dim 1
+test> 10:00:54.020 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.022 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithArrayTest.java line 22
+test> 10:00:54.024 [main] WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall java.lang.Object#super(line 5)
+test> 10:00:54.032 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.032 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 5)
+test> 10:00:54.033 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.helper.TestClass#sleep(line 6)
+test> 10:00:54.068 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Object#getClass(line 11)
+test> 10:00:54.074 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Class#getName(line 11)
+test> 10:00:54.075 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 11)
+test> 10:00:54.075 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Thread#sleep(line 11)
+test> 10:00:54.075 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Object#getClass(line 13)
+test> 10:00:54.076 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Class#getName(line 13)
+test> 10:00:54.076 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 13)
+test> 10:00:54.077 [main] WARN  d.t.u.a.ProfilingExprEditor - handler javassist.expr.Handler@5488e2dd
+test> 10:00:54.078 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 7)
+test> 10:00:54.079 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithArrayTest.java line 23
+test> 10:00:54.080 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.helper.TestClass#sleep(line 25)
+test> 10:00:54.080 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.helper.TestClass#sleep(line 26)
+test> 10:00:54.080 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 28)
+test> 10:00:54.086 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 51)
+test> 10:00:54.090 [main] WARN  d.t.u.a.ProfilingExprEditor - fieldAccess javassist.expr.FieldAccess@66e64686
+test> 10:00:54.092 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 51)
+test> 10:00:54.092 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 29)
+test> 10:00:54.124 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 424)
+test> 10:00:54.124 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.core.IsNull#nullValue(line 424)
+test> 10:00:54.135 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 34)
+test> 10:00:54.136 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr IsNull.java line 34
+test> 10:00:54.137 [main] WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall org.hamcrest.BaseMatcher#super(line 14)
+test> 10:00:54.140 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.140 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 14)
+test> 10:00:54.140 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 14)
+test> 10:00:54.141 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 34)
+test> 10:00:54.141 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 424)
+test> 10:00:54.146 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 29)
+test> 10:00:54.147 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 399)
+test> 10:00:54.151 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.core.IsNot#not(line 399)
+test> 10:00:54.154 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 46)
+test> 10:00:54.154 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr IsNot.java line 46
+test> 10:00:54.155 [main] WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall org.hamcrest.BaseMatcher#super(line 19)
+test> 10:00:54.157 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.157 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 19)
+test> 10:00:54.164 [main] WARN  d.t.u.a.ProfilingExprEditor - fieldAccess javassist.expr.FieldAccess@1505bd58
+test> 10:00:54.164 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 21)
+test> 10:00:54.165 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 46)
+test> 10:00:54.165 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 399)
+test> 10:00:54.165 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 29)
+test> 10:00:54.166 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 221)
+test> 10:00:54.167 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.core.Is#is(line 221)
+test> 10:00:54.176 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 52)
+test> 10:00:54.178 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr Is.java line 52
+test> 10:00:54.179 [main] WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall org.hamcrest.BaseMatcher#super(line 21)
+test> 10:00:54.184 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.188 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 21)
+test> 10:00:54.188 [main] WARN  d.t.u.a.ProfilingExprEditor - fieldAccess javassist.expr.FieldAccess@2bd1e730
+test> 10:00:54.189 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 23)
+test> 10:00:54.189 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 52)
+test> 10:00:54.189 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 221)
+test> 10:00:54.190 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 29)
+test> 10:00:54.193 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 738)
+test> 10:00:54.202 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 738)
+test> 10:00:54.202 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 739)
+test> 10:00:54.202 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 30)
+test> 10:00:54.202 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 30)
+test> 10:00:54.203 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 30)
+test> 10:00:54.203 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 30)
+test> 10:00:54.203 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 30)
+test> 10:00:54.204 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 30)
+test> 10:00:54.204 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 33)
+test> 10:00:54.204 [main] WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall java.lang.Object#super(line 15)
+test> 10:00:54.205 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.205 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 21)
+test> 10:00:54.205 [main] WARN  d.t.u.a.ProfilingExprEditor - NewArray ProfiledClassWithArrayTest.java line 21
+test> 10:00:54.206 [main] WARN  d.t.u.a.ProfilingExprEditor - NewArray componentType javassist.CtClassType@546c585a[changed public class de.twenty11.unitprofile.helper.TestClass fields= constructors=javassist.CtConstructor@c5a67c9[public TestClass (I)V],  methods=javassist.CtMethod@ad646cf1[public sleep (I)V], ]
+test> 10:00:54.206 [main] WARN  d.t.u.a.ProfilingExprEditor - NewArray, created dim. 1, dim 1
+test> 10:00:54.206 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.207 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithArrayTest.java line 22
+test> 10:00:54.207 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithArrayTest.java line 23
+test> 10:00:54.207 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.helper.TestClass#sleep(line 25)
+test> 10:00:54.208 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.helper.TestClass#sleep(line 26)
+test> 10:00:54.208 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 28)
+test> 10:00:54.208 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 29)
+test> 10:00:54.209 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 29)
+test> 10:00:54.209 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 29)
+test> 10:00:54.209 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 29)
+test> 10:00:54.210 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 30)
+test> 10:00:54.210 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 30)
+test> 10:00:54.210 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 30)
+test> 10:00:54.211 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 30)
+test> 10:00:54.211 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 30)
+test> 10:00:54.211 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 30)
+test> 10:00:54.212 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 33)
+test> 10:00:54.230 [main] INFO  d.t.u.a.ProfilingClassFileTransformer - found 1 method(s) annotated for profiling: 
+test> 10:00:54.231 [main] INFO  d.t.u.a.ProfilingClassFileTransformer -  * de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest#should_not_instrument_the_call_to_the_superclasses_constructor
+test> 10:00:54.231 [main] INFO  d.t.u.a.ProfilingClassFileTransformer - 
+test> 10:00:54.232 [main] WARN  d.t.u.a.ProfilingClassFileTransformer - code: '{ProfilerCallback.start("de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest", "should_not_instrument_the_call_to_the_superclasses_constructor", 22);}'
+test> 10:00:54.234 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 22)
+test> 10:00:54.234 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassInExtendedTestClassTest.java line 22
+test> 10:00:54.235 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 24)
+test> 10:00:54.236 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 25)
+test> 10:00:54.236 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 25)
+test> 10:00:54.236 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 25)
+test> 10:00:54.237 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 25)
+test> 10:00:54.237 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 26)
+test> 10:00:54.237 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 26)
+test> 10:00:54.238 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 26)
+test> 10:00:54.238 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 26)
+test> 10:00:54.238 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 26)
+test> 10:00:54.239 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 26)
+test> 10:00:54.239 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 27)
+test> 10:00:54.239 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 27)
+test> 10:00:54.240 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 27)
+test> 10:00:54.240 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 27)
+test> 10:00:54.241 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 27)
+test> 10:00:54.241 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 27)
+test> 10:00:54.241 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 27)
+test> 10:00:54.242 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 27)
+test> 10:00:54.242 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 28)
+test> 10:00:54.242 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 28)
+test> 10:00:54.243 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 28)
+test> 10:00:54.243 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 28)
+test> 10:00:54.243 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 28)
+test> 10:00:54.244 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 28)
+test> 10:00:54.244 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#greaterThanOrEqualTo(line 28)
+test> 10:00:54.245 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 1169)
+test> 10:00:54.246 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.number.OrderingComparison#greaterThanOrEqualTo(line 1169)
+test> 10:00:54.249 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 107)
+test> 10:00:54.250 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr OrderingComparison.java line 107
+test> 10:00:54.251 [main] WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall org.hamcrest.TypeSafeMatcher#super(line 25)
+test> 10:00:54.252 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.252 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#before(line 25)
+test> 10:00:54.252 [main] WARN  d.t.u.a.ProfilingExprEditor - fieldAccess javassist.expr.FieldAccess@2f774b9b
+test> 10:00:54.252 [main] WARN  d.t.u.a.ProfilingExprEditor - fieldAccess javassist.expr.FieldAccess@4104c575
+test> 10:00:54.252 [main] WARN  d.t.u.a.ProfilingExprEditor - fieldAccess javassist.expr.FieldAccess@203fa5ac
+test> 10:00:54.252 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 29)
+test> 10:00:54.253 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 107)
+test> 10:00:54.253 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#after(line 1169)
+test> 10:00:54.255 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 28)
+test> 10:00:54.255 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 28)
+test> 10:00:54.255 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 29)
+test> 10:00:54.255 [main] WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall de.twenty11.unitprofile.SomeBaseTestClass#super(line 16)
+test> 10:00:54.255 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.255 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 22)
+test> 10:00:54.256 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassInExtendedTestClassTest.java line 22
+test> 10:00:54.256 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 24)
+test> 10:00:54.256 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 25)
+test> 10:00:54.256 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 25)
+test> 10:00:54.256 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 25)
+test> 10:00:54.256 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 25)
+test> 10:00:54.258 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 26)
+test> 10:00:54.258 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 26)
+test> 10:00:54.258 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 26)
+test> 10:00:54.258 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 26)
+test> 10:00:54.258 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 26)
+test> 10:00:54.258 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 26)
+test> 10:00:54.259 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 27)
+test> 10:00:54.259 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 27)
+test> 10:00:54.259 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 27)
+test> 10:00:54.259 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 27)
+test> 10:00:54.259 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 27)
+test> 10:00:54.259 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 27)
+test> 10:00:54.259 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 27)
+test> 10:00:54.260 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 27)
+test> 10:00:54.260 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 28)
+test> 10:00:54.260 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 28)
+test> 10:00:54.260 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 28)
+test> 10:00:54.260 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 28)
+test> 10:00:54.260 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 28)
+test> 10:00:54.260 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 28)
+test> 10:00:54.260 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#greaterThanOrEqualTo(line 28)
+test> 10:00:54.261 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 28)
+test> 10:00:54.261 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 28)
+test> 10:00:54.261 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 29)
+test> 10:00:54.276 [main] INFO  d.t.u.a.ProfilingClassFileTransformer - found 3 method(s) annotated for profiling: 
+test> 10:00:54.277 [main] INFO  d.t.u.a.ProfilingClassFileTransformer -  * de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfilerLeer
+test> 10:00:54.277 [main] INFO  d.t.u.a.ProfilingClassFileTransformer -  * de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler10
+test> 10:00:54.277 [main] INFO  d.t.u.a.ProfilingClassFileTransformer -  * de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler20
+test> 10:00:54.277 [main] INFO  d.t.u.a.ProfilingClassFileTransformer - 
+test> 10:00:54.277 [main] WARN  d.t.u.a.ProfilingClassFileTransformer - code: '{ProfilerCallback.start("de.twenty11.unitprofile.ProfiledClassWithConstructorTest", "testConstructorProfilerLeer", 25);}'
+test> 10:00:54.278 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 25)
+test> 10:00:54.279 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 25)
+test> 10:00:54.279 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 31)
+test> 10:00:54.279 [main] WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall java.lang.Object#super(line 16)
+test> 10:00:54.279 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.279 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 25)
+test> 10:00:54.279 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 25)
+test> 10:00:54.280 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 31)
+test> 10:00:54.280 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 37
+test> 10:00:54.280 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 39)
+test> 10:00:54.280 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 40)
+test> 10:00:54.280 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 40)
+test> 10:00:54.281 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 40)
+test> 10:00:54.281 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 40)
+test> 10:00:54.281 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 41)
+test> 10:00:54.281 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 41)
+test> 10:00:54.281 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 41)
+test> 10:00:54.281 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 41)
+test> 10:00:54.282 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 41)
+test> 10:00:54.282 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 41)
+test> 10:00:54.282 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 42)
+test> 10:00:54.282 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 42)
+test> 10:00:54.282 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 42)
+test> 10:00:54.282 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 42)
+test> 10:00:54.283 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 42)
+test> 10:00:54.283 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 42)
+test> 10:00:54.283 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 42)
+test> 10:00:54.283 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 42)
+test> 10:00:54.284 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 43)
+test> 10:00:54.284 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 43)
+test> 10:00:54.284 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 43)
+test> 10:00:54.285 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 43)
+test> 10:00:54.285 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 43)
+test> 10:00:54.285 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 43)
+test> 10:00:54.286 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#greaterThanOrEqualTo(line 43)
+test> 10:00:54.286 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 43)
+test> 10:00:54.286 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 43)
+test> 10:00:54.286 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 50
+test> 10:00:54.286 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 52)
+test> 10:00:54.286 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 53)
+test> 10:00:54.287 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 53)
+test> 10:00:54.287 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 53)
+test> 10:00:54.287 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 53)
+test> 10:00:54.287 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 54)
+test> 10:00:54.287 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 54)
+test> 10:00:54.288 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 54)
+test> 10:00:54.288 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 54)
+test> 10:00:54.288 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 54)
+test> 10:00:54.288 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 54)
+test> 10:00:54.288 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 55)
+test> 10:00:54.288 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 55)
+test> 10:00:54.289 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 55)
+test> 10:00:54.289 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 55)
+test> 10:00:54.289 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 55)
+test> 10:00:54.289 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 55)
+test> 10:00:54.289 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 55)
+test> 10:00:54.289 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 55)
+test> 10:00:54.290 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 56)
+test> 10:00:54.290 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 56)
+test> 10:00:54.290 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 56)
+test> 10:00:54.291 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 56)
+test> 10:00:54.292 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 56)
+test> 10:00:54.292 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 56)
+test> 10:00:54.292 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#greaterThanOrEqualTo(line 56)
+test> 10:00:54.292 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 56)
+test> 10:00:54.292 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 56)
+test> 10:00:54.293 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 19
+test> 10:00:54.293 [main] WARN  d.t.u.a.ProfilingClassFileTransformer - code: '{ProfilerCallback.start("de.twenty11.unitprofile.ProfiledClassWithConstructorTest", "testConstructorProfiler10", 37);}'
+test> 10:00:54.294 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 37)
+test> 10:00:54.295 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 37
+test> 10:00:54.295 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 39)
+test> 10:00:54.296 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 40)
+test> 10:00:54.296 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 40)
+test> 10:00:54.296 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 40)
+test> 10:00:54.297 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 40)
+test> 10:00:54.297 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 41)
+test> 10:00:54.297 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 41)
+test> 10:00:54.297 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 41)
+test> 10:00:54.297 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 41)
+test> 10:00:54.297 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 41)
+test> 10:00:54.298 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 41)
+test> 10:00:54.298 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 42)
+test> 10:00:54.298 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 42)
+test> 10:00:54.298 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 42)
+test> 10:00:54.298 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 42)
+test> 10:00:54.298 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 42)
+test> 10:00:54.299 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 42)
+test> 10:00:54.299 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 42)
+test> 10:00:54.299 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 42)
+test> 10:00:54.299 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 43)
+test> 10:00:54.299 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 43)
+test> 10:00:54.300 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 43)
+test> 10:00:54.300 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 43)
+test> 10:00:54.300 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 43)
+test> 10:00:54.300 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 43)
+test> 10:00:54.300 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#greaterThanOrEqualTo(line 43)
+test> 10:00:54.301 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 43)
+test> 10:00:54.301 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 43)
+test> 10:00:54.301 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 44)
+test> 10:00:54.301 [main] WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall java.lang.Object#super(line 16)
+test> 10:00:54.301 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.302 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 25)
+test> 10:00:54.302 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 25)
+test> 10:00:54.302 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 31)
+test> 10:00:54.302 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 37)
+test> 10:00:54.302 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 37
+test> 10:00:54.303 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 39)
+test> 10:00:54.303 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 40)
+test> 10:00:54.303 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 40)
+test> 10:00:54.303 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 40)
+test> 10:00:54.304 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 40)
+test> 10:00:54.304 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 41)
+test> 10:00:54.304 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 41)
+test> 10:00:54.304 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 41)
+test> 10:00:54.304 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 41)
+test> 10:00:54.304 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 41)
+test> 10:00:54.305 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 41)
+test> 10:00:54.305 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 42)
+test> 10:00:54.305 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 42)
+test> 10:00:54.305 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 42)
+test> 10:00:54.305 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 42)
+test> 10:00:54.306 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 42)
+test> 10:00:54.306 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 42)
+test> 10:00:54.306 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 42)
+test> 10:00:54.306 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 42)
+test> 10:00:54.307 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 43)
+test> 10:00:54.307 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 43)
+test> 10:00:54.307 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 43)
+test> 10:00:54.307 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 43)
+test> 10:00:54.308 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 43)
+test> 10:00:54.308 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 43)
+test> 10:00:54.308 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#greaterThanOrEqualTo(line 43)
+test> 10:00:54.309 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 43)
+test> 10:00:54.309 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 43)
+test> 10:00:54.309 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 44)
+test> 10:00:54.310 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 50
+test> 10:00:54.310 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 52)
+test> 10:00:54.310 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 53)
+test> 10:00:54.311 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 53)
+test> 10:00:54.311 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 53)
+test> 10:00:54.311 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 53)
+test> 10:00:54.312 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 54)
+test> 10:00:54.312 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 54)
+test> 10:00:54.312 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 54)
+test> 10:00:54.313 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 54)
+test> 10:00:54.313 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 54)
+test> 10:00:54.313 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 54)
+test> 10:00:54.314 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 55)
+test> 10:00:54.314 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 55)
+test> 10:00:54.314 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 55)
+test> 10:00:54.314 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 55)
+test> 10:00:54.315 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 55)
+test> 10:00:54.315 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 55)
+test> 10:00:54.316 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 55)
+test> 10:00:54.316 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 55)
+test> 10:00:54.316 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 56)
+test> 10:00:54.317 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 56)
+test> 10:00:54.317 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 56)
+test> 10:00:54.317 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 56)
+test> 10:00:54.318 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 56)
+test> 10:00:54.318 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 56)
+test> 10:00:54.318 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#greaterThanOrEqualTo(line 56)
+test> 10:00:54.319 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 56)
+test> 10:00:54.319 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 56)
+test> 10:00:54.320 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 19
+test> 10:00:54.321 [main] WARN  d.t.u.a.ProfilingClassFileTransformer - code: '{ProfilerCallback.start("de.twenty11.unitprofile.ProfiledClassWithConstructorTest", "testConstructorProfiler20", 50);}'
+test> 10:00:54.322 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 50)
+test> 10:00:54.323 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 50
+test> 10:00:54.323 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 52)
+test> 10:00:54.323 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 53)
+test> 10:00:54.324 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 53)
+test> 10:00:54.324 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 53)
+test> 10:00:54.324 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 53)
+test> 10:00:54.325 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 54)
+test> 10:00:54.325 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 54)
+test> 10:00:54.325 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 54)
+test> 10:00:54.326 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 54)
+test> 10:00:54.326 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 54)
+test> 10:00:54.326 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 54)
+test> 10:00:54.327 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 55)
+test> 10:00:54.327 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 55)
+test> 10:00:54.327 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 55)
+test> 10:00:54.327 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 55)
+test> 10:00:54.328 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 55)
+test> 10:00:54.328 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 55)
+test> 10:00:54.328 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 55)
+test> 10:00:54.329 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 55)
+test> 10:00:54.329 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 56)
+test> 10:00:54.329 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 56)
+test> 10:00:54.330 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 56)
+test> 10:00:54.330 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 56)
+test> 10:00:54.330 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 56)
+test> 10:00:54.331 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 56)
+test> 10:00:54.332 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#greaterThanOrEqualTo(line 56)
+test> 10:00:54.333 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 56)
+test> 10:00:54.333 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 56)
+test> 10:00:54.334 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 57)
+test> 10:00:54.334 [main] WARN  d.t.u.a.ProfilingExprEditor - ConstructorCall java.lang.Object#super(line 16)
+test> 10:00:54.334 [main] WARN  d.t.u.a.ProfilingExprEditor - 
+test> 10:00:54.334 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 25)
+test> 10:00:54.335 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 25)
+test> 10:00:54.335 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 31)
+test> 10:00:54.336 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 37)
+test> 10:00:54.336 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 37
+test> 10:00:54.336 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 39)
+test> 10:00:54.337 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 40)
+test> 10:00:54.337 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 40)
+test> 10:00:54.337 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 40)
+test> 10:00:54.338 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 40)
+test> 10:00:54.338 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 41)
+test> 10:00:54.338 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 41)
+test> 10:00:54.339 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 41)
+test> 10:00:54.339 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 41)
+test> 10:00:54.339 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 41)
+test> 10:00:54.340 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 41)
+test> 10:00:54.340 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 42)
+test> 10:00:54.340 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 42)
+test> 10:00:54.340 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 42)
+test> 10:00:54.340 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 42)
+test> 10:00:54.341 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 42)
+test> 10:00:54.341 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 42)
+test> 10:00:54.341 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 42)
+test> 10:00:54.341 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 42)
+test> 10:00:54.341 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 43)
+test> 10:00:54.342 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 43)
+test> 10:00:54.342 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 43)
+test> 10:00:54.342 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 43)
+test> 10:00:54.342 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 43)
+test> 10:00:54.342 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 43)
+test> 10:00:54.347 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#greaterThanOrEqualTo(line 43)
+test> 10:00:54.348 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 43)
+test> 10:00:54.348 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 43)
+test> 10:00:54.348 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 44)
+test> 10:00:54.349 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#start(line 50)
+test> 10:00:54.349 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 50
+test> 10:00:54.349 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.agent.Agent#getRootInvocation(line 52)
+test> 10:00:54.350 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#nullValue(line 53)
+test> 10:00:54.350 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#not(line 53)
+test> 10:00:54.351 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 53)
+test> 10:00:54.351 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 53)
+test> 10:00:54.352 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 54)
+test> 10:00:54.352 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 54)
+test> 10:00:54.352 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 54)
+test> 10:00:54.353 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 54)
+test> 10:00:54.353 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 54)
+test> 10:00:54.353 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 54)
+test> 10:00:54.353 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 55)
+test> 10:00:54.354 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 55)
+test> 10:00:54.354 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 55)
+test> 10:00:54.354 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#size(line 55)
+test> 10:00:54.354 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 55)
+test> 10:00:54.354 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Integer#valueOf(line 55)
+test> 10:00:54.354 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 55)
+test> 10:00:54.355 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 55)
+test> 10:00:54.355 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 56)
+test> 10:00:54.355 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 56)
+test> 10:00:54.355 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getChildren(line 56)
+test> 10:00:54.355 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.util.List#get(line 56)
+test> 10:00:54.355 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.domain.MethodInvocation#getTime(line 56)
+test> 10:00:54.356 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall java.lang.Long#valueOf(line 56)
+test> 10:00:54.356 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#greaterThanOrEqualTo(line 56)
+test> 10:00:54.356 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.hamcrest.Matchers#is(line 56)
+test> 10:00:54.356 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall org.junit.Assert#assertThat(line 56)
+test> 10:00:54.356 [main] INFO  d.t.u.a.ProfilingExprEditor - MethodCall de.twenty11.unitprofile.callback.ProfilerCallback#stop(line 57)
+test> 10:00:54.357 [main] WARN  d.t.u.a.ProfilingExprEditor - NewExpr ProfiledClassWithConstructorTest.java line 19
+Running de.twenty11.unitprofile.ProfiledClassWithFieldAccessTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.041 sec
+Running de.twenty11.unitprofile.agent.AgentTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 sec
+Running de.twenty11.unitprofile.ProfiledClassWithArrayTest
+test> 10:00:54.438 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:00:54.441 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:00:54.441 [main] INFO  d.t.u.c.ProfilerCallback - Starting profiling... de.twenty11.unitprofile.ProfiledClassWithArrayTest#testArrayProfiler (21)
+test> 10:00:54.441 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:00:54.442 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:00:54.512 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:00:54.513 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:00:54.514 [main] INFO  d.t.u.c.ProfilerCallback - Profiling... done.
+test> 10:00:54.514 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:00:54.514 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:00:54.514 [main] INFO  d.t.u.c.ProfilerCallback - Calculating data...
+test> 10:00:54.514 [main] INFO  d.t.u.c.ProfilerCallback - Profiling output:
+
+test> 10:00:54.516 [main] INFO  d.t.u.c.ProfilerCallback - de.twenty11.unitprofile.ProfiledClassWithArrayTest#testArrayProfiler (): 69 100.0%
+de.twenty11.unitprofile.helper.TestClass#TestClass (): 20 28.985507246376812%
+de.twenty11.unitprofile.helper.TestClass#sleep (): 20 28.985507246376812%
+de.twenty11.unitprofile.helper.TestClass#sleep (): 30 43.47826086956522%
+
+test> 10:00:54.516 [main] INFO  d.t.u.c.ProfilerCallback - Creating files...
+test> 10:00:54.518 [main] INFO  d.t.u.o.OutputGenerator - Rendering from Bootstrap Template
+test> 10:00:54.655 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/bootstrap to target/site/unitprofile
+test> 10:00:54.665 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/css to target/site/unitprofile
+test> 10:00:54.666 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/ludo-jquery-treetable to target/site/unitprofile
+test> 10:00:54.669 [main] INFO  d.t.u.c.ProfilerCallback - Instrumentation execution... done.
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.229 sec
+Running de.twenty11.unitprofile.ProfiledClassWithRecursionTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.001 sec
+Running de.twenty11.unitprofile.ProfiledClassWithStaticMethodTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 sec
+Running de.twenty11.unitprofile.callback.ProfilerCallbackTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 0.001 sec
+Running de.twenty11.unitprofile.ProfiledClassWithNewTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 sec
+Running de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest
+test> 10:00:59.689 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:00:59.690 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:00:59.691 [main] INFO  d.t.u.c.ProfilerCallback - Starting profiling... de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest#should_not_instrument_the_call_to_the_superclasses_constructor (22)
+test> 10:00:59.691 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:00:59.692 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:00:59.799 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:00:59.799 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:00:59.800 [main] INFO  d.t.u.c.ProfilerCallback - Profiling... done.
+test> 10:00:59.800 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:00:59.801 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:00:59.802 [main] INFO  d.t.u.c.ProfilerCallback - Calculating data...
+test> 10:00:59.802 [main] INFO  d.t.u.c.ProfilerCallback - Profiling output:
+
+test> 10:00:59.803 [main] INFO  d.t.u.c.ProfilerCallback - de.twenty11.unitprofile.ProfiledClassInExtendedTestClassTest#should_not_instrument_the_call_to_the_superclasses_constructor (): 110 100.0%
+de.twenty11.unitprofile.helper.TestClass#TestClass (): 101 91.81818181818181%
+de.twenty11.unitprofile.helper.TestClass#sleep (): 100 90.9090909090909%
+
+test> 10:00:59.803 [main] INFO  d.t.u.c.ProfilerCallback - Creating files...
+test> 10:00:59.804 [main] INFO  d.t.u.o.OutputGenerator - Rendering from Bootstrap Template
+test> 10:00:59.822 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/bootstrap to target/site/unitprofile
+test> 10:00:59.834 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/css to target/site/unitprofile
+test> 10:00:59.834 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/ludo-jquery-treetable to target/site/unitprofile
+test> 10:00:59.837 [main] INFO  d.t.u.c.ProfilerCallback - Instrumentation execution... done.
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.151 sec
+Running de.twenty11.unitprofile.ProfiledClassWithMethodTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 sec
+Running de.twenty11.unitprofile.domain.test.ClockTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.095 sec
+Running de.twenty11.unitprofile.output.OutputGeneratorTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 sec
+Running de.twenty11.unitprofile.ProfiledClassWithConstructorTest
+test> 10:01:00.045 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.045 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.045 [main] INFO  d.t.u.c.ProfilerCallback - Starting profiling... de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfilerLeer (25)
+test> 10:01:00.045 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.045 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.046 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.046 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.046 [main] INFO  d.t.u.c.ProfilerCallback - Profiling... done.
+test> 10:01:00.046 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.046 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.046 [main] INFO  d.t.u.c.ProfilerCallback - Calculating data...
+test> 10:01:00.046 [main] INFO  d.t.u.c.ProfilerCallback - Profiling output:
+
+test> 10:01:00.047 [main] INFO  d.t.u.c.ProfilerCallback - de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfilerLeer (): 0 100.0%
+
+test> 10:01:00.047 [main] INFO  d.t.u.c.ProfilerCallback - Creating files...
+test> 10:01:00.047 [main] INFO  d.t.u.o.OutputGenerator - Rendering from Bootstrap Template
+test> 10:01:00.059 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/bootstrap to target/site/unitprofile
+test> 10:01:00.073 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/css to target/site/unitprofile
+test> 10:01:00.076 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/ludo-jquery-treetable to target/site/unitprofile
+test> 10:01:00.080 [main] INFO  d.t.u.c.ProfilerCallback - Instrumentation execution... done.
+test> 10:01:00.082 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.082 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.082 [main] INFO  d.t.u.c.ProfilerCallback - Starting profiling... de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler10 (37)
+test> 10:01:00.083 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.083 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.094 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.095 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.095 [main] INFO  d.t.u.c.ProfilerCallback - Profiling... done.
+test> 10:01:00.095 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.096 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.096 [main] INFO  d.t.u.c.ProfilerCallback - Calculating data...
+test> 10:01:00.096 [main] INFO  d.t.u.c.ProfilerCallback - Profiling output:
+
+test> 10:01:00.097 [main] INFO  d.t.u.c.ProfilerCallback - de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler10 (): 12 100.0%
+de.twenty11.unitprofile.helper.TestClass#TestClass (): 10 83.33333333333333%
+de.twenty11.unitprofile.helper.TestClass#sleep (): 10 83.33333333333333%
+
+test> 10:01:00.097 [main] INFO  d.t.u.c.ProfilerCallback - Creating files...
+test> 10:01:00.097 [main] INFO  d.t.u.o.OutputGenerator - Rendering from Bootstrap Template
+test> 10:01:00.112 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/bootstrap to target/site/unitprofile
+test> 10:01:00.126 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/css to target/site/unitprofile
+test> 10:01:00.127 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/ludo-jquery-treetable to target/site/unitprofile
+test> 10:01:00.130 [main] INFO  d.t.u.c.ProfilerCallback - Instrumentation execution... done.
+test> 10:01:00.132 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.132 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.132 [main] INFO  d.t.u.c.ProfilerCallback - Starting profiling... de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler20 (50)
+test> 10:01:00.132 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.133 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.153 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.154 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.154 [main] INFO  d.t.u.c.ProfilerCallback - Profiling... done.
+test> 10:01:00.154 [main] INFO  d.t.u.c.ProfilerCallback - =====================
+test> 10:01:00.154 [main] INFO  d.t.u.c.ProfilerCallback - 
+test> 10:01:00.154 [main] INFO  d.t.u.c.ProfilerCallback - Calculating data...
+test> 10:01:00.154 [main] INFO  d.t.u.c.ProfilerCallback - Profiling output:
+
+test> 10:01:00.155 [main] INFO  d.t.u.c.ProfilerCallback - de.twenty11.unitprofile.ProfiledClassWithConstructorTest#testConstructorProfiler20 (): 21 100.0%
+de.twenty11.unitprofile.helper.TestClass#TestClass (): 20 95.23809523809524%
+de.twenty11.unitprofile.helper.TestClass#sleep (): 20 95.23809523809524%
+
+test> 10:01:00.155 [main] INFO  d.t.u.c.ProfilerCallback - Creating files...
+test> 10:01:00.155 [main] INFO  d.t.u.o.OutputGenerator - Rendering from Bootstrap Template
+test> 10:01:00.169 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/bootstrap to target/site/unitprofile
+test> 10:01:00.201 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/css to target/site/unitprofile
+test> 10:01:00.219 [main] INFO  d.t.u.o.MyFileUtils - NOT a JarUrlConnection: copying /home/carsten/git/unitprofiler/unitprofiler.core/target/classes/ludo-jquery-treetable to target/site/unitprofile
+test> 10:01:00.225 [main] INFO  d.t.u.c.ProfilerCallback - Instrumentation execution... done.
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.288 sec
+
+Results :
+
+Tests run: 21, Failures: 0, Errors: 0, Skipped: 10
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ unitprofiler.core ---
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar-no-fork (attach-sources) @ unitprofiler.core ---
+[INFO] Building jar: /home/carsten/git/unitprofiler/unitprofiler.core/target/unitprofiler.core-0.0.7-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ unitprofiler.core ---
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.core/target/unitprofiler.core-0.0.7-SNAPSHOT.jar to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.core/0.0.7-SNAPSHOT/unitprofiler.core-0.0.7-SNAPSHOT.jar
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.core/pom.xml to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.core/0.0.7-SNAPSHOT/unitprofiler.core-0.0.7-SNAPSHOT.pom
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.core/target/unitprofiler.core-0.0.7-SNAPSHOT-sources.jar to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.core/0.0.7-SNAPSHOT/unitprofiler.core-0.0.7-SNAPSHOT-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building unitProfiler :: Agent 0.0.7-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ unitprofiler.agent ---
+[INFO] Deleting file set: /home/carsten/git/unitprofiler/unitprofiler.agent/target (included: [**], excluded: [])
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:resources (default-resources) @ unitprofiler.agent ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.agent/src/main/java
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.agent/src/main/resources
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.agent/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ unitprofiler.agent ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:testResources (default-testResources) @ unitprofiler.agent ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.agent/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ unitprofiler.agent ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ unitprofiler.agent ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:copy (default) @ unitprofiler.agent ---
+[INFO] Configured Artifact: de.twentyeleven.unitprofiler:unitprofiler.core:0.0.7-SNAPSHOT:jar
+[INFO] Copying unitprofiler.core-0.0.7-SNAPSHOT.jar to /home/carsten/git/unitprofiler/unitprofiler.agent/target/classes/unitprofiler.jar
+[INFO] 
+[INFO] --- maven-jar-plugin:2.2:jar (default-jar) @ unitprofiler.agent ---
+[INFO] Building jar: /home/carsten/git/unitprofiler/unitprofiler.agent/target/unitprofiler.agent-0.0.7-SNAPSHOT.jar
+[INFO] 
+[INFO] --- build-helper-maven-plugin:1.7:attach-artifact (attach-artifacts) @ unitprofiler.agent ---
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar-no-fork (attach-sources) @ unitprofiler.agent ---
+[INFO] No sources in project. Archive not created.
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ unitprofiler.agent ---
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.agent/target/unitprofiler.agent-0.0.7-SNAPSHOT.jar to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.agent/0.0.7-SNAPSHOT/unitprofiler.agent-0.0.7-SNAPSHOT.jar
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.agent/pom.xml to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.agent/0.0.7-SNAPSHOT/unitprofiler.agent-0.0.7-SNAPSHOT.pom
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.agent/target/classes/unitprofiler.jar to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.agent/0.0.7-SNAPSHOT/unitprofiler.agent-0.0.7-SNAPSHOT-runtime.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building unitProfiler :: Maven Plugin 0.0.7-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ unitprofiler-maven-plugin ---
+[INFO] Deleting file set: /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/target (included: [**], excluded: [])
+[INFO] 
+[INFO] --- maven-plugin-plugin:3.2:helpmojo (help-mojo) @ unitprofiler-maven-plugin ---
+[INFO] Using 'UTF-8' encoding to read mojo metadata.
+[INFO] Applying mojo extractor for language: java-annotations
+[INFO] Mojo extractor for language: java-annotations found 0 mojo descriptors.
+[INFO] Applying mojo extractor for language: java
+[WARNING] de.twenty11.unitprofiler.maven.plugin.AgentMojo#pluginArtifactMap:
+[WARNING]   The syntax
+[WARNING]     @parameter expression="${property}"
+[WARNING]   is deprecated, please use
+[WARNING]     @parameter property="property"
+[WARNING]   instead.
+[WARNING] de.twenty11.unitprofiler.maven.plugin.AgentMojo#project:
+[WARNING]   The syntax
+[WARNING]     @parameter expression="${property}"
+[WARNING]   is deprecated, please use
+[WARNING]     @parameter property="property"
+[WARNING]   instead.
+[INFO] Mojo extractor for language: java found 1 mojo descriptors.
+[INFO] Applying mojo extractor for language: bsh
+[INFO] Mojo extractor for language: bsh found 0 mojo descriptors.
+[INFO] 
+[INFO] --- maven-plugin-plugin:3.2:descriptor (default-descriptor) @ unitprofiler-maven-plugin ---
+[INFO] Using 'UTF-8' encoding to read mojo metadata.
+[INFO] Applying mojo extractor for language: java-annotations
+[INFO] Mojo extractor for language: java-annotations found 0 mojo descriptors.
+[INFO] Applying mojo extractor for language: java
+[WARNING] de.twenty11.unitprofiler.maven.plugin.AgentMojo#pluginArtifactMap:
+[WARNING]   The syntax
+[WARNING]     @parameter expression="${property}"
+[WARNING]   is deprecated, please use
+[WARNING]     @parameter property="property"
+[WARNING]   instead.
+[WARNING] de.twenty11.unitprofiler.maven.plugin.AgentMojo#project:
+[WARNING]   The syntax
+[WARNING]     @parameter expression="${property}"
+[WARNING]   is deprecated, please use
+[WARNING]     @parameter property="property"
+[WARNING]   instead.
+[INFO] Mojo extractor for language: java found 1 mojo descriptors.
+[INFO] Applying mojo extractor for language: bsh
+[INFO] Mojo extractor for language: bsh found 0 mojo descriptors.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:resources (default-resources) @ unitprofiler-maven-plugin ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/src/main/resources
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ unitprofiler-maven-plugin ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 4 source files to /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:testResources (default-testResources) @ unitprofiler-maven-plugin ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ unitprofiler-maven-plugin ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ unitprofiler-maven-plugin ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.2:jar (default-jar) @ unitprofiler-maven-plugin ---
+[INFO] Building jar: /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/target/unitprofiler-maven-plugin-0.0.7-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-plugin-plugin:3.2:addPluginArtifactMetadata (default-addPluginArtifactMetadata) @ unitprofiler-maven-plugin ---
+[INFO] 
+[INFO] >>> maven-plugin-plugin:3.2:report (report) @ unitprofiler-maven-plugin >>>
+[INFO] 
+[INFO] --- maven-plugin-plugin:3.2:helpmojo (help-mojo) @ unitprofiler-maven-plugin ---
+[INFO] Using 'UTF-8' encoding to read mojo metadata.
+[INFO] Applying mojo extractor for language: java-annotations
+[INFO] Mojo extractor for language: java-annotations found 2 mojo descriptors.
+[INFO] Applying mojo extractor for language: java
+[WARNING] de.twenty11.unitprofiler.maven.plugin.AgentMojo#pluginArtifactMap:
+[WARNING]   The syntax
+[WARNING]     @parameter expression="${property}"
+[WARNING]   is deprecated, please use
+[WARNING]     @parameter property="property"
+[WARNING]   instead.
+[WARNING] de.twenty11.unitprofiler.maven.plugin.AgentMojo#project:
+[WARNING]   The syntax
+[WARNING]     @parameter expression="${property}"
+[WARNING]   is deprecated, please use
+[WARNING]     @parameter property="property"
+[WARNING]   instead.
+[INFO] Mojo extractor for language: java found 1 mojo descriptors.
+[INFO] Applying mojo extractor for language: bsh
+[INFO] Mojo extractor for language: bsh found 0 mojo descriptors.
+[INFO] 
+[INFO] --- maven-plugin-plugin:3.2:descriptor (default-descriptor) @ unitprofiler-maven-plugin ---
+[INFO] Using 'UTF-8' encoding to read mojo metadata.
+[INFO] Applying mojo extractor for language: java-annotations
+[INFO] Mojo extractor for language: java-annotations found 2 mojo descriptors.
+[INFO] Applying mojo extractor for language: java
+[WARNING] de.twenty11.unitprofiler.maven.plugin.AgentMojo#pluginArtifactMap:
+[WARNING]   The syntax
+[WARNING]     @parameter expression="${property}"
+[WARNING]   is deprecated, please use
+[WARNING]     @parameter property="property"
+[WARNING]   instead.
+[WARNING] de.twenty11.unitprofiler.maven.plugin.AgentMojo#project:
+[WARNING]   The syntax
+[WARNING]     @parameter expression="${property}"
+[WARNING]   is deprecated, please use
+[WARNING]     @parameter property="property"
+[WARNING]   instead.
+[INFO] Mojo extractor for language: java found 1 mojo descriptors.
+[INFO] Applying mojo extractor for language: bsh
+[INFO] Mojo extractor for language: bsh found 0 mojo descriptors.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:resources (default-resources) @ unitprofiler-maven-plugin ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/src/main/resources
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ unitprofiler-maven-plugin ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 4 source files to /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/target/classes
+[INFO] 
+[INFO] <<< maven-plugin-plugin:3.2:report (report) @ unitprofiler-maven-plugin <<<
+[INFO] 
+[INFO] --- maven-plugin-plugin:3.2:report (report) @ unitprofiler-maven-plugin ---
+[INFO] Applying mojo extractor for language: java-annotations
+[INFO] Mojo extractor for language: java-annotations found 2 mojo descriptors.
+[INFO] Applying mojo extractor for language: java
+[WARNING] de.twenty11.unitprofiler.maven.plugin.AgentMojo#pluginArtifactMap:
+[WARNING]   The syntax
+[WARNING]     @parameter expression="${property}"
+[WARNING]   is deprecated, please use
+[WARNING]     @parameter property="property"
+[WARNING]   instead.
+[WARNING] de.twenty11.unitprofiler.maven.plugin.AgentMojo#project:
+[WARNING]   The syntax
+[WARNING]     @parameter expression="${property}"
+[WARNING]   is deprecated, please use
+[WARNING]     @parameter property="property"
+[WARNING]   instead.
+[INFO] Mojo extractor for language: java found 1 mojo descriptors.
+[INFO] Applying mojo extractor for language: bsh
+[INFO] Mojo extractor for language: bsh found 0 mojo descriptors.
+[INFO] 
+[INFO] --- maven-source-plugin:2.2.1:jar-no-fork (attach-sources) @ unitprofiler-maven-plugin ---
+[INFO] Building jar: /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/target/unitprofiler-maven-plugin-0.0.7-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ unitprofiler-maven-plugin ---
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/target/unitprofiler-maven-plugin-0.0.7-SNAPSHOT.jar to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler-maven-plugin/0.0.7-SNAPSHOT/unitprofiler-maven-plugin-0.0.7-SNAPSHOT.jar
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/pom.xml to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler-maven-plugin/0.0.7-SNAPSHOT/unitprofiler-maven-plugin-0.0.7-SNAPSHOT.pom
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.maven.plugin/target/unitprofiler-maven-plugin-0.0.7-SNAPSHOT-sources.jar to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler-maven-plugin/0.0.7-SNAPSHOT/unitprofiler-maven-plugin-0.0.7-SNAPSHOT-sources.jar
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building unitProfiler :: Example 0.0.7-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ unitprofiler.example ---
+[INFO] Deleting file set: /home/carsten/git/unitprofiler/unitprofiler.example/target (included: [**], excluded: [])
+[INFO] 
+[INFO] --- unitprofiler-maven-plugin:0.0.7-SNAPSHOT:prepare-agent (pre-unit-test) @ unitprofiler.example ---
+[INFO] -javaagent:/home/carsten/git/unitprofiler/unitprofiler.core/target/unitprofiler.core-0.0.7-SNAPSHOT.jar
+[INFO] -javaagent:/home/carsten/git/unitprofiler/unitprofiler.core/target/unitprofiler.core-0.0.7-SNAPSHOT.jar
+[INFO] propertynamespecified  - Else
+[INFO] argLine set to -javaagent:/home/carsten/git/unitprofiler/unitprofiler.core/target/unitprofiler.core-0.0.7-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ unitprofiler.example ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.example/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ unitprofiler.example ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/carsten/git/unitprofiler/unitprofiler.example/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.3:testResources (default-testResources) @ unitprofiler.example ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /home/carsten/git/unitprofiler/unitprofiler.example/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ unitprofiler.example ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/carsten/git/unitprofiler/unitprofiler.example/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ unitprofiler.example ---
+[INFO] Surefire report directory: /home/carsten/git/unitprofiler/unitprofiler.example/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Running de.twentyeleven.unitprofiler.example.test.AckermannTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.211 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.2:jar (default-jar) @ unitprofiler.example ---
+[INFO] Building jar: /home/carsten/git/unitprofiler/unitprofiler.example/target/unitprofiler.example-0.0.7-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ unitprofiler.example ---
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.example/target/unitprofiler.example-0.0.7-SNAPSHOT.jar to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.example/0.0.7-SNAPSHOT/unitprofiler.example-0.0.7-SNAPSHOT.jar
+[INFO] Installing /home/carsten/git/unitprofiler/unitprofiler.example/pom.xml to /home/carsten/.m2/repository/de/twentyeleven/unitprofiler/unitprofiler.example/0.0.7-SNAPSHOT/unitprofiler.example-0.0.7-SNAPSHOT.pom
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building root 0.0.7-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.3:clean (default-clean) @ root ---
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-maven) @ root ---
+[INFO] 
+[INFO] --- maven-install-plugin:2.3:install (default-install) @ root ---
+[INFO] Installing /home/carsten/git/unitprofiler/pom.xml to /home/carsten/.m2/repository/de/twentyeleven/unitprofile/root/0.0.7-SNAPSHOT/root-0.0.7-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] unitProfiler :: Build ............................. SUCCESS [1.630s]
+[INFO] unitProfiler :: Annotations ....................... SUCCESS [5.407s]
+[INFO] unitProfiler :: Core .............................. SUCCESS [10.486s]
+[INFO] unitProfiler :: Agent ............................. SUCCESS [0.898s]
+[INFO] unitProfiler :: Maven Plugin ...................... SUCCESS [9.740s]
+[INFO] unitProfiler :: Example ........................... SUCCESS [1.462s]
+[INFO] root .............................................. SUCCESS [0.152s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 30.774s
+[INFO] Finished at: Sat Oct 12 10:01:12 CEST 2013
+[INFO] Final Memory: 29M/242M
+[INFO] ------------------------------------------------------------------------
