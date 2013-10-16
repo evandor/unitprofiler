@@ -14,6 +14,7 @@ import org.junit.Test;
 import de.twenty11.unitprofile.agent.Agent;
 import de.twenty11.unitprofile.domain.MethodDescriptor;
 import de.twenty11.unitprofile.domain.MethodInvocation;
+import de.twenty11.unitprofile.helper.ExtendedTestClass;
 import de.twenty11.unitprofiler.annotations.Profile;
 
 public class ProfiledClassWithMethodTest {
@@ -34,6 +35,16 @@ public class ProfiledClassWithMethodTest {
         assertThat(rootInvocation.getChildren().size(), is(2));
         assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(0));
         assertThat(rootInvocation.getTime(),is(greaterThanOrEqualTo(rootInvocation.getChildren().get(0).getTime())));
+    }
+    
+    @Test
+    @Profile
+    public void testCorrectClassAndMethodName() {
+        ExtendedTestClass extendedTestClass = new ExtendedTestClass(10);
+        extendedTestClass.sleep(200);
+        
+        MethodInvocation rootInvocation = Agent.getRootInvocation();
+        assertThat(rootInvocation, is(not(nullValue())));
     }
     
     private void sleep20() {

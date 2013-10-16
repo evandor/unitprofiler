@@ -10,7 +10,6 @@ import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
-import javassist.Modifier;
 import javassist.NotFoundException;
 import javassist.bytecode.CodeAttribute;
 
@@ -57,7 +56,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
             ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
-        if (!className.startsWith("de/")) {
+        if (className.startsWith("java/") || className.startsWith("javax/")) {
             return classfileBuffer;
         }
 
@@ -107,7 +106,6 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             logger.warn("re-transforming '{}'", transformation);
         } else {
             transformations.add(transformation);
-            // logger.info("transformation added   '{}'", transformation);
         }
         return transformation;
     }
@@ -131,7 +129,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         // if (!Modifier.isStatic(m.getModifiers())) {
         String code = "{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\", "
                 + lineNumber + ");}";
-        logger.warn("code: '{}'", code);
+        logger.info("code: '{}'", code);
         m.insertBefore(code);
         m.insertAfter("{ProfilerCallback.stop(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\");}");
         // } else {
@@ -154,20 +152,20 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
         int lineNumber = m.getMethodInfo().getLineNumber(0);
 
-        logger.debug("profiling {}#{} ({})", new Object[] { cc.getName(), m.getName(), lineNumber });
+        logger.info("profiling {}#{} ({})", new Object[] { cc.getName(), m.getName(), lineNumber });
 
-        if (!Modifier.isStatic(m.getModifiers())) {
+        /*if (!Modifier.isStatic(m.getModifiers())) {
             m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \"" + m.getName() + "\", " + lineNumber
                     + ");}");
             m.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \"" + m.getName() + "\");}");
             m.instrument(new ProfilingExprEditor(this, cc));
-        } else {
+        } else {*/
             m.insertBefore("{ProfilerCallback.before(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
                     + "\", " + lineNumber + ");}");
             m.insertAfter("{ProfilerCallback.after(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
                     + "\");}");
             m.instrument(new ProfilingExprEditor(this, cc));
-        }
+        //}
     }
 
     private List<CtMethod> findMethodsToProfile(CtClass cc) {

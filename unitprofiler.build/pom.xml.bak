@@ -1,24 +1,25 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>de.twentyeleven.unitprofiler</groupId>
-        <artifactId>unitprofiler.build</artifactId>
-        <version>0.0.24-SNAPSHOT</version>
-        <relativePath>../unitprofiler.build</relativePath>
-    </parent>
+    <groupId>de.twentyeleven.unitprofiler</groupId>
+    <artifactId>unitprofiler.build</artifactId>
+    <version>0.0.24-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-    <artifactId>unitprofiler.core</artifactId>
-    <name>unitProfiler :: Core</name>
+    <name>unitProfiler :: Build</name>
 
     <inceptionYear>2013</inceptionYear>
-    <url>http://wiki.twentyeleven.de</url>
-    <description>
-		profile unit tests
-	</description>
+    <url>http://www.twentyeleven.de</url>
+    <description>profile unit tests</description>
 
     <properties>
         <hamcrest.version>1.3</hamcrest.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.build.timestamp.format>yyyyMMddhhmm</maven.build.timestamp.format>
+        <copyright.years>${project.inceptionYear}, 2013</copyright.years>
+        <jvm.args />
+        <argLine>${jvm.args}</argLine>
     </properties>
 
     <issueManagement>
@@ -32,14 +33,30 @@
     </ciManagement>
 
     <scm>
-        <!-- read access -->
         <connection>scm:git:git@github.com:evandor/unitprofiler.git</connection>
-        <!-- write access -->
         <url>scm:git:git@github.com:evandor/unitprofiler.git</url>
-        <!-- A publicly browsable repository. For example, via ViewCVS. -->
         <developerConnection>scm:git:git@github.com:evandor/unitprofiler.git</developerConnection>
         <tag>unitprofiler.build-0.0.21</tag>
     </scm>
+
+    <developers>
+        <developer>
+            <name>Carsten Gräf</name>
+            <roles>
+                <role>project initiator</role>
+            </roles>
+            <timezone>+1</timezone>
+            <id>evandor</id>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>../unitprofiler.annotations</module>
+        <module>../unitprofiler.core</module>
+        <module>../unitprofiler.agent</module>
+        <module>../unitprofiler.maven.plugin</module>
+        <module>../unitprofiler.example</module>
+    </modules>
 
     <build>
 
@@ -96,11 +113,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.3</version>
                 <configuration>
@@ -137,9 +149,17 @@
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-javadoc-plugin</artifactId>
                             <version>2.8.1</version>
+                            <configuration>
+                                <includeDependencySources>true</includeDependencySources>
+                            </configuration>
                         </plugin>
                     </reportPlugins>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -147,38 +167,39 @@
                 <version>2.4</version>
                 <executions>
                     <execution>
-                        <phase>process-classes</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>test-jar</goal>
                         </goals>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Premain-Class>de.twenty11.unitprofile.agent.Agent</Premain-Class>
-                                    <Can-Redefine-Classes>true</Can-Redefine-Classes>
-                                    <Can-Retransform-Classes>true</Can-Retransform-Classes>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.16</version>
-                <configuration>
-                    <argLine>-javaagent:target/${project.build.finalName}.jar</argLine>
-                </configuration>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
-            <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> 
-                <version>2.4</version> <executions> <execution> <goals> <goal>test-jar</goal> 
-                </goals> </execution> </executions> </plugin> -->
-            <!--<plugin> <groupId>org.jacoco</groupId> <artifactId>jacoco-maven-plugin</artifactId> 
-                <version>0.6.3.201306030806</version> <executions> <execution> <id>prepare-agent</id> 
-                <goals> <goal>prepare-agent</goal> </goals> </execution> <execution> <id>report</id> 
-                <phase>prepare-package</phase> <goals> <goal>report</goal> </goals> </execution> 
-                </executions> </plugin> -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -192,7 +213,11 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.3.2</version>
+                    <version>2.4.1</version>
+                    <configuration>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <preparationGoals>clean install</preparationGoals>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -237,21 +262,6 @@
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.14.0-GA</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
-        </dependency>
 
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -275,9 +285,9 @@
         </dependency>
 
         <dependency>
-            <groupId>de.twentyeleven.unitprofiler</groupId>
-            <artifactId>unitprofiler.annotations</artifactId>
-            <version>[0.0.7-SNAPSHOT, 0.7)</version>
+            <groupId>de.twentyeleven.skysail</groupId>
+            <artifactId>org.antlr.stringtemplate-osgi</artifactId>
+            <version>4.0.2</version>
         </dependency>
 
         <dependency>
@@ -335,7 +345,6 @@
             <url>file:///var/www/mavensites/unitprofiler</url>
         </site>
     </distributionManagement>
-
 
     <profiles>
         <profile>

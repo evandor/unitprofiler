@@ -193,7 +193,7 @@
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
-                        <phase>verify</phase>
+                        <phase>release</phase>
                         <goals>
                             <goal>sign</goal>
                         </goals>

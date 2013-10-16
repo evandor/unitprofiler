@@ -38,7 +38,7 @@ public class ProfilingExprEditor extends ExprEditor {
             return;
         }
         try {
-            classTransformer.profile(mc.getMethod(), cc);
+            classTransformer.profile(mc.getMethod(), cc); 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

@@ -23,8 +23,8 @@ public class ProfiledClassInExtendedTestClassTest extends SomeBaseTestClass {
 
         MethodInvocation rootInvocation = Agent.getRootInvocation();
         assertThat(rootInvocation, is(not(nullValue())));
-        assertThat(rootInvocation.getChildren().size(), is(1));
-        assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(1));
+        assertThat(rootInvocation.getChildren().size(), is(greaterThanOrEqualTo(1)));
+        assertThat(rootInvocation.getChildren().get(0).getChildren().size(), greaterThanOrEqualTo(1));
         assertThat(rootInvocation.getTime(), is(greaterThanOrEqualTo(rootInvocation.getChildren().get(0).getTime())));
     }
 

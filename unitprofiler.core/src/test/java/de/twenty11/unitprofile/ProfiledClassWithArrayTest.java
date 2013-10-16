@@ -1,5 +1,6 @@
 package de.twenty11.unitprofile;
 
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
@@ -27,7 +28,7 @@ public class ProfiledClassWithArrayTest {
 
         MethodInvocation rootInvocation = Agent.getRootInvocation();
         assertThat(rootInvocation, is(not(nullValue())));
-        assertThat(rootInvocation.getChildren().size(), is(2));
+        assertThat(rootInvocation.getChildren().size(), is(greaterThanOrEqualTo(2)));
         // assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(0));
         // assertThat(rootInvocation.getTime(),is(greaterThanOrEqualTo(rootInvocation.getChildren().get(0).getTime())));
     }
