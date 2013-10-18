@@ -88,7 +88,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             }
             byteCode = ctClass.toBytecode();
             transformation.update(byteCode.length);
-            logger.debug("transformation updated '{}'", transformation);
+            // logger.debug("transformation updated '{}'", transformation);
             ctClass.detach();
         } catch (NotFoundException nfe) {
             logger.warn("{}", nfe.getMessage());
