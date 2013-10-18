@@ -14,14 +14,14 @@ import de.twenty11.unitprofile.output.OutputGenerator;
 
 /**
  * the class called from the instrumented methods.
- *
+ * 
  */
 public class ProfilerCallback {
 
     private static final Logger logger = LoggerFactory.getLogger(ProfilerCallback.class);
-    
+
     /**
-     * contains all profiling information after profiling 
+     * contains all profiling information after profiling
      */
     private static List<MethodInvocation> invocations = new ArrayList<MethodInvocation>();
 
@@ -38,13 +38,14 @@ public class ProfilerCallback {
      * @return
      */
     public static MethodInvocation start(String objectName, String methodName, int lineNumber) {
-        bigMessage("Starting profiling... " + objectName + "#" + methodName + " ("+lineNumber+")");
+        bigMessage("Starting profiling... " + objectName + "#" + methodName + " (" + lineNumber + ")");
         if (profiling()) {
-           logger.error("Profiling was already started for '{}'", callstack.getFirst().getCls() + "#" + callstack.getFirst().getMethod());
-           throw new IllegalStateException();
+            logger.error("Profiling was already started for '{}'", callstack.getFirst().getCls() + "#"
+                    + callstack.getFirst().getMethod());
+            throw new IllegalStateException();
         }
-        
-        MethodDescriptor methodDescriptor = new MethodDescriptor(objectName,methodName, lineNumber);
+
+        MethodDescriptor methodDescriptor = new MethodDescriptor(objectName, methodName, lineNumber);
         MethodInvocation rootInvocation = new MethodInvocation(methodDescriptor);
         invocations.add(rootInvocation);
         callstack.add(rootInvocation);
@@ -62,7 +63,7 @@ public class ProfilerCallback {
         logger.info("Calculating data...");
 
         last.calc();
-        
+
         logger.info("Profiling output:\n");
         logger.info(last.dump());
 
@@ -70,12 +71,12 @@ public class ProfilerCallback {
 
         new OutputGenerator().renderFromBootstrapTemplate(last);
         new OutputGenerator().renderDebugInfo();
-        
+
         logger.info("Instrumentation execution... done.");
     }
 
-    public static void before(String objectName, String methodName, int lineNumber) { //, int depth) {
-       if (!profiling()) {
+    public static void before(String objectName, String methodName, int lineNumber) { // , int depth) {
+        if (!profiling()) {
             return;
         }
         handleInvocation(objectName, methodName, lineNumber);
@@ -97,34 +98,35 @@ public class ProfilerCallback {
     public static List<MethodInvocation> getInvocations() {
         return invocations;
     }
-    
+
     private static void handleInvocation(String objectName, String methodName, int lineNumber) {
         MethodInvocation existingInvocation = getInvocation(callstack.peekLast(), objectName, methodName);
         if (existingInvocation != null) {
-            logger.debug("invocation '{}' exists, incrementing count", existingInvocation);
+            // logger.debug("invocation '{}' exists, incrementing count", existingInvocation);
             existingInvocation.increment();
             callstack.add(existingInvocation);
             return;
         }
-        MethodDescriptor methodDescriptor = new MethodDescriptor(objectName,methodName, lineNumber);
+        MethodDescriptor methodDescriptor = new MethodDescriptor(objectName, methodName, lineNumber);
         MethodInvocation invocation = new MethodInvocation(callstack.peekLast(), methodDescriptor);
         logger.info("invocation of '{}'", invocation);
         invocations.add(invocation);
         callstack.add(invocation);
     }
-    
+
     private static MethodInvocation getInvocation(MethodInvocation peekLast, String objectName, String methodName) {
-        for(MethodInvocation invocation : invocations) {
+        for (MethodInvocation invocation : invocations) {
             if (invocation.getParent() == null && peekLast != null) {
                 continue;
             }
-            if (invocation.getParent().equals(peekLast) && invocation.getCls().equals(objectName) && invocation.getMethod().equals(methodName)) {
+            if (invocation.getParent().equals(peekLast) && invocation.getCls().equals(objectName)
+                    && invocation.getMethod().equals(methodName)) {
                 return invocation;
             }
         }
         return null;
     }
-    
+
     private static void bigMessage(String msg) {
         logger.info("");
         logger.info("=====================");
@@ -132,6 +134,5 @@ public class ProfilerCallback {
         logger.info("=====================");
         logger.info("");
     }
-
 
 }
