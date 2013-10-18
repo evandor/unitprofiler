@@ -108,7 +108,7 @@ public class ProfilerCallback {
         }
         MethodDescriptor methodDescriptor = new MethodDescriptor(objectName,methodName, lineNumber);
         MethodInvocation invocation = new MethodInvocation(callstack.peekLast(), methodDescriptor);
-        logger.debug("creating new invocation '{}'", invocation);
+        logger.info("invocation of '{}'", invocation);
         invocations.add(invocation);
         callstack.add(invocation);
     }

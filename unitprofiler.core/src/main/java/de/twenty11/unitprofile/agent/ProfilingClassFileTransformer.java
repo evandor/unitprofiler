@@ -56,12 +56,11 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
             ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
-        if (className.startsWith("java/") || className.startsWith("javax/")) {
+        if (shouldNotBeProfiled(className)) {
             return classfileBuffer;
         }
 
-        Transformation transformation = trackTransformations(className, loader, classBeingRedefined, protectionDomain,
-                classfileBuffer);
+        Transformation transformation = trackTransformations(className, classfileBuffer);
 
         byte[] byteCode = classfileBuffer;
         ClassPool classPool = ClassPool.getDefault();
@@ -84,11 +83,12 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
             for (CtMethod m : annotatedMethodsToProfile) {
                 startProfiling(ctClass, profilerCallbackCtClass, m);
             }
+            for (CtMethod m : ctClass.getMethods()) {
+                profile(m, ctClass);
+            }
             byteCode = ctClass.toBytecode();
             transformation.update(byteCode.length);
             logger.debug("transformation updated '{}'", transformation);
-            // logger.info("          writing file '" + cc.getName() + "' " + byteCode.length + " bytes.");
-            // cc.writeFile("etc");
             ctClass.detach();
         } catch (NotFoundException nfe) {
             logger.warn("{}", nfe.getMessage());
@@ -99,8 +99,35 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         return byteCode;
     }
 
-    private Transformation trackTransformations(String className, ClassLoader loader, Class<?> classBeingRedefined,
-            ProtectionDomain protectionDomain, byte[] classfileBuffer) {
+    private boolean shouldNotBeProfiled(String className) {
+        if (className.startsWith("java/") || className.startsWith("javax/") || className.startsWith("sun/")) {
+            return true;
+        }
+        if (className.startsWith("org/junit") || className.startsWith("junit/framework")) {
+            return true;
+        }
+        if (className.startsWith("de/twenty11/unitprofile/agent")) {
+            return true;
+        }
+        if (className.startsWith("de/twenty11/unitprofile/domain")) {
+            return true;
+        }
+        if (className.startsWith("de/twenty11/unitprofile/callback")) {
+            return true;
+        }
+        if (className.startsWith("org/apache/maven/surefire")) {
+            return true;
+        }
+        if (className.startsWith("org/apache/commons")) {
+            return true;
+        }
+        if (className.startsWith("org/springframework")) {
+            return true;
+        }
+        return false;
+    }
+
+    private Transformation trackTransformations(String className, byte[] classfileBuffer) {
         Transformation transformation = new Transformation(className, classfileBuffer.length);
         if (transformations.contains(transformation)) {
             logger.warn("re-transforming '{}'", transformation);
@@ -142,16 +169,17 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         if (!instrument(m)) {
             return;
         }
-        
-        MethodDescriptor md = new MethodDescriptor(m.getDeclaringClass().getName(), m.getName(), m.getMethodInfo().getLineNumber(0));
+
+        MethodDescriptor md = new MethodDescriptor(m.getDeclaringClass().getName(), m.getName(), m.getMethodInfo()
+                .getLineNumber(0));
         String insertBeforeCode = md.getInsertBefore();
-        logger.info(insertBeforeCode);
+        logger.debug(insertBeforeCode);
 
         m.insertBefore(insertBeforeCode);
         m.insertAfter(md.getInsertAfter());
-        m.instrument(new ProfilingExprEditor(this, cc));
+        //m.instrument(new ProfilingExprEditor(this, cc));
     }
-    
+
     public boolean isAlreadyInstrumented(MethodDescriptor instrumentation) {
         return instrumentations.contains(instrumentation);
     }
@@ -202,7 +230,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         }
         return methodsToProfile;
     }
-    
+
     private boolean instrument(CtMethod method) {
 
         if (method.getDeclaringClass().isFrozen()) {
@@ -228,6 +256,4 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         return true;
     }
 
-    
-   
 }
