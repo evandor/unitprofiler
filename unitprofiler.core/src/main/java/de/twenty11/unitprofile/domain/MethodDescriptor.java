@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javassist.NotFoundException;
+import javassist.expr.MethodCall;
 import javassist.expr.NewExpr;
 
 
@@ -32,6 +33,10 @@ public class MethodDescriptor implements Comparable<MethodDescriptor>{
         this(newExpr.getClassName(), newExpr.getConstructor().getName(), newExpr.getLineNumber());   
     }
 
+    public MethodDescriptor(MethodCall mc) {
+        this(mc.getClassName(), mc.getMethodName(), mc.getLineNumber());
+    }
+
     public void addInvocation(MethodInvocation invocation) {
         this.invocations.add(invocation);
     }
@@ -43,6 +48,22 @@ public class MethodDescriptor implements Comparable<MethodDescriptor>{
     public String getAfter() {
         return "{ProfilerCallback.after(\""+className+"\", \""+methodName+"\");}";
     }
+    
+    public String getInsertBefore() {
+        StringBuilder sb = new StringBuilder("{ProfilerCallback.before(\"");
+        sb.append(className).append("\", \"");
+        sb.append(methodName).append("\", ");
+        sb.append(lineNumber).append(");}");
+        return sb.toString();
+    }
+    
+    public String getInsertAfter() {
+        StringBuilder sb = new StringBuilder("{ProfilerCallback.after(\"");
+        sb.append(className).append("\", \"");
+        sb.append(methodName).append("\");}");
+        return sb.toString();
+    }
+
     
     public String getClassName() {
         return className;

@@ -15,14 +15,14 @@ import de.twenty11.unitprofiler.annotations.Profile;
 
 public class ProfiledClassWithFieldAccessTest {
 
-    TestClass testClassField = new TestClass(500);
+    TestClass testClass = new TestClass(500);
     String testStringField = "testABC";
 
     //@Profile
     @Test
     @Ignore
     public void testProfiler() {
-        testClassField.sleep(50);
+        testClass.sleep(50);
         testStringField.replaceAll("A", "B");
 
         MethodInvocation rootInvocation = Agent.getRootInvocation();
@@ -30,5 +30,14 @@ public class ProfiledClassWithFieldAccessTest {
         assertThat(rootInvocation.getChildren().size(), is(1));
         // assertThat(rootInvocation.getChildren().get(0).getChildren().size(), is(0));
         // assertThat(rootInvocation.getTime(),is(greaterThanOrEqualTo(rootInvocation.getChildren().get(0).getTime())));
+    }
+    
+    @Test
+    @Profile
+    public void testFieldAccess() {
+        testStringField = testClass.complicatedCalculation();
+        
+        MethodInvocation rootInvocation = Agent.getRootInvocation();
+        assertThat(rootInvocation, is(not(nullValue())));
     }
 }

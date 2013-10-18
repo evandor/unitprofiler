@@ -18,8 +18,14 @@ import de.twenty11.unitprofiler.annotations.Profile;
  * 
  * The whole process is done in a couple of steps:
  * 
- * 1) Instrumentation: see {@link ProfilingClassFileTransformer} 2) Profiling: see {@link ProfilingCallback} 3)
- * Calculation 4) Output Rendering *
+ * 1) Instrumentation: see {@link ProfilingClassFileTransformer} 
+ * 
+ * 2) Profiling: see {@link ProfilingCallback} 
+ * 
+ * 3) Calculation 
+ * 
+ * 4) Output Rendering 
+ * 
  */
 public class Agent {
 

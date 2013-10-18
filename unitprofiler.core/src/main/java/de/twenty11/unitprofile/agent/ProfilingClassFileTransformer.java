@@ -126,18 +126,11 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         }
 
         int lineNumber = m.getMethodInfo().getLineNumber(0);
-        // if (!Modifier.isStatic(m.getModifiers())) {
         String code = "{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\", "
                 + lineNumber + ");}";
-        logger.info("code: '{}'", code);
+        logger.info("insertBefore: '{}'", code);
         m.insertBefore(code);
         m.insertAfter("{ProfilerCallback.stop(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName() + "\");}");
-        // } else {
-        // m.insertBefore("{ProfilerCallback.start(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
-        // + "\");}");
-        // m.insertAfter("{ProfilerCallback.stop(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
-        // + "\", \"+lineNumber+\");}");
-        // }
         m.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
 
         classWithProfilingAnnotatedMethod.instrument(new ProfilingExprEditor(this, classWithProfilingAnnotatedMethod));
@@ -149,23 +142,39 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         if (!instrument(m)) {
             return;
         }
+        
+        MethodDescriptor md = new MethodDescriptor(m.getDeclaringClass().getName(), m.getName(), m.getMethodInfo().getLineNumber(0));
+        String insertBeforeCode = md.getInsertBefore();
+        logger.info(insertBeforeCode);
 
-        int lineNumber = m.getMethodInfo().getLineNumber(0);
+        m.insertBefore(insertBeforeCode);
+        m.insertAfter(md.getInsertAfter());
+        m.instrument(new ProfilingExprEditor(this, cc));
+    }
+    
+    public boolean isAlreadyInstrumented(MethodDescriptor instrumentation) {
+        return instrumentations.contains(instrumentation);
+    }
 
-        logger.info("profiling {}#{} ({})", new Object[] { cc.getName(), m.getName(), lineNumber });
+    public void addInstrumentation(MethodDescriptor instrumentation) {
+        instrumentations.add(instrumentation);
+    }
 
-        /*if (!Modifier.isStatic(m.getModifiers())) {
-            m.insertBefore("{ProfilerCallback.before(this.getClass().getName(), \"" + m.getName() + "\", " + lineNumber
-                    + ");}");
-            m.insertAfter("{ProfilerCallback.after(this.getClass().getName(), \"" + m.getName() + "\");}");
-            m.instrument(new ProfilingExprEditor(this, cc));
-        } else {*/
-            m.insertBefore("{ProfilerCallback.before(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
-                    + "\", " + lineNumber + ");}");
-            m.insertAfter("{ProfilerCallback.after(\"" + m.getDeclaringClass().getName() + "\", \"" + m.getName()
-                    + "\");}");
-            m.instrument(new ProfilingExprEditor(this, cc));
-        //}
+    public List<MethodDescriptor> getInstrumentations() {
+        return instrumentations;
+    }
+
+    public java.lang.instrument.Instrumentation getInstrumentation() {
+        return this.instrumentation;
+    }
+
+    public Transformation getTransformation(String classname) {
+        for (Transformation transformation : transformations) {
+            if (transformation.getClassName().equals(classname)) {
+                return transformation;
+            }
+        }
+        return null;
     }
 
     private List<CtMethod> findMethodsToProfile(CtClass cc) {
@@ -193,19 +202,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         }
         return methodsToProfile;
     }
-
-    public boolean isAlreadyInstrumented(MethodDescriptor instrumentation) {
-        return instrumentations.contains(instrumentation);
-    }
-
-    public void addInstrumentation(MethodDescriptor instrumentation) {
-        instrumentations.add(instrumentation);
-    }
-
-    public List<MethodDescriptor> getInstrumentations() {
-        return instrumentations;
-    }
-
+    
     private boolean instrument(CtMethod method) {
 
         if (method.getDeclaringClass().isFrozen()) {
@@ -231,16 +228,6 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         return true;
     }
 
-    public java.lang.instrument.Instrumentation getInstrumentation() {
-        return this.instrumentation;
-    }
-
-    public Transformation getTransformation(String classname) {
-        for (Transformation transformation : transformations) {
-            if (transformation.getClassName().equals(classname)) {
-                return transformation;
-            }
-        }
-        return null;
-    }
+    
+   
 }

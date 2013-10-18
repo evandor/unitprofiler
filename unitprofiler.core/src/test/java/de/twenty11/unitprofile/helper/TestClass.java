@@ -12,4 +12,9 @@ public class TestClass {
         } catch (InterruptedException e) {}
     }
 
+    public String complicatedCalculation() {
+        sleep(20);
+        return "slept 20ms";
+    }
+
 }
