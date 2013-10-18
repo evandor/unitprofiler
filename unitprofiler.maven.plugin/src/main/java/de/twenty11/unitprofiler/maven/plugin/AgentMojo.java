@@ -30,8 +30,7 @@ public class AgentMojo extends AbstractUnitProfilerMojo {
     private Map<String, Artifact> pluginArtifactMap;
 
     /**
-     * Allows to specify property which will contains settings for JaCoCo Agent. If not specified, then "argLine" would
-     * be used for "jar" packaging
+     * Allows to specify property which will contains settings for UnitProfiler Agent, see default if not specified.
      * 
      * @parameter expression="${jacoco.propertyName}"
      */

@@ -177,7 +177,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
 
         m.insertBefore(insertBeforeCode);
         m.insertAfter(md.getInsertAfter());
-        //m.instrument(new ProfilingExprEditor(this, cc));
+        // m.instrument(new ProfilingExprEditor(this, cc));
     }
 
     public boolean isAlreadyInstrumented(MethodDescriptor instrumentation) {
@@ -244,8 +244,8 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         if (instrumentations.contains(instrumentation)) {
             return false;
         }
-        logger.debug("added to instrumentations: " + objectName + "#" + method.getName() + "(line "
-                + method.getMethodInfo().getLineNumber(0) + ")");
+        // logger.debug("added to instrumentations: " + objectName + "#" + method.getName() + "(line "
+        // + method.getMethodInfo().getLineNumber(0) + ")");
         instrumentations.add(instrumentation);
 
         CodeAttribute ca = method.getMethodInfo().getCodeAttribute();
