@@ -124,6 +124,9 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         if (className.startsWith("org/springframework")) {
             return true;
         }
+        if (className.startsWith("org/jacoco/agent")) {
+            return true;
+        }
         return false;
     }
 
@@ -173,7 +176,7 @@ public class ProfilingClassFileTransformer implements ClassFileTransformer {
         MethodDescriptor md = new MethodDescriptor(m.getDeclaringClass().getName(), m.getName(), m.getMethodInfo()
                 .getLineNumber(0));
         String insertBeforeCode = md.getInsertBefore();
-        logger.debug(insertBeforeCode);
+        // logger.debug(insertBeforeCode);
 
         m.insertBefore(insertBeforeCode);
         m.insertAfter(md.getInsertAfter());
