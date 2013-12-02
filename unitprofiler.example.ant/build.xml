@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project name="unitprofiler.ant.example" default="main" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+	<property name="src.dir" location="src" />
+	<property name="build.dir" location="bin" />
+	<property name="lib.dir" location="lib" />
+	<property name="dist.dir" location="dist" />
+	<property name="docs.dir" location="docs" />
+
+	<path id="maven-ant-tasks.classpath" path="lib/maven-ant-tasks-2.1.3.jar" />
+	<typedef 
+		resource="org/apache/maven/artifact/ant/antlib.xml" 
+		uri="antlib:org.apache.maven.artifact.ant" 
+		classpathref="maven-ant-tasks.classpath" />
+
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${docs.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${docs.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<target name="compile" depends="clean, makedir">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" />
+	</target>
+
+	<target name="main" depends="compile">
+		<description>Main target</description>
+	</target>
+
+</project>
