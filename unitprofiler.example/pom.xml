@@ -141,7 +141,7 @@
                                             unitprofiler-maven-plugin
                                         </artifactId>
                                         <versionRange>
-                                            [0.0.7-SNAPSHOT,)
+                                            [0.0.24-SNAPSHOT,)
                                         </versionRange>
                                         <goals>
                                             <goal>prepare-agent</goal>

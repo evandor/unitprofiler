@@ -58,12 +58,12 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>unitprofiler.agent</artifactId>
       <!-- <classifier>runtime</classifier> -->
-      <version>[0.0.7-SNAPSHOT, 0.7)</version>
+      <version>[0.0.24-SNAPSHOT, 0.7)</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>unitprofiler.core</artifactId>
-      <version>[0.0.7-SNAPSHOT, 0.7)</version>
+      <version>[0.0.24-SNAPSHOT, 0.7)</version>
     </dependency>
 <!--     <dependency>
       <groupId>${project.groupId}</groupId>

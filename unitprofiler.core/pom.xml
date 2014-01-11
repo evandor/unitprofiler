@@ -277,7 +277,7 @@
         <dependency>
             <groupId>de.twentyeleven.unitprofiler</groupId>
             <artifactId>unitprofiler.annotations</artifactId>
-            <version>[0.0.7-SNAPSHOT, 0.7)</version>
+            <version>[0.0.24-SNAPSHOT, 0.7)</version>
         </dependency>
 
         <dependency>
